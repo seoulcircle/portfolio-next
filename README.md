@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+DayPalette/
+├── components/ # UI 컴포넌트
+│ ├── ColorSlider.tsx # 시간대에 따라 색상 조절 가능한 슬라이더
+│ ├── ColorSlider.style.ts # 슬라이더 스타일 정의
+│ ├── Modal.tsx # 컬러 결과 요약 or 선택 안내 모달
+│ └── Modal.style.ts # 모달 스타일 정의
+│
+├── hooks/ # 커스텀 훅
+│ ├── useColor.ts # 시간 및 날씨에 따른 컬러 추천 훅
+│ ├── useTime.ts # 현재 시간 계산 및 포맷팅 훅
+│ └── useWeatherData.ts # 외부 API를 통한 날씨 정보 가져오기
+│
+├── DayApi.ts # 날씨 등 외부 API 통신 유틸
+├── DayPalette.tsx # 메인 컨테이너 컴포넌트
+├── DayUtils.ts # 시간, 색상 계산 등 공통 유틸 함수
+├── styles.ts # 공통 스타일 정의
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TimeQuestion/
+├── components/ # UI 컴포넌트들
+│ ├── MinuteItem.tsx # 각 분(minute)을 표현하는 카드 컴포넌트
+│ ├── MinuteItem.style.ts # MinuteItem 스타일 정의
+│ ├── RenderedMinutes.tsx # 분 단위 리스트 렌더링 (중앙 정렬 등 분기 처리)
+│ ├── RenderedMinutes.style.ts # RenderedMinutes 스타일 정의
+│ ├── Modal.tsx # 저장된 답변을 보여주는 모달 컴포넌트
+│ └── Modal.style.ts # Modal 스타일 정의
+│
+├── data/
+│ └── question.json # 시간별 질문 목록 (랜덤 또는 정적 질문)
+│
+├── hooks/ # 커스텀 훅
+│ ├── useClock.ts # 현재 시간(hour, minute) 제공
+│ ├── useMediaQuery.ts # 반응형 판단 훅 (isMobile 등)
+│ ├── useQuestion.ts # 질문 목록 로딩 및 관리 훅
+│ ├── useUserWrite.ts # 사용자 작성 데이터 상태 관리 훅
+│ └── styles.ts # 공통 스타일 (breakpoints 등)
+│
+├── TimeQuestion.tsx # 메인 컨테이너 컴포넌트
