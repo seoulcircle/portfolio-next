@@ -1,18 +1,19 @@
 "use client";
 
-// import { useState } from "react";
 import * as S from "./styles";
-// import { AnimatePresence, motion } from "framer-motion";
 import useClock from "./hooks/useClock";
 import useUserWrite from "./hooks/useUserWrite";
 import useQuestion from "./hooks/useQuestion";
 import SavedAnswerModal from "./components/Modal";
 import RenderedMinutes from "./components/RenderedMinutes";
+import Seconds from "./components/Seconds";
 
 const TimeQuestion = () => {
   const { timeHour, timeMinutes, timeSeconds, minuteList } = useClock();
+
   const randomQuestion = useQuestion();
-  const { userText, handleChange, containerRef } = useUserWrite(
+
+  const { userText, containerRef, handleChange } = useUserWrite(
     timeMinutes,
     randomQuestion
   );
@@ -36,9 +37,7 @@ const TimeQuestion = () => {
           />
         </S.Minutes>
 
-        <S.Seconds>
-          <span>{timeSeconds}</span>
-        </S.Seconds>
+        <Seconds timeSeconds={timeSeconds} />
       </S.Time>
       <SavedAnswerModal modalData={userText} />
     </S.Wrapper>

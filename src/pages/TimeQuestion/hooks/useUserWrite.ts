@@ -18,26 +18,9 @@ const useUserWrite = (
   const DATE_KEY = "usertext_date";
   const STORAGE_KEY = "usertext";
 
-  // 로컬 스토리지에서 초기값 불러오기
-  // useEffect(() => {
-  //   const today = new Date().toISOString().slice(0, 10); // "2025-03-24"
-
-  //   const savedDate = localStorage.getItem(DATE_KEY);
-  //   // 24시에 로컬 스토리지 초기화
-  //   if (savedDate !== today) {
-  //     localStorage.setItem(DATE_KEY, today);
-  //     localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
-  //     setUserText([]);
-  //   } else {
-  //     const saved = localStorage.getItem(STORAGE_KEY);
-  //     if (saved) {
-  //       setUserText(JSON.parse(saved));
-  //     }
-  //   }
-  // }, []);
   useEffect(() => {
     const now = new Date();
-    const currentKey = now.toISOString().slice(0, 13); // "2025-03-24T15"
+    const currentKey = now.toISOString().slice(0, 13); // "2025-03-24T"
 
     const savedKey = localStorage.getItem(DATE_KEY);
     if (savedKey !== currentKey) {
