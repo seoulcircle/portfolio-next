@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import * as S from "./MinuteItem.style";
 import { useIsMobile } from "../hooks/useMediaQuery";
@@ -30,7 +31,6 @@ const getTimeState = (
 const MinuteItem = ({
   minute,
   nowMinute,
-  hour,
   randomQuestion,
   value,
   onChange,
@@ -99,4 +99,4 @@ const MinuteItem = ({
   );
 };
 
-export default MinuteItem;
+export default React.memo(MinuteItem);

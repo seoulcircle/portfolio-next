@@ -1,3 +1,4 @@
+import React from "react";
 import { AnimatePresence } from "framer-motion";
 import MinuteItem from "./MinuteItem";
 import * as S from "./RenderedMinutes.style";
@@ -57,4 +58,4 @@ const RenderedMinutes = ({
   );
 };
 
-export default RenderedMinutes;
+export default React.memo(RenderedMinutes);

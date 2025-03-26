@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 type WriteItem = {
   time: string;
@@ -48,34 +48,37 @@ const useUserWrite = (
   }, [userText]);
 
   // 텍스트 입력 변경 핸들러
-  const handleChange = (
-    targetTimeKey: string,
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const newAnswer = e.target.value;
-    const minute = +targetTimeKey.split(":")[1]; // 12:14->14
-    const question = randomQuestion[minute];
+  const handleChange = useCallback(
+    (
+      targetTimeKey: string,
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+      const newAnswer = e.target.value;
+      const minute = +targetTimeKey.split(":")[1]; // 12:14->14
+      const question = randomQuestion[minute];
 
-    setUserText((prev) => {
-      // 시간이 아예 같은 게 이미 있다면 → 수정
-      const existing = prev.find((item) => item.time === targetTimeKey);
-      if (existing) {
-        return prev.map((item) =>
-          item.time === targetTimeKey ? { ...item, answer: newAnswer } : item
-        );
-      }
+      setUserText((prev) => {
+        // 시간이 아예 같은 게 이미 있다면 → 수정
+        const existing = prev.find((item) => item.time === targetTimeKey);
+        if (existing) {
+          return prev.map((item) =>
+            item.time === targetTimeKey ? { ...item, answer: newAnswer } : item
+          );
+        }
 
-      // 없다면 → 새로 추가
-      return [
-        ...prev,
-        {
-          time: targetTimeKey,
-          question,
-          answer: newAnswer,
-        },
-      ];
-    });
-  };
+        // 없다면 → 새로 추가
+        return [
+          ...prev,
+          {
+            time: targetTimeKey,
+            question,
+            answer: newAnswer,
+          },
+        ];
+      });
+    },
+    [randomQuestion]
+  );
 
   return {
     userText,
