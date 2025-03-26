@@ -24,7 +24,7 @@ export const SavedMinutes = styled(motion.div)`
   cursor: pointer;
 `;
 
-export const Modal = styled.div`
+export const MotionWrapper = styled(motion.div)`
   width: 350px;
   z-index: 999;
   max-height: 200px;

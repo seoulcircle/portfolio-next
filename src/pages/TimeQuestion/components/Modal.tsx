@@ -1,6 +1,8 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { AnimatePresence } from "framer-motion";
 import * as S from "./Modal.style";
 import { useIsMobile } from "../hooks/useMediaQuery";
 
@@ -30,22 +32,12 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
       const rect = timeRefs.current[selectedTime]!.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const left = rect.left - 350 - 10;
-
-      // 화면 기준 절반보다 위에 있으면 아래로 열고, 아니면 위로 띄움
       const isUpperHalf = rect.top < viewportHeight / 2;
 
       if (isUpperHalf) {
-        // 아래로 열기 (top 기준)
-        setModalPosition({
-          top: rect.top, // 아래로 약간 여백
-          left,
-        });
+        setModalPosition({ top: rect.top, left });
       } else {
-        // 위로 열기 (bottom 기준)
-        setModalPosition({
-          left,
-          bottom: viewportHeight - rect.top - 12,
-        });
+        setModalPosition({ bottom: viewportHeight - rect.top - 12, left });
       }
     }
 
@@ -77,32 +69,44 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
           }
         >
           {item.time}
-          {selectedTime === item.time &&
-            createPortal(
-              <S.Modal
-                ref={modalRef}
-                style={{
-                  position: "fixed",
-                  zIndex: 9999,
-                  ...(isMobile
-                    ? {
-                        bottom: "17px",
-                        left: "73px",
-                      }
-                    : {
-                        top: modalPosition.top,
-                        bottom: modalPosition.bottom,
-                        left: modalPosition.left,
-                      }),
-                }}
-              >
-                <h2>{item.question}</h2>
-                <p>{item.answer}</p>
-              </S.Modal>,
-              document.body
-            )}
         </S.SavedMinutes>
       ))}
+
+      {selectedTime &&
+        createPortal(
+          <AnimatePresence>
+            <S.MotionWrapper
+              ref={modalRef}
+              initial={
+                isMobile ? { opacity: 0, y: 20 } : { opacity: 0, scale: 0.95 }
+              }
+              animate={
+                isMobile ? { opacity: 1, y: 0 } : { opacity: 1, scale: 1 }
+              }
+              exit={
+                isMobile ? { opacity: 0, y: 20 } : { opacity: 0, scale: 0.95 }
+              }
+              transition={{ duration: 0.2 }}
+              style={{
+                position: "fixed",
+                zIndex: 9999,
+                ...(isMobile
+                  ? { bottom: "17px", left: "73px" }
+                  : {
+                      top: modalPosition.top,
+                      bottom: modalPosition.bottom,
+                      left: modalPosition.left,
+                    }),
+              }}
+            >
+              <h2>
+                {modalData.find((m) => m.time === selectedTime)?.question}
+              </h2>
+              <p>{modalData.find((m) => m.time === selectedTime)?.answer}</p>
+            </S.MotionWrapper>
+          </AnimatePresence>,
+          document.body
+        )}
     </S.SavedAnswer>
   );
 };
