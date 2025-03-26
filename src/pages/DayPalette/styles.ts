@@ -71,7 +71,7 @@ export const ModalWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  min-width: 500px;
+  min-width: 750px;
   @media (max-width: ${breakpoints.mobile}) {
     min-width: auto;
   }
