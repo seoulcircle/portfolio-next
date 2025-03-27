@@ -7,15 +7,21 @@ export const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    transform-origin: 50% 10%;
+    width: 100%;
+    height: 100%;
+    min-height: 730px;
+    overflow: hidden;
   `,
 
   Container: styled(motion.div)`
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 80vw;
+    height: 80vw;
+    max-width: 700px;
+    min-height: 730px;
     border-radius: 50%;
-    margin: 200px auto;
+    /* margin: 20vh auto; */
   `,
 
   Tick: styled.div`
@@ -41,5 +47,6 @@ export const S = {
     font-size: 16px;
     text-align: center;
     line-height: normal;
+    cursor: pointer;
   `,
 };

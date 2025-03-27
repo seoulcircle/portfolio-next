@@ -117,6 +117,7 @@ export const globalStyles = css`
   }
   html,
   body,
+  main,
   #root {
     height: 100%;
     margin: 0;

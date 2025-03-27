@@ -1,25 +1,31 @@
 "use client";
 /** @jsxImportSource @emotion/react */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { S } from "./CircleBoard.style";
 import { projects } from "../data/projectList";
+import { useResponsiveRadius } from "@/hooks/useResponsiveRadius";
 
 const HOUR_COUNT = 60;
 
 const CircularMenu = () => {
-  const [rotation, setRotation] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const ticks = Array.from({ length: HOUR_COUNT }, (_, i) => i);
-  const [targetRotation, setTargetRotation] = useState<number | null>(null);
+  const radius = useResponsiveRadius(0.3, { min: 200, max: 700 });
 
+  const radius2 = useResponsiveRadius(0.39, { min: 250, max: 770 }); // 40% 비율 기준
+  const [rotation, setRotation] = useState(0); // 현재 회전 각도
+  const [isZoomed, setIsZoomed] = useState(false); // 확대 여부
+  const ticks = Array.from({ length: HOUR_COUNT }, (_, i) => i);
+  const [targetRotation, setTargetRotation] = useState<number | null>(null); // 특정 항목 클릭 시 목표 회전 각도
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // 마운트 시 body 스크롤 방지, 언마운트 시 복구
   useEffect(() => {
     document.body.style.overflow = "hidden"; // 바깥 스크롤 막기
     return () => {
       document.body.style.overflow = "auto"; // 컴포넌트 사라질 때 원상복구
     };
   }, []);
-
+  // 마우스 휠로 회전 각도 조절
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
       setRotation((prev) => prev + e.deltaY * 0.2); // 스크롤 감도 조정
@@ -28,35 +34,57 @@ const CircularMenu = () => {
     window.addEventListener("wheel", handleScroll, { passive: true });
     return () => window.removeEventListener("wheel", handleScroll);
   }, []);
-
+  //label 클릭 시 정각 위치로 회전 -> 확대
   const handleClick = (index: number) => {
-    const anglePerTick = 360 / HOUR_COUNT;
-    const targetAngle = -anglePerTick * index;
-    setRotation(targetAngle);
-    setIsZoomed(true);
+    const anglePerTick = 360 / HOUR_COUNT; // 눈금 하나 당 회전 각도
+    const targetAngle = -anglePerTick * index; // 클릭한 index에 해당하는 각도로 회전
+    setTargetRotation(targetAngle);
+    setIsZoomed(true); // 확대 상태로 전환
   };
 
+  // label 클릭 후 정각으로 회전 애니메이션 처리
   useEffect(() => {
     if (targetRotation !== null) {
-      const animation = requestAnimationFrame(() => {
+      const animate = () => {
         setRotation((prev) => {
-          const diff = targetRotation - prev;
-          const step = diff * 0.1;
+          const diff = targetRotation - prev; // 목표 각도(-90) - 현재 회전 상태
+          const step = diff * 0.03; // 속도 조절
+
           if (Math.abs(diff) < 0.5) {
+            // 목표와 가까워지면 애니메이션 종료
             setTargetRotation(null);
             return targetRotation;
           }
-          return prev + step;
-        });
-      });
 
-      return () => cancelAnimationFrame(animation);
+          requestAnimationFrame(animate); // 반복 호출
+          return prev + step; // 현재 각도 + step만큼
+        });
+      };
+
+      requestAnimationFrame(animate);
     }
-  }, [rotation, targetRotation]);
+  }, [targetRotation]);
+
+  //zoomout
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setIsZoomed(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <S.Wrapper
-      animate={{ scale: isZoomed ? 1.8 : 1 }}
+      animate={{ scale: isZoomed ? 2 : 1 }}
       transition={{
         type: "spring",
         stiffness: 80,
@@ -71,10 +99,11 @@ const CircularMenu = () => {
           const tickHeight = isMajorTick ? 24 : 10;
           return (
             <S.Tick
+              ref={containerRef}
               key={i}
               style={{
                 transform: `rotate(${angle}deg) translateY(-${
-                  200 + tickHeight
+                  radius + tickHeight
                 }px)`,
                 transformOrigin: "top center",
                 backgroundColor: isMajorTick ? "#c61a1a" : "#545454",
@@ -94,7 +123,7 @@ const CircularMenu = () => {
             <S.LabelWrapper
               key={id}
               style={{
-                transform: `rotate(${angle}deg) translateY(-260px)`,
+                transform: `rotate(${angle}deg) translateY(-${radius2}px)`,
               }}
             >
               <S.Label
