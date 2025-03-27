@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { S } from "./CircleBoard.style";
 import { projects } from "../data/projectList";
 import { useResponsiveRadius } from "@/hooks/useResponsiveRadius";
+import ZoomContent from "./ZoomContent";
 
 const HOUR_COUNT = 60;
 
@@ -17,7 +18,10 @@ const CircularMenu = () => {
   const ticks = Array.from({ length: HOUR_COUNT }, (_, i) => i);
   const [targetRotation, setTargetRotation] = useState<number | null>(null); // 특정 항목 클릭 시 목표 회전 각도
   const containerRef = useRef<HTMLDivElement>(null);
+  const [zoomId, setZoomId] = useState<string | null>(null); // 클릭된 label의 id
+  const [zoomAnimationDone, setZoomAnimationDone] = useState(false); // zoom 애니메이션 완료 여부
 
+  const zoomedProject = projects.find((p) => p.id === zoomId);
   // 마운트 시 body 스크롤 방지, 언마운트 시 복구
   useEffect(() => {
     document.body.style.overflow = "hidden"; // 바깥 스크롤 막기
@@ -34,12 +38,17 @@ const CircularMenu = () => {
     window.addEventListener("wheel", handleScroll, { passive: true });
     return () => window.removeEventListener("wheel", handleScroll);
   }, []);
+
   //label 클릭 시 정각 위치로 회전 -> 확대
   const handleClick = (index: number) => {
     const anglePerTick = 360 / HOUR_COUNT; // 눈금 하나 당 회전 각도
     const targetAngle = -anglePerTick * index; // 클릭한 index에 해당하는 각도로 회전
     setTargetRotation(targetAngle);
     setIsZoomed(true); // 확대 상태로 전환
+    const clickedLabel = projects.find((p) => p.index === index);
+    if (clickedLabel) {
+      setZoomId(clickedLabel.id);
+    }
   };
 
   // label 클릭 후 정각으로 회전 애니메이션 처리
@@ -50,7 +59,7 @@ const CircularMenu = () => {
           const diff = targetRotation - prev; // 목표 각도(-90) - 현재 회전 상태
           const step = diff * 0.03; // 속도 조절
 
-          if (Math.abs(diff) < 0.5) {
+          if (Math.abs(diff) < 10) {
             // 목표와 가까워지면 애니메이션 종료
             setTargetRotation(null);
             return targetRotation;
@@ -81,10 +90,36 @@ const CircularMenu = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  console.log("rotation", rotation);
+
+  // getting ceneterd Label's Index when rotation happens
+  const getCenteredLabelIndex = (rotation: number) => {
+    const anglePerTick = 360 / HOUR_COUNT; // single angle per one tick
+    const normalized = ((rotation % 360) + 360) % 360; // 0~359 사이로 보정
+    const index = Math.round(-normalized / anglePerTick); // 음수 보정 전
+    console.log((index + HOUR_COUNT) % HOUR_COUNT);
+    return (index + HOUR_COUNT) % HOUR_COUNT; //
+  };
+
+  // update zoomProject when rotation happens
+  useEffect(() => {
+    if (!isZoomed) return;
+    const centeredIndex = getCenteredLabelIndex(rotation);
+    const centeredProject = projects.find((p) => p.index === centeredIndex);
+    if (centeredProject) {
+      setZoomId(centeredProject.id);
+    }
+  }, [rotation, isZoomed]);
 
   return (
     <S.Wrapper
       animate={{ scale: isZoomed ? 2 : 1 }}
+      onAnimationComplete={() => {
+        if (isZoomed) {
+          setZoomAnimationDone(true);
+        } // zoom in complete
+        else setZoomAnimationDone(false); // zoom out
+      }}
       transition={{
         type: "spring",
         stiffness: 80,
@@ -140,6 +175,11 @@ const CircularMenu = () => {
           );
         })}
       </S.Container>
+      {isZoomed &&
+        zoomAnimationDone &&
+        zoomedProject && ( // zoomed, zoom animation completed,
+          <ZoomContent project={zoomedProject} />
+        )}
     </S.Wrapper>
   );
 };

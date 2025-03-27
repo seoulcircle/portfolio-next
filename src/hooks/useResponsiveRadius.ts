@@ -14,6 +14,7 @@ export const useResponsiveRadius = (
 
   useEffect(() => {
     const updateRadius = () => {
+      if (typeof window === "undefined") return;
       const base = Math.min(window.innerWidth, window.innerHeight);
       const raw = base * scale;
       const clamped = Math.max(min, Math.min(raw, max));
