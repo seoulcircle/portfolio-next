@@ -2,7 +2,7 @@
 
 import styled from "@emotion/styled";
 const HeaderDiv = styled.div`
-  height: 60px;
+  height: 0px;
 `;
 
 function Header() {

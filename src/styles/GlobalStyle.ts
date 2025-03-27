@@ -124,9 +124,6 @@ export const globalStyles = css`
   body {
     line-height: 1;
   }
-  main {
-    height: calc(100vh - 60px); /* 헤더 높이 제외하고 채우기 */
-  }
   menu,
   ol,
   ul {

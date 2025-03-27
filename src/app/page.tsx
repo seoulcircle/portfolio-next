@@ -1,5 +1,6 @@
-import Home from "@/pages/Home/Home";
+// /src/app/page.tsx
+import CircleBoard from "@/components/CircleBoard";
 
 export default function HomePage() {
-  return <Home />;
+  return <CircleBoard />;
 }
