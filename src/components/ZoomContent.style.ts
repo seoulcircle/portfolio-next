@@ -57,11 +57,11 @@ export const S = {
       border: 1px solid black;
       padding: 4px 12px;
       margin-right: 5px;
-      border-radius: 9999px; /* 핵심! */
+      border-radius: 9999px;
       font-size: 14px;
       text-align: center;
-      white-space: nowrap; // 줄바꿈 없이 한 줄에 표시
-      word-break: keep-all; // 단어 중간에서 끊기지 않게
+      white-space: nowrap;
+      word-break: keep-all;
       overflow-wrap: normal;
     }
     @media (max-width: ${breakpoints.mobile}) {
@@ -69,9 +69,9 @@ export const S = {
     }
   `,
   RouteButton: styled.button`
-    /* all: unset; */
+    all: unset;
     cursor: pointer;
-    border-radius: 9999px; /* 핵심! */
+    border-radius: 9999px;
     margin-top: 30px;
     text-align: center;
     display: flex;

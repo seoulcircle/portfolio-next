@@ -4,7 +4,9 @@
 import { useEffect, useState } from "react";
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const isWindow = typeof window !== "undefined"; // 브라우저?
+  const initialState = isWindow ? window.innerWidth <= 639 : false;
+  const [isMobile, setIsMobile] = useState(initialState);
 
   useEffect(() => {
     const checkScreen = () => {

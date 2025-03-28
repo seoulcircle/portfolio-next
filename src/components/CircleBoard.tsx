@@ -10,12 +10,14 @@ import { useIsMobile } from "@/pages/TimeQuestion/hooks/useMediaQuery";
 const HOUR_COUNT = 60;
 
 const CircularMenu = () => {
+  const [hasMounted, setHasMounted] = useState(false);
   const isMobile = useIsMobile();
-  const radius = useResponsiveRadius(isMobile ? 0.36 : 0.2, {
+
+  const tickRadius = useResponsiveRadius(isMobile ? 0.36 : 0.2, {
     min: 70,
     max: 700,
   });
-  const radius2 = useResponsiveRadius(isMobile ? 0.5 : 0.27, {
+  const labelRadius = useResponsiveRadius(isMobile ? 0.5 : 0.27, {
     min: 100,
     max: 700,
   });
@@ -28,6 +30,12 @@ const CircularMenu = () => {
   const [zoomAnimationDone, setZoomAnimationDone] = useState(false); // zoom 애니메이션 완료 여부
 
   const zoomedProject = projects.find((p) => p.id === zoomId);
+
+  // hydration완료 후 보여주기 (window 생기고 나서)
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   // 마운트 시 body 스크롤 방지, 언마운트 시 복구
   useEffect(() => {
     document.body.style.overflow = "hidden"; // 바깥 스크롤 막기
@@ -35,6 +43,12 @@ const CircularMenu = () => {
       document.body.style.overflow = "auto"; // 컴포넌트 사라질 때 원상복구
     };
   }, []);
+  useEffect(() => {
+    if (isMobile) {
+      setRotation(30);
+    }
+  }, [isMobile]);
+
   // 마우스 휠로 회전 각도 조절
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
@@ -48,7 +62,8 @@ const CircularMenu = () => {
   //label 클릭 시 정각 위치로 회전 -> 확대
   const handleClick = (index: number) => {
     const anglePerTick = 360 / HOUR_COUNT; // 눈금 하나 당 회전 각도
-    const targetAngle = -anglePerTick * index; // 클릭한 index에 해당하는 각도로 회전
+    const offset = isMobile ? 45 : 0; // 회전 기준 보정
+    const targetAngle = -anglePerTick * index + offset; // 클릭한 index에 해당하는 각도로 회전
     setTargetRotation(targetAngle);
     setIsZoomed(true); // 확대 상태로 전환
     const clickedLabel = projects.find((p) => p.index === index);
@@ -114,7 +129,7 @@ const CircularMenu = () => {
       setZoomId(centeredProject.id);
     }
   }, [rotation, isZoomed]);
-
+  if (!hasMounted) return null;
   return (
     <>
       <S.Wrapper
@@ -132,7 +147,7 @@ const CircularMenu = () => {
           delay: 0,
         }}
       >
-        {isZoomed && (
+        {isZoomed && zoomAnimationDone && (
           <S.GlassOverlay
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -153,7 +168,7 @@ const CircularMenu = () => {
                 key={i}
                 style={{
                   transform: `rotate(${angle}deg) translateY(-${
-                    radius + tickHeight
+                    tickRadius + tickHeight
                   }px)`,
                   transformOrigin: "top center",
                   backgroundColor: isMajorTick ? "#c61a1a" : "#545454",
@@ -168,13 +183,13 @@ const CircularMenu = () => {
             const actualAngle = (angle + rotation) % 360;
             const normalizedAngle =
               actualAngle < 0 ? actualAngle + 360 : actualAngle;
-            const targetAngle = isMobile ? 90 : 0;
+            const targetAngle = isMobile ? 45 : 0;
             const isCentered = Math.abs(normalizedAngle - targetAngle) < 6;
             return (
               <S.LabelWrapper
                 key={id}
                 style={{
-                  transform: `rotate(${angle}deg) translateY(-${radius2}px)`,
+                  transform: `rotate(${angle}deg) translateY(-${labelRadius}px)`,
                 }}
               >
                 <S.Label
