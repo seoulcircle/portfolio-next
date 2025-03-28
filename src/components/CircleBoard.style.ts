@@ -7,28 +7,39 @@ export const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform-origin: 50% 10%;
+    transform-origin: 50% 5%;
     width: 100%;
     height: 100%;
-    min-height: 730px;
+    /* min-height: 730px; */
     overflow: hidden;
   `,
-
+  GlassOverlay: styled(motion.div)`
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  `,
   Container: styled(motion.div)`
     position: relative;
-    width: 80vw;
-    height: 80vw;
-    max-width: 700px;
-    min-height: 730px;
+    width: 80vmin;
+    height: 80vmin;
+    /* max-width: 700px; */
+    /* min-height: 730px; */
     border-radius: 50%;
     /* margin: 20vh auto; */
+    min-width: 380px;
+    min-height: 380px;
+    max-width: 700px;
+    max-height: 700px;
   `,
 
   Tick: styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1.5px;
+    width: 1px;
     background-color: black;
   `,
 

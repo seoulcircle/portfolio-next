@@ -5,12 +5,13 @@ export const useResponsiveRadius = (
   options?: { min?: number; max?: number }
 ) => {
   const { min = 200, max = 800 } = options || {};
+  const [radius, setRadius] = useState<number>(min);
 
-  const [radius, setRadius] = useState(() => {
+  useEffect(() => {
     const base = Math.min(window.innerWidth, window.innerHeight);
     const raw = base * scale;
-    return Math.max(min, Math.min(raw, max));
-  });
+    setRadius(Math.max(min, Math.min(raw, max)));
+  }, []);
 
   useEffect(() => {
     const updateRadius = () => {

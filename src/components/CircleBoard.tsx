@@ -10,9 +10,9 @@ import ZoomContent from "./ZoomContent";
 const HOUR_COUNT = 60;
 
 const CircularMenu = () => {
-  const radius = useResponsiveRadius(0.3, { min: 200, max: 700 });
+  const radius = useResponsiveRadius(0.3, { min: 150, max: 700 });
 
-  const radius2 = useResponsiveRadius(0.39, { min: 250, max: 770 }); // 40% 비율 기준
+  const radius2 = useResponsiveRadius(0.39, { min: 180, max: 770 }); // 40% 비율 기준
   const [rotation, setRotation] = useState(0); // 현재 회전 각도
   const [isZoomed, setIsZoomed] = useState(false); // 확대 여부
   const ticks = Array.from({ length: HOUR_COUNT }, (_, i) => i);
@@ -112,75 +112,88 @@ const CircularMenu = () => {
   }, [rotation, isZoomed]);
 
   return (
-    <S.Wrapper
-      animate={{ scale: isZoomed ? 2 : 1 }}
-      onAnimationComplete={() => {
-        if (isZoomed) {
-          setZoomAnimationDone(true);
-        } // zoom in complete
-        else setZoomAnimationDone(false); // zoom out
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 80,
-        damping: 10,
-        delay: 1,
-      }}
-    >
-      <S.Container style={{ transform: `rotate(${rotation}deg)` }}>
-        {ticks.map((_, i) => {
-          const angle = (360 / HOUR_COUNT) * i;
-          const isMajorTick = [0, 5, 10, 20, 25, 35, 45].includes(i);
-          const tickHeight = isMajorTick ? 24 : 10;
-          return (
-            <S.Tick
-              ref={containerRef}
-              key={i}
-              style={{
-                transform: `rotate(${angle}deg) translateY(-${
-                  radius + tickHeight
-                }px)`,
-                transformOrigin: "top center",
-                backgroundColor: isMajorTick ? "#c61a1a" : "#545454",
-                height: `${tickHeight}px`,
-              }}
-            />
-          );
-        })}
+    <>
+      <S.Wrapper
+        animate={{ scale: isZoomed ? 2 : 1 }}
+        onAnimationComplete={() => {
+          if (isZoomed) {
+            setZoomAnimationDone(true);
+          } // zoom in complete
+          else setZoomAnimationDone(false); // zoom out
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 80,
+          damping: 20,
+          delay: 0,
+        }}
+      >
+        {isZoomed && (
+          <S.GlassOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          />
+        )}
 
-        {projects.map(({ index, id, name }) => {
-          const angle = (360 / HOUR_COUNT) * index;
-          const actualAngle = (angle + rotation) % 360;
-          const normalizedAngle =
-            actualAngle < 0 ? actualAngle + 360 : actualAngle;
-          const isCentered = normalizedAngle < 6 || normalizedAngle > 354;
-          return (
-            <S.LabelWrapper
-              key={id}
-              style={{
-                transform: `rotate(${angle}deg) translateY(-${radius2}px)`,
-              }}
-            >
-              <S.Label
-                onClick={() => handleClick(index)}
+        <S.Container style={{ transform: `rotate(${rotation}deg)` }}>
+          {ticks.map((_, i) => {
+            const angle = (360 / HOUR_COUNT) * i;
+            const isMajorTick = [0, 5, 10, 20, 25, 35, 45].includes(i);
+            const tickHeight = isMajorTick ? 24 : 10;
+            return (
+              <S.Tick
+                ref={containerRef}
+                key={i}
                 style={{
-                  transform: `translateX(-50%) rotate(${-angle - rotation}deg)`,
-                  fontWeight: isCentered ? 600 : 400,
-                  fontSize: isCentered ? "17px" : "16px",
+                  transform: `rotate(${angle}deg) translateY(-${
+                    radius + tickHeight
+                  }px)`,
+                  transformOrigin: "top center",
+                  backgroundColor: isMajorTick ? "#c61a1a" : "#545454",
+                  height: `${tickHeight}px`,
+                }}
+              />
+            );
+          })}
+
+          {projects.map(({ index, id, name }) => {
+            const angle = (360 / HOUR_COUNT) * index;
+            const actualAngle = (angle + rotation) % 360;
+            const normalizedAngle =
+              actualAngle < 0 ? actualAngle + 360 : actualAngle;
+            const isCentered = normalizedAngle < 6 || normalizedAngle > 354;
+            return (
+              <S.LabelWrapper
+                key={id}
+                style={{
+                  transform: `rotate(${angle}deg) translateY(-${radius2}px)`,
                 }}
               >
-                {name}
-              </S.Label>
-            </S.LabelWrapper>
-          );
-        })}
-      </S.Container>
+                <S.Label
+                  onClick={() => handleClick(index)}
+                  style={{
+                    transform: `translateX(-50%) rotate(${
+                      -angle - rotation
+                    }deg)`,
+                    fontWeight: isCentered ? 600 : 400,
+                    fontSize: isCentered ? "17px" : "16px",
+                  }}
+                >
+                  {name}
+                </S.Label>
+              </S.LabelWrapper>
+            );
+          })}
+        </S.Container>
+      </S.Wrapper>
       {isZoomed &&
         zoomAnimationDone &&
         zoomedProject && ( // zoomed, zoom animation completed,
           <ZoomContent project={zoomedProject} />
         )}
-    </S.Wrapper>
+    </>
   );
 };
 
