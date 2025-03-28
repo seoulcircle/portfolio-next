@@ -10,9 +10,9 @@ import ZoomContent from "./ZoomContent";
 const HOUR_COUNT = 60;
 
 const CircularMenu = () => {
-  const radius = useResponsiveRadius(0.3, { min: 150, max: 700 });
+  const radius = useResponsiveRadius(0.2, { min: 70, max: 700 });
 
-  const radius2 = useResponsiveRadius(0.39, { min: 180, max: 770 }); // 40% 비율 기준
+  const radius2 = useResponsiveRadius(0.27, { min: 100, max: 770 }); // 40% 비율 기준
   const [rotation, setRotation] = useState(0); // 현재 회전 각도
   const [isZoomed, setIsZoomed] = useState(false); // 확대 여부
   const ticks = Array.from({ length: HOUR_COUNT }, (_, i) => i);
@@ -90,7 +90,6 @@ const CircularMenu = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  console.log("rotation", rotation);
 
   // getting ceneterd Label's Index when rotation happens
   const getCenteredLabelIndex = (rotation: number) => {
@@ -134,6 +133,7 @@ const CircularMenu = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
+            onClick={() => setIsZoomed(false)}
           />
         )}
 
@@ -144,7 +144,6 @@ const CircularMenu = () => {
             const tickHeight = isMajorTick ? 24 : 10;
             return (
               <S.Tick
-                ref={containerRef}
                 key={i}
                 style={{
                   transform: `rotate(${angle}deg) translateY(-${
@@ -178,7 +177,7 @@ const CircularMenu = () => {
                       -angle - rotation
                     }deg)`,
                     fontWeight: isCentered ? 600 : 400,
-                    fontSize: isCentered ? "17px" : "16px",
+                    fontSize: isCentered ? "19px" : "18px",
                   }}
                 >
                   {name}
@@ -191,7 +190,9 @@ const CircularMenu = () => {
       {isZoomed &&
         zoomAnimationDone &&
         zoomedProject && ( // zoomed, zoom animation completed,
-          <ZoomContent project={zoomedProject} />
+          <div ref={containerRef} onClick={(e) => e.stopPropagation()}>
+            <ZoomContent project={zoomedProject} />
+          </div>
         )}
     </>
   );

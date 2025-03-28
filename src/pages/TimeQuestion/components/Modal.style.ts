@@ -8,6 +8,7 @@ export const SavedAnswer = styled(motion.div)`
   width: 100px;
   margin-top: 50px;
   overflow: scroll;
+  z-index: 999;
   @media (max-width: ${breakpoints.mobile}) {
     position: fixed;
     height: 100px;

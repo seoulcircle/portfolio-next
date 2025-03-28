@@ -3,9 +3,12 @@ import { breakpoints } from "@/styles/theme";
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
+  height: 100%;
   min-height: 615px;
+
   @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
   }
@@ -66,10 +69,10 @@ export const Minutes = styled.div`
 
 export const FaderTop = styled.div`
   position: absolute;
-  top: 60px;
+  top: 0px;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 350px;
   background: linear-gradient(to bottom, white, transparent);
   z-index: 10;
   pointer-events: none;

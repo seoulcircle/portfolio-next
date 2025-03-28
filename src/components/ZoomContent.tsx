@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 // import { useEffect, useState, useRef } from "react";
 import { S } from "./ZoomContent.style";
+import Link from "next/link";
 
 interface ZoomContentProps {
   project: {
@@ -12,6 +13,7 @@ interface ZoomContentProps {
     stack?: string[];
     api?: string[];
     thumbnail?: string;
+    route: string;
   };
 }
 
@@ -20,6 +22,7 @@ const ZoomContent = ({ project }: ZoomContentProps) => {
   //   rest: { opacity: 0, y: 10, transition: { duration: 0.2 } },
   //   hover: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   // };
+  console.log(project.route);
   return (
     <S.Detail>
       {/* <S.DetailWrapper
@@ -45,10 +48,12 @@ const ZoomContent = ({ project }: ZoomContentProps) => {
             <span key={a}>{a}</span>
           ))}
         </div>
-        <S.RouteButton>
-          <ArrowRight size={30} strokeWidth={2} />
-          LINK
-        </S.RouteButton>
+        <Link href={project.route} passHref>
+          <S.RouteButton>
+            <ArrowRight size={30} strokeWidth={1.5} />
+            DEMO
+          </S.RouteButton>
+        </Link>
       </S.DetailInfo>
       {/* </S.DetailWrapper> */}
     </S.Detail>

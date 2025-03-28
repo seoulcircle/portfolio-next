@@ -17,7 +17,7 @@ export const S = {
     position: absolute;
     inset: 0;
     z-index: 1;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
     background: rgba(255, 255, 255, 0.1);
     pointer-events: none;
   `,
@@ -29,8 +29,8 @@ export const S = {
     /* min-height: 730px; */
     border-radius: 50%;
     /* margin: 20vh auto; */
-    min-width: 380px;
-    min-height: 380px;
+    min-width: 300px;
+    min-height: 300px;
     max-width: 700px;
     max-height: 700px;
   `,

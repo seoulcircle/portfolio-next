@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 // import { motion } from "framer-motion";
-import Image from "next/image";
+
 export const S = {
   Detail: styled.div`
     position: fixed;
@@ -34,32 +34,45 @@ export const S = {
     border-radius: 16px;
     width: 50%;
     height: auto;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
   `,
   DetailInfo: styled(motion.div)`
     /* position: absolute;
     inset: 0; */
+
     width: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    & div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 1px;
+    }
     & span {
       border: 1px solid black;
       padding: 4px 12px;
       margin-right: 5px;
       border-radius: 9999px; /* 핵심! */
       font-size: 14px;
+      text-align: center;
+      white-space: nowrap; // 줄바꿈 없이 한 줄에 표시
+      word-break: keep-all; // 단어 중간에서 끊기지 않게
+      overflow-wrap: normal;
     }
   `,
   RouteButton: styled.button`
-    all: unset;
+    /* all: unset; */
     cursor: pointer;
+    border-radius: 9999px; /* 핵심! */
     margin-top: 30px;
     text-align: center;
     display: flex;
     align-items: center;
+    background-color: black;
+    color: white;
+    padding: 2px 9px 2px 5px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
   `,
 };

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { breakpoints } from "../../../Styles/theme";
+// import { breakpoints } from "../../../Styles/theme";
 
 export const CenteredItemWrapper = styled.div`
   height: 100%;
