@@ -1,7 +1,6 @@
 "use client";
 /** @jsxImportSource @emotion/react */
 import { ArrowRight } from "lucide-react";
-// import { useEffect, useState, useRef } from "react";
 import { S } from "./ZoomContent.style";
 import Link from "next/link";
 
@@ -18,11 +17,6 @@ interface ZoomContentProps {
 }
 
 const ZoomContent = ({ project }: ZoomContentProps) => {
-  // const overlayVariants = {
-  //   rest: { opacity: 0, y: 10, transition: { duration: 0.2 } },
-  //   hover: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  // };
-
   return (
     <S.Detail>
       {project.thumbnail && (

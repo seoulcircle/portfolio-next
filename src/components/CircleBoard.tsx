@@ -43,6 +43,8 @@ const CircularMenu = () => {
       document.body.style.overflow = "auto"; // 컴포넌트 사라질 때 원상복구
     };
   }, []);
+
+  // 모바일 경우 초기 회전 각도 설정
   useEffect(() => {
     if (isMobile) {
       setRotation(30);
@@ -62,7 +64,7 @@ const CircularMenu = () => {
   //label 클릭 시 정각 위치로 회전 -> 확대
   const handleClick = (index: number) => {
     const anglePerTick = 360 / HOUR_COUNT; // 눈금 하나 당 회전 각도
-    const offset = isMobile ? 45 : 0; // 회전 기준 보정
+    const offset = isMobile ? 30 : 0; // 회전 기준 보정
     const targetAngle = -anglePerTick * index + offset; // 클릭한 index에 해당하는 각도로 회전
     setTargetRotation(targetAngle);
     setIsZoomed(true); // 확대 상태로 전환
@@ -183,7 +185,7 @@ const CircularMenu = () => {
             const actualAngle = (angle + rotation) % 360;
             const normalizedAngle =
               actualAngle < 0 ? actualAngle + 360 : actualAngle;
-            const targetAngle = isMobile ? 45 : 0;
+            const targetAngle = isMobile ? 30 : 0;
             const isCentered = Math.abs(normalizedAngle - targetAngle) < 6;
             return (
               <S.LabelWrapper

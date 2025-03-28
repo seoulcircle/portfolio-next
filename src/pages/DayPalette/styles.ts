@@ -44,7 +44,7 @@ export const CircleWrapper = styled.div`
     width: 100%;
     height: auto;
     margin: 0;
-    margin-top: 30px;
+    margin-top: 50px;
     align-items: center;
     & button {
       width: 80px;

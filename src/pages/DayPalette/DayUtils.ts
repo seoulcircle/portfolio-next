@@ -12,7 +12,7 @@ export const getRGBA = (
   );
   const G = Math.min(255, Math.max(0, (humidity / 100) * 255));
   const B = Math.abs(255 - (hour / 24) * 255);
-  const A = Math.min(1, 1.5 - pm / 100).toFixed(2);
+  const A = Math.min(1, (pm < 100 ? 100 - pm : 150 - pm) / 100).toFixed(2);
 
   return `rgba(${Math.round(R)}, ${Math.round(G)}, ${Math.round(B)}, ${A})`;
 };
