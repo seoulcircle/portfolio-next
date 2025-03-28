@@ -22,17 +22,9 @@ const ZoomContent = ({ project }: ZoomContentProps) => {
   //   rest: { opacity: 0, y: 10, transition: { duration: 0.2 } },
   //   hover: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   // };
-  console.log(project.route);
+
   return (
     <S.Detail>
-      {/* <S.DetailWrapper
-        style={{
-          position: "relative",
-          width: "100%",
-
-          aspectRatio: "4 / 3",
-        }}
-      > */}
       {project.thumbnail && (
         <S.ThumbImg src={project.thumbnail} alt={`${project.name} thumbnail`} />
       )}
@@ -55,7 +47,6 @@ const ZoomContent = ({ project }: ZoomContentProps) => {
           </S.RouteButton>
         </Link>
       </S.DetailInfo>
-      {/* </S.DetailWrapper> */}
     </S.Detail>
   );
 };

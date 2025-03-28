@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import { breakpoints } from "@/styles/theme";
 
 export const S = {
   Wrapper: styled(motion.div)`
@@ -10,8 +11,13 @@ export const S = {
     transform-origin: 50% 5%;
     width: 100%;
     height: 100%;
-    /* min-height: 730px; */
     overflow: hidden;
+    @media (max-width: ${breakpoints.mobile}) {
+      position: absolute;
+      top: 0;
+      right: 50%;
+      overflow: visible;
+    }
   `,
   GlassOverlay: styled(motion.div)`
     position: absolute;
@@ -25,14 +31,11 @@ export const S = {
     position: relative;
     width: 80vmin;
     height: 80vmin;
-    /* max-width: 700px; */
-    /* min-height: 730px; */
-    border-radius: 50%;
-    /* margin: 20vh auto; */
     min-width: 300px;
     min-height: 300px;
     max-width: 700px;
     max-height: 700px;
+    border-radius: 50%;
   `,
 
   Tick: styled.div`
@@ -59,5 +62,8 @@ export const S = {
     text-align: center;
     line-height: normal;
     cursor: pointer;
+    @media (max-width: ${breakpoints.mobile}) {
+      bottom: 5px;
+    }
   `,
 };

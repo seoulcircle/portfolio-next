@@ -6,13 +6,19 @@ import { S } from "./CircleBoard.style";
 import { projects } from "../data/projectList";
 import { useResponsiveRadius } from "@/hooks/useResponsiveRadius";
 import ZoomContent from "./ZoomContent";
-
+import { useIsMobile } from "@/pages/TimeQuestion/hooks/useMediaQuery";
 const HOUR_COUNT = 60;
 
 const CircularMenu = () => {
-  const radius = useResponsiveRadius(0.2, { min: 70, max: 700 });
-
-  const radius2 = useResponsiveRadius(0.27, { min: 100, max: 770 }); // 40% 비율 기준
+  const isMobile = useIsMobile();
+  const radius = useResponsiveRadius(isMobile ? 0.36 : 0.2, {
+    min: 70,
+    max: 700,
+  });
+  const radius2 = useResponsiveRadius(isMobile ? 0.5 : 0.27, {
+    min: 100,
+    max: 700,
+  });
   const [rotation, setRotation] = useState(0); // 현재 회전 각도
   const [isZoomed, setIsZoomed] = useState(false); // 확대 여부
   const ticks = Array.from({ length: HOUR_COUNT }, (_, i) => i);
@@ -96,7 +102,6 @@ const CircularMenu = () => {
     const anglePerTick = 360 / HOUR_COUNT; // single angle per one tick
     const normalized = ((rotation % 360) + 360) % 360; // 0~359 사이로 보정
     const index = Math.round(-normalized / anglePerTick); // 음수 보정 전
-    console.log((index + HOUR_COUNT) % HOUR_COUNT);
     return (index + HOUR_COUNT) % HOUR_COUNT; //
   };
 
@@ -142,6 +147,7 @@ const CircularMenu = () => {
             const angle = (360 / HOUR_COUNT) * i;
             const isMajorTick = [0, 5, 10, 20, 25, 35, 45].includes(i);
             const tickHeight = isMajorTick ? 24 : 10;
+
             return (
               <S.Tick
                 key={i}
@@ -162,7 +168,8 @@ const CircularMenu = () => {
             const actualAngle = (angle + rotation) % 360;
             const normalizedAngle =
               actualAngle < 0 ? actualAngle + 360 : actualAngle;
-            const isCentered = normalizedAngle < 6 || normalizedAngle > 354;
+            const targetAngle = isMobile ? 90 : 0;
+            const isCentered = Math.abs(normalizedAngle - targetAngle) < 6;
             return (
               <S.LabelWrapper
                 key={id}
@@ -177,7 +184,13 @@ const CircularMenu = () => {
                       -angle - rotation
                     }deg)`,
                     fontWeight: isCentered ? 600 : 400,
-                    fontSize: isCentered ? "19px" : "18px",
+                    fontSize: isMobile
+                      ? isCentered
+                        ? "18px"
+                        : "16px"
+                      : isCentered
+                      ? "20px"
+                      : "18px",
                   }}
                 >
                   {name}

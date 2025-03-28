@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-// import { motion } from "framer-motion";
+import { breakpoints } from "@/styles/theme";
 
 export const S = {
   Detail: styled.div`
@@ -24,7 +24,10 @@ export const S = {
     & div {
       margin-top: 10px;
     }
-    /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); */
+    @media (max-width: ${breakpoints.mobile}) {
+      flex-direction: column;
+      font-size: 18px;
+    }
   `,
   // DetailWrapper: styled(motion.div)`
   //   position: relative;
@@ -35,11 +38,11 @@ export const S = {
     width: 50%;
     height: auto;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+    @media (max-width: ${breakpoints.mobile}) {
+      width: 100%;
+    }
   `,
   DetailInfo: styled(motion.div)`
-    /* position: absolute;
-    inset: 0; */
-
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -61,6 +64,9 @@ export const S = {
       word-break: keep-all; // 단어 중간에서 끊기지 않게
       overflow-wrap: normal;
     }
+    @media (max-width: ${breakpoints.mobile}) {
+      width: 100%;
+    }
   `,
   RouteButton: styled.button`
     /* all: unset; */
@@ -74,5 +80,8 @@ export const S = {
     color: white;
     padding: 2px 9px 2px 5px;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+    @media (max-width: ${breakpoints.mobile}) {
+      margin-top: 10px;
+    }
   `,
 };
