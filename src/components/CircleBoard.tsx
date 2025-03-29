@@ -119,18 +119,18 @@ const CircularMenu = () => {
     const anglePerTick = 360 / HOUR_COUNT; // single angle per one tick
     const normalized = ((rotation % 360) + 360) % 360; // 0~359 사이로 보정
     const index = Math.round(-normalized / anglePerTick); // 음수 보정 전
-    return (index + HOUR_COUNT) % HOUR_COUNT; //
+    return (index + HOUR_COUNT) % HOUR_COUNT;
   };
 
-  // update zoomProject when rotation happens
+  // update zoomProject when rotation happens (only PC)
   useEffect(() => {
-    if (!isZoomed) return;
+    if (isMobile || !isZoomed) return;
     const centeredIndex = getCenteredLabelIndex(rotation);
     const centeredProject = projects.find((p) => p.index === centeredIndex);
     if (centeredProject) {
       setZoomId(centeredProject.id);
     }
-  }, [rotation, isZoomed]);
+  }, [isMobile, rotation, isZoomed]);
   if (!hasMounted) return null;
   return (
     <>

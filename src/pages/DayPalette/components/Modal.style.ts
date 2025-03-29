@@ -34,6 +34,7 @@ export const ModalContent = styled(motion.div)`
   @media (max-width: ${breakpoints.mobile}) {
     min-width: 300px;
     min-height: 350px;
+    margin-top: 100px;
   }
 `;
 

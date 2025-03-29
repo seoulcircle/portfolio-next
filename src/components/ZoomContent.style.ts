@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 import { breakpoints } from "@/styles/theme";
 
 export const S = {
@@ -29,10 +28,7 @@ export const S = {
       font-size: 18px;
     }
   `,
-  // DetailWrapper: styled(motion.div)`
-  //   position: relative;
-  //   overflow: hidden;
-  // `,
+
   ThumbImg: styled.img`
     border-radius: 16px;
     width: 50%;
@@ -42,17 +38,38 @@ export const S = {
       width: 100%;
     }
   `,
-  DetailInfo: styled(motion.div)`
+
+  DetailInfo: styled.div`
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    & div {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 1px;
+    & a {
+      text-decoration: none;
     }
+    @media (max-width: ${breakpoints.mobile}) {
+      width: 100%;
+    }
+  `,
+  Introduction: styled.div`
+    font-size: 22px;
+    line-height: 1.5;
+    & p {
+      margin-top: 10px;
+      word-break: keep-all;
+    }
+    @media (max-width: ${breakpoints.mobile}) {
+      font-size: 18px;
+      & p {
+        word-break: unset;
+      }
+    }
+  `,
+  Badge: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 1px;
     & span {
       border: 1px solid black;
       padding: 4px 12px;
@@ -64,10 +81,8 @@ export const S = {
       word-break: keep-all;
       overflow-wrap: normal;
     }
-    @media (max-width: ${breakpoints.mobile}) {
-      width: 100%;
-    }
   `,
+
   RouteButton: styled.button`
     all: unset;
     cursor: pointer;
@@ -78,7 +93,7 @@ export const S = {
     align-items: center;
     background-color: black;
     color: white;
-    padding: 2px 9px 2px 5px;
+    padding: 2px 15px 2px 5px;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
     @media (max-width: ${breakpoints.mobile}) {
       margin-top: 10px;
