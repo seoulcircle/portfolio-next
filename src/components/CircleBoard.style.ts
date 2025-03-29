@@ -55,7 +55,7 @@ export const S = {
 
   Label: styled(motion.span)`
     position: absolute;
-    bottom: 3px; /* 눈금 끝을 기준으로 */
+    bottom: 5px; /* 눈금 끝을 기준으로 */
     left: -50%;
     transform: translate(-50%); /* 바깥으로 8px 띄움 */
     font-size: 16px;

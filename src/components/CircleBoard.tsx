@@ -54,7 +54,7 @@ const CircularMenu = () => {
   // 마우스 휠로 회전 각도 조절
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
-      setRotation((prev) => prev + e.deltaY * 0.2); // 스크롤 감도 조정
+      setRotation((prev) => prev - e.deltaY * 0.2); // 스크롤 감도 조정
     };
 
     window.addEventListener("wheel", handleScroll, { passive: true });
