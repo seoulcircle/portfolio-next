@@ -14,23 +14,23 @@ const useUserWrite = (
   const [userText, setUserText] = useState<WriteItem[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 날짜를 key로 저장
   const DATE_KEY = "usertext_date";
   const STORAGE_KEY = "usertext";
 
+  // 다음날 되면 로컬스토리지 답변 리셋
   useEffect(() => {
     const now = new Date();
-    const currentKey = now.toISOString().slice(0, 13); // "2025-03-24T"
-
+    const currentKey = now.toISOString().slice(0, 10);
     const savedKey = localStorage.getItem(DATE_KEY);
+
     if (savedKey !== currentKey) {
       localStorage.setItem(DATE_KEY, currentKey);
       localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
-      setUserText([]);
+      setUserText([]); // 로컬스토리지 초기화
     } else {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        setUserText(JSON.parse(saved));
+        setUserText(JSON.parse(saved)); // 저장한 내용 불러옴
       }
     }
   }, []);
@@ -42,7 +42,7 @@ const useUserWrite = (
     }
   }, [timeMinutes]);
 
-  // text가 바뀔 때마다 저장
+  // text가 바뀔 때마다 로컬 스토리지에 저장
   useEffect(() => {
     localStorage.setItem("usertext", JSON.stringify(userText));
   }, [userText]);
@@ -57,16 +57,17 @@ const useUserWrite = (
       const minute = +targetTimeKey.split(":")[1]; // 12:14->14
       const question = randomQuestion[minute];
 
+      // 답변 수정(덮어쓰기)
       setUserText((prev) => {
-        // 시간이 아예 같은 게 이미 있다면 → 수정
         const existing = prev.find((item) => item.time === targetTimeKey);
         if (existing) {
+          // 쓰던중이라면 수정 가능
           return prev.map((item) =>
             item.time === targetTimeKey ? { ...item, answer: newAnswer } : item
           );
         }
 
-        // 없다면 → 새로 추가
+        // 없다면 새로 추가
         return [
           ...prev,
           {

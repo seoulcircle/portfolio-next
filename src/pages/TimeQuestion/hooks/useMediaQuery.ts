@@ -1,6 +1,5 @@
 "use client";
 
-// hooks/useIsMobile.ts
 import { useEffect, useState } from "react";
 
 export const useIsMobile = () => {
