@@ -1,5 +1,4 @@
 import React from "react";
-import { AnimatePresence } from "framer-motion";
 import MinuteItem from "./MinuteItem";
 import * as S from "./RenderedMinutes.style";
 
@@ -7,7 +6,7 @@ interface Props {
   minuteList: string[];
   timeHour: string;
   timeMinutes: string;
-  userText: { time: string; answer: string }[];
+  userTextMap: Record<string, { question: string; answer: string }>;
   randomQuestion: Record<string, string>;
   handleChange: (
     key: string,
@@ -19,14 +18,15 @@ const RenderedMinutes = ({
   minuteList,
   timeHour,
   timeMinutes,
-  userText,
+  userTextMap,
   randomQuestion,
   handleChange,
 }: Props) => {
   const renderMinuteItem = (minute: string) => {
     const timeKey = `${timeHour}:${minute}`;
-    const answer = userText.find((item) => item.time === timeKey)?.answer || "";
+    const answer = userTextMap[timeKey]?.answer || "";
 
+    console.log("abc");
     return (
       <MinuteItem
         key={minute}
@@ -49,13 +49,7 @@ const RenderedMinutes = ({
     );
   }
 
-  return (
-    <S.MinuteList>
-      <AnimatePresence initial={false}>
-        {minuteList.map(renderMinuteItem)}
-      </AnimatePresence>
-    </S.MinuteList>
-  );
+  return <S.MinuteList>{minuteList.map(renderMinuteItem)}</S.MinuteList>;
 };
 
 export default React.memo(RenderedMinutes);

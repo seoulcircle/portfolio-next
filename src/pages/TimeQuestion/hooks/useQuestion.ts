@@ -1,50 +1,56 @@
 "use client";
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
 import questionData from "../data/question.json";
 
 const shuffleArray = (array: string[]) => {
   return array
-    .map((value) => ({ value, sort: Math.random() })) // 랜덤 정렬용 값 부여
-    .sort((a, b) => a.sort - b.sort) // 정렬
-    .map(({ value }) => value); // 배열로 변환
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+};
+
+const generateMinuteQuestions = (): Record<number, string> => {
+  const { questions } = questionData;
+  const now = new Date();
+  const currentHour = now.getHours();
+
+  // SSR일 때는 캐싱 없이 바로 생성
+  if (typeof window === "undefined") {
+    const shuffled = shuffleArray(questions);
+    const result: Record<number, string> = {};
+    for (let i = 0; i < 60; i++) {
+      result[i] = shuffled[i % shuffled.length];
+    }
+    return result;
+  }
+
+  // CSR일 때
+  const cached = localStorage.getItem("shuffledQuestions");
+  const cachedHour = localStorage.getItem("shuffledHour");
+
+  const isValidCache =
+    cached && cachedHour && Number(cachedHour) === currentHour;
+
+  if (isValidCache) {
+    return JSON.parse(cached!);
+  } else {
+    const shuffled = shuffleArray(questions);
+    const result: Record<number, string> = {};
+    for (let i = 0; i < 60; i++) {
+      result[i] = shuffled[i % shuffled.length];
+    }
+
+    localStorage.setItem("shuffledQuestions", JSON.stringify(result));
+    localStorage.setItem("shuffledHour", currentHour.toString());
+
+    return result;
+  }
 };
 
 const useQuestion = (): Record<number, string> => {
-  const { questions } = questionData;
-  const [minuteQuestions, setMinuteQuestions] = useState<
-    Record<number, string>
-  >({});
-
-  useEffect(() => {
-    const now = new Date();
-    const currentHour = now.getHours();
-
-    const cached = localStorage.getItem("shuffledQuestions"); // 섞인 질문들
-    const cachedHour = localStorage.getItem("shuffledHour"); // 섞인 시간
-
-    const isValidCache =
-      cached && cachedHour && Number(cachedHour) === currentHour; // 질문 ㅇ, 섞인 시간 ㅇ, 지금 시간 === 섞인 시간
-
-    // 질문 한시간마다 업데이트
-    if (isValidCache) {
-      setMinuteQuestions(JSON.parse(cached!)); // 절대 null 아님!
-    } else {
-      const shuffled = shuffleArray(questions);
-      const result: Record<number, string> = {};
-
-      for (let i = 0; i < 60; i++) {
-        result[i] = shuffled[i % shuffled.length];
-      }
-
-      localStorage.setItem("shuffledQuestions", JSON.stringify(result));
-      localStorage.setItem("shuffledHour", currentHour.toString());
-
-      setMinuteQuestions(result);
-    }
-  }, [questions]);
-
-  return minuteQuestions;
+  const [questions] = useState(generateMinuteQuestions); // 최초 렌더 시에만 실행, 후에 렌더링 되어도 참조 유지
+  return questions;
 };
 
 export default useQuestion;

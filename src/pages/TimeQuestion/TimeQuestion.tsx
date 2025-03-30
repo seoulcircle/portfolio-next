@@ -9,11 +9,11 @@ import RenderedMinutes from "./components/RenderedMinutes";
 import Seconds from "./components/Seconds";
 
 const TimeQuestion = () => {
-  const { timeHour, timeMinutes, timeSeconds, minuteList } = useClock();
+  const { timeHour, timeMinutes, minuteList } = useClock();
 
   const randomQuestion = useQuestion();
 
-  const { userText, containerRef, handleChange } = useUserWrite(
+  const { userTextMap, containerRef, handleChange } = useUserWrite(
     timeMinutes,
     randomQuestion
   );
@@ -31,15 +31,14 @@ const TimeQuestion = () => {
             minuteList={minuteList}
             timeHour={timeHour}
             timeMinutes={timeMinutes}
-            userText={userText}
+            userTextMap={userTextMap}
             randomQuestion={randomQuestion}
             handleChange={handleChange}
           />
         </S.Minutes>
-
-        <Seconds timeSeconds={timeSeconds} />
+        <Seconds />
       </S.Time>
-      <SavedAnswerModal modalData={userText} />
+      <SavedAnswerModal modalData={userTextMap} />
     </S.Wrapper>
   );
 };

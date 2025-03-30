@@ -6,14 +6,10 @@ import { AnimatePresence } from "framer-motion";
 import * as S from "./Modal.style";
 import { useIsMobile } from "../hooks/useMediaQuery";
 
-interface ModalDataType {
-  time: string;
-  question: string;
-  answer: string;
-}
+type ModalDataType = Record<string, { question: string; answer: string }>;
 
 interface ModalProps {
-  modalData: ModalDataType[];
+  modalData: ModalDataType;
 }
 
 const SavedAnswerModal = ({ modalData }: ModalProps) => {
@@ -26,6 +22,7 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
     left: number;
   }>({ left: 0 });
   const isMobile = useIsMobile();
+  console.log("aa");
 
   useEffect(() => {
     if (selectedTime && timeRefs.current[selectedTime]) {
@@ -58,19 +55,23 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
 
   return (
     <S.SavedAnswer>
-      {modalData.map((item) => (
-        <S.SavedMinutes
-          ref={(el) => {
-            timeRefs.current[item.time] = el;
-          }}
-          key={item.time}
-          onClick={() =>
-            setSelectedTime((prev) => (prev === item.time ? null : item.time))
-          }
-        >
-          {item.time}
-        </S.SavedMinutes>
-      ))}
+      {Object.keys(modalData).map(
+        (
+          time // 시간만 뽑음
+        ) => (
+          <S.SavedMinutes
+            ref={(el) => {
+              timeRefs.current[time] = el;
+            }}
+            key={time}
+            onClick={() =>
+              setSelectedTime((prev) => (prev === time ? null : time))
+            }
+          >
+            {time}
+          </S.SavedMinutes>
+        )
+      )}
 
       {selectedTime &&
         createPortal(
@@ -99,10 +100,8 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
                     }),
               }}
             >
-              <h2>
-                {modalData.find((m) => m.time === selectedTime)?.question}
-              </h2>
-              <p>{modalData.find((m) => m.time === selectedTime)?.answer}</p>
+              <h2>{modalData[selectedTime]?.question}</h2>
+              <p>{modalData[selectedTime]?.answer}</p>
             </S.MotionWrapper>
           </AnimatePresence>,
           document.body
