@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import * as S from "./styles";
+import { S } from "./styles";
 import WeatherModal from "./components/Modal";
 import useTime from "./hooks/useTime";
 import useWeatherData from "./hooks/useWeatherData";

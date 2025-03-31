@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import * as S from "./Modal.style";
+import { S } from "./Modal.style";
 import {
   WeatherData,
   DustData,

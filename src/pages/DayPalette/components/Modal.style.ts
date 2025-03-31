@@ -1,10 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-
-const breakpoints = {
-  mobile: "639px",
-};
+import { breakpoints } from "@/styles/theme";
 
 export const S = {
   Overlay: styled(motion.div)`

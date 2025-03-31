@@ -6,7 +6,7 @@ import { S } from "./CircleBoard.style";
 import { projects } from "../data/projectList";
 import { useResponsiveRadius } from "@/hooks/useResponsiveRadius";
 import ZoomContent from "./ZoomContent";
-import { useIsMobile } from "@/pages/TimeQuestion/hooks/useMediaQuery";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 const HOUR_COUNT = 60;
 
 const CircularMenu = () => {

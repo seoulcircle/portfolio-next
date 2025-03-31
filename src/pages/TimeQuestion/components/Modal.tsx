@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence } from "framer-motion";
 import * as S from "./Modal.style";
-import { useIsMobile } from "../hooks/useMediaQuery";
+import { useIsMobile } from "../../../hooks/useMediaQuery";
 
 type ModalDataType = Record<string, { question: string; answer: string }>;
 

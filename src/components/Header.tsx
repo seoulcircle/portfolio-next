@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import home from "../../public/home.svg";
 import Image from "next/image";
-import { useIsMobile } from "@/pages/TimeQuestion/hooks/useMediaQuery";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 import { useState, useEffect } from "react";
 // const StyledAnchor = styled.a`
 //   cursor: pointer;

@@ -1,6 +1,6 @@
 import React from "react";
 import MinuteItem from "./MinuteItem";
-import * as S from "./RenderedMinutes.style";
+import { S } from "./RenderedMinutes.style";
 
 interface Props {
   minuteList: string[];
