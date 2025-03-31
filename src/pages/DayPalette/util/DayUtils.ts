@@ -1,9 +1,6 @@
-export const getRGBA = (
-  temp: number,
-  humidity: number,
-  hour: number,
-  pm: number
-) => {
+import { RGBAInput, GradientInput } from "@/types/weather";
+
+export const getRGBA = ({ temp, humidity, hour, pm }: RGBAInput) => {
   const minTemp = -10;
   const maxTemp = 25;
   const R = Math.min(
@@ -17,10 +14,10 @@ export const getRGBA = (
   return `rgba(${Math.round(R)}, ${Math.round(G)}, ${Math.round(B)}, ${A})`;
 };
 
-export const getLinearGradient = (
-  angle: number,
-  startColor: string,
-  endColor: string
-): string => {
+export const getLinearGradient = ({
+  angle,
+  startColor,
+  endColor,
+}: GradientInput): string => {
   return `linear-gradient(${angle}deg, ${startColor}, ${endColor})`;
 };

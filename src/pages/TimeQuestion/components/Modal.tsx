@@ -22,7 +22,6 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
     left: number;
   }>({ left: 0 });
   const isMobile = useIsMobile();
-  console.log("aa");
 
   useEffect(() => {
     if (selectedTime && timeRefs.current[selectedTime]) {
@@ -74,6 +73,7 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
       )}
 
       {selectedTime &&
+        // 모달은 다른 위치에 그리기
         createPortal(
           <AnimatePresence>
             <S.MotionWrapper

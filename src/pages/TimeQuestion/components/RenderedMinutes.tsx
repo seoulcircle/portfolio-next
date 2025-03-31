@@ -26,7 +26,6 @@ const RenderedMinutes = ({
     const timeKey = `${timeHour}:${minute}`;
     const answer = userTextMap[timeKey]?.answer || "";
 
-    console.log("abc");
     return (
       <MinuteItem
         key={minute}
@@ -41,7 +40,8 @@ const RenderedMinutes = ({
     );
   };
 
-  if (minuteList.length === 1) {
+  if (timeMinutes === "00") {
+    // 현재 시간이 0분, 즉 아이템이 하나만 있을 때
     return (
       <S.CenteredItemWrapper>
         {renderMinuteItem(minuteList[0])}

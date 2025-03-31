@@ -1,26 +1,8 @@
-import { useEffect, useState } from "react";
-import {
-  getNowWeather,
-  getTmrWeather,
-  getDustData,
-  IDustData,
-} from "../DayApi";
-
-interface WeatherData {
-  T1H?: string;
-  TMP?: string;
-  REH?: string;
-}
-
-interface DustData {
-  pm10Value?: string;
-  pm10Value24?: string;
-}
-interface TodayWeather {
-  time: string;
-  TMP?: string;
-  REH?: string;
-}
+import { useMemo } from "react";
+import { useNowWeatherQuery } from "./queries/useNowWeatherQuery";
+import { useTmrWeatherQuery } from "./queries/useTmrWeatherQuery";
+import { useDustQuery } from "./queries/useDustQuery";
+import { WeatherData, TodayWeather, DustData } from "@/types/weather";
 
 const useWeatherData = (
   today: string,
@@ -28,83 +10,110 @@ const useWeatherData = (
   tmrToday: string,
   tomorrow: string
 ) => {
-  const [nowWeather, setNowWeather] = useState<WeatherData | null>(null);
-  const [tmrWeather, setTmrWeather] = useState<WeatherData | null>(null);
-  const [todayWeather, setTodayWeather] = useState<TodayWeather[]>([]);
-  const [dustData, setDustData] = useState<DustData | null>(null);
-  const [tmrDustData, setTmrDustData] = useState<DustData | null>(null);
+  const MINUTE_ZERO = "00";
+  const { data: nowWeatherData } = useNowWeatherQuery(
+    today,
+    hours + MINUTE_ZERO
+  );
+  const { data: todayForecast } = useTmrWeatherQuery(today);
+  const { data: tmrForecast } = useTmrWeatherQuery(tmrToday);
+  const { data: dustList } = useDustQuery();
 
-  useEffect(() => {
-    if (!today || !hours || !tmrToday || !tomorrow) {
-      return;
-    }
-    // 현재의 날씨 데이터
-    getNowWeather(today, hours + "00")
-      .then((data) => {
-        setNowWeather({
-          T1H: data?.find((item) => item.category === "T1H")?.obsrValue,
-          REH: data?.find((item) => item.category === "REH")?.obsrValue,
-        });
-      })
-      .catch(console.error);
+  const nowWeather: WeatherData = useMemo(() => {
+    const temp = nowWeatherData?.find((d) => d.category === "T1H")?.obsrValue;
+    const humidity = nowWeatherData?.find(
+      (d) => d.category === "REH"
+    )?.obsrValue;
+    return {
+      nowTemperature: temp ?? "-",
+      humidity: humidity ?? "-",
+      displayTemperature: temp ?? "-",
+      displayHumidity: humidity ?? "-",
+      calcTemperature: temp ?? "0",
+      calcHumidity: humidity ?? "0",
+    };
+  }, [nowWeatherData]);
 
-    // 내일의 날씨 데이터
-    getTmrWeather(tmrToday)
-      .then((data) => {
-        const filteredData = data?.filter(
-          (item) =>
-            item.fcstDate === tomorrow &&
-            item.fcstTime === hours + "00" &&
-            (item.category === "TMP" || item.category === "REH")
-        );
+  const tmrWeather: WeatherData = useMemo(() => {
+    const filtered = tmrForecast?.filter(
+      (d) => d.fcstDate === tomorrow && d.fcstTime === hours + MINUTE_ZERO
+    );
+    const temp = filtered?.find((d) => d.category === "TMP")?.fcstValue;
+    const humidity = filtered?.find((d) => d.category === "REH")?.fcstValue;
+    return {
+      temperature: temp ?? "-",
+      humidity: humidity ?? "-",
+      displayTemperature: temp ?? "-",
+      displayHumidity: humidity ?? "-",
+      calcTemperature: temp ?? "0",
+      calcHumidity: humidity ?? "0",
+    };
+  }, [tmrForecast, tomorrow, hours]);
 
-        setTmrWeather({
-          TMP: filteredData?.find((item) => item.category === "TMP")?.fcstValue,
-          REH: filteredData?.find((item) => item.category === "REH")?.fcstValue,
-        });
-      })
-      .catch(console.error);
+  const todayWeather: TodayWeather[] = useMemo(() => {
+    const filtered = todayForecast?.filter(
+      (d) => d.fcstDate === today && ["TMP", "REH"].includes(d.category)
+    );
 
-    // 오늘의 날씨 데이터
-    getTmrWeather(today)
-      .then((data) => {
-        const filteredData = data?.filter(
-          (item) =>
-            item.fcstDate === today &&
-            (item.category === "TMP" || item.category === "REH")
-        );
+    return (
+      filtered?.reduce<TodayWeather[]>((acc, item) => {
+        const time = item.fcstTime.slice(0, 2);
+        const category = item.category as "TMP" | "REH";
+        const found = acc.find((t) => t.time === time);
 
-        const groupedData = filteredData?.reduce<
-          { time: string; TMP?: string; REH?: string }[]
-        >((acc, item) => {
-          const time = item.fcstTime.slice(0, 2).padStart(2, "0");
-          const category = item.category as "TMP" | "REH";
-          const existing = acc.find((entry) => entry.time === time);
-
-          if (existing) {
-            existing[category] = item.fcstValue;
+        if (found) {
+          if (category === "TMP") {
+            found.temperature = item.fcstValue ?? "-";
+            found.calcTemperature = item.fcstValue ?? "0";
           } else {
-            acc.push({ time, [item.category]: item.fcstValue });
+            found.humidity = item.fcstValue ?? "-";
+            found.calcHumidity = item.fcstValue ?? "0";
           }
+        } else {
+          acc.push({
+            time,
+            ...(category === "TMP"
+              ? {
+                  temperature: item.fcstValue ?? "-",
+                  calcTemperature: item.fcstValue ?? "0",
+                }
+              : {
+                  humidity: item.fcstValue ?? "-",
+                  calcHumidity: item.fcstValue ?? "0",
+                }),
+          });
+        }
 
-          return acc;
-        }, []);
-        setTodayWeather(groupedData);
-      })
-      .catch(console.error);
+        return acc;
+      }, []) ?? []
+    );
+  }, [todayForecast, today]);
 
-    // 미세먼지 데이터
-    getDustData()
-      .then((data: IDustData[]) => {
-        const filteredData = data?.find(
-          (item) => item.stationName === "종로구"
-        );
-        setDustData({ pm10Value: filteredData?.pm10Value });
-        setTmrDustData({ pm10Value24: filteredData?.pm10Value24 });
-      })
-      .catch(console.error);
-  }, [today, hours, tomorrow, tmrToday]);
-  return { nowWeather, tmrWeather, dustData, tmrDustData, todayWeather };
+  const dustData: DustData = useMemo(() => {
+    const target = dustList?.find((d) => d.stationName === "종로구");
+    const value = target?.pm10Value;
+    return {
+      pm10Value: value ?? "-",
+      calcPm10Value: value ?? "0",
+    };
+  }, [dustList]);
+
+  const tmrDustData: DustData = useMemo(() => {
+    const target = dustList?.find((d) => d.stationName === "종로구");
+    const value = target?.pm10Value24;
+    return {
+      pm10Value24: value ?? "-",
+      calcPm10Value24: value ?? "0",
+    };
+  }, [dustList]);
+
+  return {
+    nowWeather,
+    tmrWeather,
+    todayWeather,
+    dustData,
+    tmrDustData,
+  };
 };
 
 export default useWeatherData;

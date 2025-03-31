@@ -59,11 +59,15 @@ export const DateText = styled.p`
   font-size: 24px;
   font-weight: 300;
 `;
-
+export const TimeTextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+`;
 export const TimeText = styled.p`
   font-size: 44px;
   font-weight: 500;
-  border-bottom: 1px solid white;
   padding-bottom: 5px;
   & span {
     font-size: 20px;
@@ -117,4 +121,12 @@ export const ColorCircle = styled.div<{ color: string }>`
   @media (max-width: ${breakpoints.mobile}) {
     margin-left: 0;
   }
+`;
+
+export const Notice = styled.p`
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: right;
+  opacity: 0.5;
+  margin-right: 10px;
 `;

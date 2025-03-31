@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import home from "../../public/home.svg";
 import Image from "next/image";
 import { useIsMobile } from "@/pages/TimeQuestion/hooks/useMediaQuery";
-
+import { useState, useEffect } from "react";
 // const StyledAnchor = styled.a`
 //   cursor: pointer;
 //   text-decoration: none;
@@ -32,10 +32,17 @@ const HomeBtn = styled.div`
 `;
 
 function Header() {
+  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   // 홈에서는 헤더 숨기기
   if (pathname === "/") return null;
+
+  if (!mounted) return null; // 또는 skeleton
 
   return (
     <HeaderNav>

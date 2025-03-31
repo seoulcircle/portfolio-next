@@ -33,7 +33,7 @@ const generateMinuteQuestions = (): Record<number, string> => {
     cached && cachedHour && Number(cachedHour) === currentHour;
 
   if (isValidCache) {
-    return JSON.parse(cached!);
+    return JSON.parse(cached);
   } else {
     const shuffled = shuffleArray(questions);
     const result: Record<number, string> = {};

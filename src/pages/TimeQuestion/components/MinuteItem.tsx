@@ -40,7 +40,7 @@ const MinuteItem = ({
   const isMobile = useIsMobile();
   const isNow = Number(minute) === nowMinute;
   const isPastNoValueMobile = timeState === "past" && !value && isMobile;
-  console.log("123");
+  // console.log("123");
   // past 중 value가 있으면 -> 그대로 노출. 없으면 질문에 지나간 순간이에요
   return (
     <S.Minute>

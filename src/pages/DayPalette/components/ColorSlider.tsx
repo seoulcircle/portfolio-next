@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import * as S from "./ColorSlider.style";
-
-interface TodayWeather {
-  time: string;
-  TMP?: string;
-  REH?: string;
-}
+import { TodayWeather } from "@/types/weather";
 
 interface SliderProps {
   isOpen: boolean;
@@ -15,7 +10,7 @@ interface SliderProps {
   todayWeather: TodayWeather[];
 }
 
-const TodayWeatherSlider = ({
+const ColorSlider = ({
   onClose,
   isOpen,
   colors,
@@ -37,9 +32,8 @@ const TodayWeatherSlider = ({
   };
 
   // 시간 value에 맞는 색상 칮기
-  const hourColor = colors;
   const getColorByHourColor = (hour: number) => {
-    const hourData = hourColor.find((data) => data.hour === hour);
+    const hourData = colors.find((data) => data.hour === hour);
     return hourData ? hourData.color : "rgb(201, 205, 208)";
   };
 
@@ -96,8 +90,8 @@ const TodayWeatherSlider = ({
   const getWeatherData = (hour: number) => {
     const data = todayWeather.find((item) => Number(item.time) === hour);
     return {
-      temperature: data?.TMP ?? "0",
-      humidity: data?.REH ?? "0",
+      temperature: data?.temperature || "-",
+      humidity: data?.humidity || "-",
     };
   };
   const { temperature, humidity } = getWeatherData(hour);
@@ -160,4 +154,4 @@ const TodayWeatherSlider = ({
   );
 };
 
-export default TodayWeatherSlider;
+export default ColorSlider;

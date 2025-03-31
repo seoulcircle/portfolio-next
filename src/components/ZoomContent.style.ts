@@ -9,17 +9,15 @@ export const S = {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-
-    /*max-width: 480px; */
     width: 80vw;
     font-size: 20px;
     line-height: normal;
-    /* width: 100%;
-    height: 100%; */
-    /* max-width: 90vw; */
     display: flex;
     gap: 3vw;
     align-items: flex-start;
+    & img {
+      margin-top: 20px;
+    }
     & div {
       margin-top: 10px;
     }
