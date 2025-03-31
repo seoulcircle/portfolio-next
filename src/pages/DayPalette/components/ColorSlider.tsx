@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import * as S from "./ColorSlider.style";
-import { TodayWeather } from "@/types/weather";
+import { TodayWeather } from "@/pages/DayPalette/types/weather.types";
 
 interface SliderProps {
   isOpen: boolean;

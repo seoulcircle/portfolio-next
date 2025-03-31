@@ -1,4 +1,7 @@
-import { RGBAInput, GradientInput } from "@/types/weather";
+import {
+  RGBAInput,
+  GradientInput,
+} from "@/pages/DayPalette/types/weather.types";
 
 export const getRGBA = ({ temp, humidity, hour, pm }: RGBAInput) => {
   const minTemp = -10;

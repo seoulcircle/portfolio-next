@@ -1,11 +1,15 @@
 import { AnimatePresence } from "framer-motion";
 import * as S from "./Modal.style";
-import { WeatherData, DustData, ColorRGBA } from "@/types/weather";
+import {
+  WeatherData,
+  DustData,
+  ColorRGBA,
+} from "@/pages/DayPalette/types/weather.types";
 import {
   formatDateWithDots,
   formatTime,
   getTargetDate,
-} from "@/utils/dateUtils";
+} from "@/pages/DayPalette/utils/format-date";
 
 interface WeatherModalProps {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { formatDateCompact } from "@/utils/dateUtils";
+import { formatDateCompact } from "@/pages/DayPalette/utils/format-date";
 
 interface TimeState {
   hours: string;

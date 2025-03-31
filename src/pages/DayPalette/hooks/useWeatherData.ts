@@ -2,7 +2,11 @@ import { useMemo } from "react";
 import { useNowWeatherQuery } from "./queries/useNowWeatherQuery";
 import { useTmrWeatherQuery } from "./queries/useTmrWeatherQuery";
 import { useDustQuery } from "./queries/useDustQuery";
-import { WeatherData, TodayWeather, DustData } from "@/types/weather";
+import {
+  WeatherData,
+  TodayWeather,
+  DustData,
+} from "@/pages/DayPalette/types/weather.types";
 
 const useWeatherData = (
   today: string,
