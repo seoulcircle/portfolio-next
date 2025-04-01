@@ -15,14 +15,12 @@ export const S = {
     line-height: normal;
     display: flex;
     gap: 3vw;
-    align-items: flex-start;
-    & img {
-      margin-top: 20px;
-    }
+    align-items: center;
+
     & div {
       margin-top: 10px;
     }
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
       flex-direction: column;
       font-size: 18px;
     }
@@ -41,7 +39,7 @@ export const S = {
     width: 50%;
     height: auto;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
       width: 100%;
     }
   `,
@@ -55,7 +53,7 @@ export const S = {
     & a {
       text-decoration: none;
     }
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
       width: 100%;
     }
   `,
