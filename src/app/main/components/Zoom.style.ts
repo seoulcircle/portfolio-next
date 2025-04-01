@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
+import { motion } from "framer-motion";
 
 export const S = {
   Detail: styled.div`
@@ -25,6 +26,14 @@ export const S = {
       flex-direction: column;
       font-size: 18px;
     }
+  `,
+  GlassOverlay: styled(motion.div)`
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
   `,
 
   ThumbImg: styled.img`

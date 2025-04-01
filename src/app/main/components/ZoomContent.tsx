@@ -1,7 +1,7 @@
 "use client";
 /** @jsxImportSource @emotion/react */
 import { ArrowRight } from "lucide-react";
-import { S } from "./ZoomContent.style";
+import { S } from "./Zoom.style";
 import Link from "next/link";
 
 interface ZoomContentProps {

@@ -1,6 +1,6 @@
 import React from "react";
 // import { motion } from "framer-motion";
-import * as S from "./MinuteItem.style";
+import { S } from "./MinuteItem.style";
 import { useIsMobile } from "../../../hooks/useMediaQuery";
 
 interface MinuteItemProps {

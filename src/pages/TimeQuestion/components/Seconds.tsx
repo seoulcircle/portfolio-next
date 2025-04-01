@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import * as S from "./Seconds.style";
+import { S } from "./Seconds.style";
 
 // interface SecondsProps {
 //   timeSeconds: string;
