@@ -23,6 +23,7 @@ const useWeatherData = (
   const { data: tmrForecast } = useTmrWeatherQuery(tmrToday);
   const { data: dustList } = useDustQuery();
 
+  // 현재 날씨 데이터
   const nowWeather: WeatherData = useMemo(() => {
     const temp = nowWeatherData?.find((d) => d.category === "T1H")?.obsrValue;
     const humidity = nowWeatherData?.find(
@@ -38,6 +39,7 @@ const useWeatherData = (
     };
   }, [nowWeatherData]);
 
+  // 내일 날씨 데이터
   const tmrWeather: WeatherData = useMemo(() => {
     const filtered = tmrForecast?.filter(
       (d) => d.fcstDate === tomorrow && d.fcstTime === hours + MINUTE_ZERO
@@ -93,6 +95,7 @@ const useWeatherData = (
     );
   }, [todayForecast, today]);
 
+  // 현재 미세먼지 데이터
   const dustData: DustData = useMemo(() => {
     const target = dustList?.find((d) => d.stationName === "종로구");
     const value = target?.pm10Value;
@@ -102,6 +105,7 @@ const useWeatherData = (
     };
   }, [dustList]);
 
+  // 내일 미세먼지 데이터
   const tmrDustData: DustData = useMemo(() => {
     const target = dustList?.find((d) => d.stationName === "종로구");
     const value = target?.pm10Value24;
