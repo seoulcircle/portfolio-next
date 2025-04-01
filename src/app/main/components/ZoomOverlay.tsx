@@ -1,14 +1,11 @@
 import { S } from "./Zoom.style";
+import { ZoomOverlayProps } from "../types/types";
 
 const ZoomOverlay = ({
   isZoomed,
   zoomAnimationDone,
   onClick,
-}: {
-  isZoomed: boolean;
-  zoomAnimationDone: boolean;
-  onClick: () => void;
-}) =>
+}: ZoomOverlayProps) =>
   isZoomed && zoomAnimationDone ? (
     <S.GlassOverlay
       initial={{ opacity: 0 }}

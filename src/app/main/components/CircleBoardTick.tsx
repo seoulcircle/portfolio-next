@@ -1,6 +1,6 @@
 import { S } from "./CircleBoard.style";
-
-const TickMarks = ({ tickRadius }: { tickRadius: number }) => {
+import { TickMarksProps } from "../types/types";
+const TickMarks = ({ tickRadius }: TickMarksProps) => {
   return (
     <>
       {Array.from({ length: 60 }).map((_, i) => {

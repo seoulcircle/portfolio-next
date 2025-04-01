@@ -13,17 +13,18 @@ import useHasMounted from "./hooks/useHasMounted";
 import useScrollRotation from "./hooks/useScrollRotation";
 import useZoomRotation from "./hooks/useZoomRotation";
 import useClickOverlay from "./hooks/useClickOverlay";
+import { ResponsiveRadiusOptions } from "./types/types";
 
 const Main = () => {
   const isMobile = useIsMobile();
   const tickRadius = useResponsiveRadius(isMobile ? 0.36 : 0.2, {
     min: 70,
     max: 700,
-  });
+  } as ResponsiveRadiusOptions);
   const labelRadius = useResponsiveRadius(isMobile ? 0.5 : 0.27, {
     min: 100,
     max: 700,
-  });
+  } as ResponsiveRadiusOptions);
   const hasMounted = useHasMounted();
   const [rotation, setRotation] = useState(0); // 현재 회전 각도
   const [isZoomed, setIsZoomed] = useState(false); // 확대 여부

@@ -1,16 +1,7 @@
 import { projects } from "../data/projectList";
 import { S } from "./CircleBoard.style";
-const Labels = ({
-  rotation,
-  labelRadius,
-  isMobile,
-  onClick,
-}: {
-  rotation: number;
-  labelRadius: number;
-  isMobile: boolean;
-  onClick: (index: number) => void;
-}) => {
+import { LabelsProps } from "../types/types";
+const Labels = ({ rotation, labelRadius, isMobile, onClick }: LabelsProps) => {
   return (
     <>
       {projects.map(({ index, id, name }) => {

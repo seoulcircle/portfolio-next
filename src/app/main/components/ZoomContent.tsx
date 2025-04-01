@@ -3,18 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { S } from "./Zoom.style";
 import Link from "next/link";
-
-interface ZoomContentProps {
-  project: {
-    name: string;
-    id: string;
-    description: string;
-    stack?: string[];
-    api?: string[];
-    thumbnail?: string;
-    route?: string;
-  };
-}
+import { ZoomContentProps } from "../types/types";
 
 const ZoomContent = ({ project }: ZoomContentProps) => {
   return (
