@@ -1,6 +1,6 @@
 import { projects } from "../data/projectList";
 import { S } from "./CircleBoard.style";
-import { LabelsProps } from "../types/types";
+import { LabelsProps } from "../types/main.types";
 const Labels = ({ rotation, labelRadius, isMobile, onClick }: LabelsProps) => {
   return (
     <>

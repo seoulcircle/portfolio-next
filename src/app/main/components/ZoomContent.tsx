@@ -3,7 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { S } from "./Zoom.style";
 import Link from "next/link";
-import { ZoomContentProps } from "../types/types";
+import { ZoomContentProps } from "../types/main.types";
 import Developer from "./ZoomDeveloper";
 
 const ZoomContent = ({ project }: ZoomContentProps) => {

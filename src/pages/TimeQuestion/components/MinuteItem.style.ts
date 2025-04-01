@@ -9,7 +9,7 @@ export const S = {
     opacity: ${({ isDummy }) => (isDummy ? 0.4 : 1)};
     @media (max-width: ${breakpoints.mobile}) {
       flex-direction: column;
-      margin-top: 15px;
+      margin-top: 15px; // 하나일 때 40으로 수정
     }
   `,
 

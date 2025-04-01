@@ -13,7 +13,7 @@ import useHasMounted from "./hooks/useHasMounted";
 import useScrollRotation from "./hooks/useScrollRotation";
 import useZoomRotation from "./hooks/useZoomRotation";
 import useClickOverlay from "./hooks/useClickOverlay";
-import { ResponsiveRadiusOptions } from "./types/types";
+import { ResponsiveRadiusOptions } from "./types/main.types";
 
 const Main = () => {
   const isMobile = useIsMobile();

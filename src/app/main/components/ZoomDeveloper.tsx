@@ -10,7 +10,6 @@ const Developer = () => {
             <h2>디케이테크인</h2>
             <div>
               <span>검색서비스 개발팀</span>
-
               <span>2022.02 - 2024.05</span>
             </div>
           </header>

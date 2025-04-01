@@ -1,5 +1,5 @@
 import { S } from "./Zoom.style";
-import { ZoomOverlayProps } from "../types/types";
+import { ZoomOverlayProps } from "../types/main.types";
 
 const ZoomOverlay = ({
   isZoomed,

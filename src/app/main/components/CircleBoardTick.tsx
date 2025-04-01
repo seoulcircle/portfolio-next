@@ -1,5 +1,5 @@
 import { S } from "./CircleBoard.style";
-import { TickMarksProps } from "../types/types";
+import { TickMarksProps } from "../types/main.types";
 const TickMarks = ({ tickRadius }: TickMarksProps) => {
   return (
     <>
