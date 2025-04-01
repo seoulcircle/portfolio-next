@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 import { useIsMobile } from "@/hooks/useMediaQuery";
-import { getCenteredLabelIndex } from "../utils/getCenteredLabelIndex";
+// import { getCenteredLabelIndex } from "../utils/getCenteredLabelIndex";
 import { projects } from "../data/projectList";
 
 interface UseZoomRotationParams {
@@ -15,13 +15,13 @@ interface UseZoomRotationParams {
 
 export const useZoomRotation = ({
   targetRotation,
-  rotation,
+  // rotation,
   setRotation,
   setTargetRotation,
   setIsZoomed,
   setZoomId,
-  isZoomed,
-}: UseZoomRotationParams) => {
+}: // isZoomed,
+UseZoomRotationParams) => {
   const isMobile = useIsMobile();
   const HOUR_COUNT = 60;
 
@@ -73,14 +73,14 @@ export const useZoomRotation = ({
   }, [targetRotation, setRotation, setTargetRotation]);
 
   // pc에서 zoom 상태로 스크롤 시 프로젝트 변경
-  useEffect(() => {
-    if (isMobile || !isZoomed) return;
-    const centeredIndex = getCenteredLabelIndex(rotation, HOUR_COUNT);
-    const centeredProject = projects.find((p) => p.index === centeredIndex);
-    if (centeredProject) {
-      setZoomId(centeredProject.id);
-    }
-  }, [isMobile, rotation, isZoomed, setZoomId]);
+  // useEffect(() => {
+  //   if (isMobile || !isZoomed) return;
+  //   const centeredIndex = getCenteredLabelIndex(rotation, HOUR_COUNT);
+  //   const centeredProject = projects.find((p) => p.index === centeredIndex);
+  //   if (centeredProject) {
+  //     setZoomId(centeredProject.id);
+  //   }
+  // }, [isMobile, rotation, isZoomed, setZoomId]);
 
   return { handleClick };
 };

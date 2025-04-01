@@ -57,6 +57,9 @@ export const S = {
     border: 1px dashed #ccc;
     opacity: 0.3;
     border-radius: 12px;
+    @media (max-width: ${breakpoints.mobile}) {
+      height: 130px;
+    }
   `,
 
   Question: styled.div`

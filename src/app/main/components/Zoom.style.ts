@@ -25,6 +25,7 @@ export const S = {
       font-size: 18px;
     }
   `,
+
   GlassOverlay: styled(motion.div)`
     position: absolute;
     inset: 0;

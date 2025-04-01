@@ -48,7 +48,7 @@ const Main = () => {
   useClickOverlay(containerRef, () => setIsZoomed(false));
 
   // 마우스 휠로 회전 각도 조절
-  useScrollRotation(setRotation);
+  useScrollRotation(setRotation, isZoomed);
 
   if (!hasMounted) return null;
 
