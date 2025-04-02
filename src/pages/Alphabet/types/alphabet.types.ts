@@ -9,3 +9,14 @@ export interface ResizeWallsProps {
   height: number;
   charBodies: { body: Matter.Body }[];
 }
+
+export interface CharBody {
+  body: Matter.Body;
+  char: string;
+}
+
+export type DraggableProps = {
+  char: string;
+  x: number;
+  y: number;
+};

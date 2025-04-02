@@ -21,5 +21,6 @@ export const S = {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    cursor: pointer;
   `,
 };

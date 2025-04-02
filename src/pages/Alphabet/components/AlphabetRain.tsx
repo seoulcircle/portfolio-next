@@ -2,19 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { S } from "./AlphabetRain.style";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { useWalls } from "../hooks/useWalls";
 import { useResizeWalls } from "../hooks/useResizwWalls";
-type CharBody = {
-  body: Matter.Body;
-  char: string;
-};
+import { CharBody } from "../types/alphabet.types";
+import DropZone from "./DropZone";
+import DraggableChar from "./DraggableChar";
 
-const PhysicsAlphabet = () => {
+const AlphabetRain = () => {
   const sceneRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef(Matter.Engine.create()); // 물리 엔진 생성
   const [charBodies, setCharBodies] = useState<CharBody[]>([]);
+  const [selectedChars, setSelectedChars] = useState<string[]>([]);
   const { width, height } = useWindowSize();
 
   const { Engine, World, Bodies, Runner, Mouse, MouseConstraint, Composite } =
@@ -22,6 +23,8 @@ const PhysicsAlphabet = () => {
   const engine = engineRef.current;
   engine.gravity.y = 10;
 
+  // 벽 생성(floor, leftWall, rightWall)
+  const { floor, leftWall, rightWall } = useWalls(width, height);
   const wallsRef = useRef<{
     floor: Matter.Body;
     leftWall: Matter.Body;
@@ -32,8 +35,6 @@ const PhysicsAlphabet = () => {
   const alphabet = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
-  // 벽 생성(floor, leftWall, rightWall)
-  const { floor, leftWall, rightWall } = useWalls(width, height);
 
   useEffect(() => {
     engineRef.current.enableSleeping = true;
@@ -50,7 +51,6 @@ const PhysicsAlphabet = () => {
           frictionStatic: 1.0,
           frictionAir: 0.4,
           sleepThreshold: 20,
-
           density: 0.1,
           chamfer: { radius: 5 },
         }
@@ -69,6 +69,7 @@ const PhysicsAlphabet = () => {
         stiffness: 0.2,
       },
     });
+
     // World에 floor, 알파벳 Body, 드래그 기능 등록
     World.add(engine.world, [
       floor,
@@ -113,21 +114,30 @@ const PhysicsAlphabet = () => {
     charBodies,
   });
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { over, active } = event;
+
+    if (over?.id === "drop-zone") {
+      setSelectedChars((prev) => [...prev, active.id as string]);
+      setCharBodies((prev) => prev.filter(({ char }) => char !== active.id));
+    }
+  };
+
   return (
-    <S.Container ref={sceneRef}>
-      {charBodies.map(({ char, body }) => (
-        <S.Char
-          key={char}
-          style={{
-            left: `${Math.round(body.position.x - 50)}px`,
-            top: `${Math.round(body.position.y - 50)}px`,
-          }}
-        >
-          {char}
-        </S.Char>
-      ))}
-    </S.Container>
+    <DndContext onDragEnd={handleDragEnd}>
+      <S.Container ref={sceneRef}>
+        {charBodies.map(({ char, body }, i) => (
+          <DraggableChar
+            key={`${char}-${i}`}
+            char={char}
+            x={Math.round(body.position.x - 50)}
+            y={Math.round(body.position.y - 50)}
+          />
+        ))}
+        <DropZone selectedChars={selectedChars} />
+      </S.Container>
+    </DndContext>
   );
 };
 
-export default PhysicsAlphabet;
+export default AlphabetRain;
