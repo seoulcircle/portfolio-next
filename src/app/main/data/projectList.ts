@@ -58,7 +58,7 @@ export const projects: Project[] = [
     index: 45,
     id: "alphabet",
     name: "Falling Alphabet",
-    route: "/falling",
+    route: "/alphabet",
     description:
       "하루의 날씨와 미세먼지 데이터를 시각화하여 색상값으로 표현한 UI 대시보드",
     stack: ["React", "TypeScript", "Emotion", "Framer Motion"],
