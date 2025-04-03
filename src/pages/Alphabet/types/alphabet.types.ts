@@ -42,6 +42,7 @@ export interface DraggableProps {
 export interface DropZoneProps {
   selectedChars: string[];
   bgColor?: string;
+  onDelete?: (char: string) => void;
 }
 
 export interface RecycleCharProps {

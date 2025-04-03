@@ -3,6 +3,7 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { DraggableProps } from "../types/alphabet.types";
+import { useIsMobile } from "../../../hooks/useMediaQuery";
 
 const DraggableChar = ({
   id,
@@ -17,19 +18,21 @@ const DraggableChar = ({
     id, // 드래그 아이템 고유 식별자
   });
 
+  const isMobile = useIsMobile();
+
   const style: React.CSSProperties = {
     position: "absolute",
     left: `${x}px`,
     top: `${y}px`,
-    width: "90px",
-    height: "90px",
+    width: isMobile ? "60px" : "90px",
+    height: isMobile ? "60px" : "90px",
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: bgColor,
     color: textColor,
-    fontSize: "45px",
+    fontSize: isMobile ? "30px" : "45px",
     boxShadow: `0 0 10px ${bgColor}`,
     cursor: "grab",
     pointerEvents: "auto",

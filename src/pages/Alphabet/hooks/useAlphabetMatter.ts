@@ -4,6 +4,7 @@ import Matter from "matter-js";
 import { CharBody } from "../types/alphabet.types";
 import { COLOR_HUES, getRandomColorByHue, ColorTheme } from "../utils/colors";
 import { UseAlphabetMatterProps } from "../types/alphabet.types";
+import { useIsMobile } from "../../../hooks/useMediaQuery";
 
 export const useAlphabetMatter = ({
   engineRef,
@@ -13,7 +14,7 @@ export const useAlphabetMatter = ({
 }: UseAlphabetMatterProps) => {
   const [charBodies, setCharBodies] = useState<CharBody[]>([]);
   const runnerRef = useRef<Matter.Runner | null>(null); // 애니메이션 루츠(러너) 추적하기 위한 ref
-
+  const isMobile = useIsMobile();
   const THEMES: ColorTheme[] = [
     "red",
     "orange",
@@ -34,14 +35,14 @@ export const useAlphabetMatter = ({
   const upper = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
-  // const spaces = Array.from({ length: 15 }, () => " ");
-  const alphabet = [...upper];
+  const spaces = Array.from({ length: isMobile ? 0 : 10 }, () => " ");
+  const alphabet = [...upper, ...spaces];
 
   useEffect(() => {
     const { Engine, World, Bodies, Runner, Mouse, MouseConstraint, Composite } =
       Matter;
     const engine = engineRef.current;
-    // engine.enableSleeping = true;
+    engine.enableSleeping = true;
     engine.gravity.y = 10;
 
     // 알파벳마다 matter.js 원형 body 생성
@@ -50,16 +51,19 @@ export const useAlphabetMatter = ({
       const bgColor = getRandomColorByHue(hue);
 
       const body = Bodies.circle(
-        60 + Math.random() * (width - 120), // 좌우 여백 60씩
-        -50 - i * 20, // 너무 위에서 떨어지지 않도록 조정
-        52,
+        isMobile
+          ? Math.random() * (width - 120)
+          : 60 + Math.random() * (width - 180),
+
+        -50 - i * 20,
+        isMobile ? 40 : 52,
         {
-          mass: 10,
+          mass: isMobile ? 1 : 10,
           restitution: 0,
           friction: 0.8,
           frictionStatic: 1.0,
           frictionAir: 0.02,
-          sleepThreshold: 40,
+          sleepThreshold: 60,
         }
       );
       return { char, body, bgColor };

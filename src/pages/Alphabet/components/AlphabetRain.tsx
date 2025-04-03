@@ -17,11 +17,21 @@ const AlphabetRain = () => {
   const engineRef = useRef(Matter.Engine.create());
   const { width, height } = useWindowSize();
 
-  const [selectedChars, setSelectedChars] = useState<string[]>([]);
+  const [selectedChars, setSelectedChars] = useState<string[]>([
+    "H",
+    "E",
+    "L",
+    "L",
+    "O",
+  ]);
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const { floor, leftWall, rightWall } = useWalls(width, height);
   const wallsRef = useRef({ floor, leftWall, rightWall });
+
+  const handleDeleteLastChar = () => {
+    setSelectedChars((prev) => prev.slice(0, -1));
+  };
 
   const { charBodies, setCharBodies, dropZoneBgColor, theme } =
     useAlphabetMatter({
@@ -100,7 +110,11 @@ const AlphabetRain = () => {
           />
         );
       })}
-      <DropZone selectedChars={selectedChars} bgColor={dropZoneBgColor} />
+      <DropZone
+        selectedChars={selectedChars}
+        bgColor={dropZoneBgColor}
+        onDelete={handleDeleteLastChar}
+      />
     </S.Container>
   );
 };
