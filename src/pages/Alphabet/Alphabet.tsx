@@ -2,7 +2,8 @@
 
 import { S } from "./styles";
 import AlphabetRain from "./components/AlphabetRain";
-const TimeQuestion = () => {
+
+const Alphabet = () => {
   return (
     <S.Wrapper>
       <AlphabetRain />
@@ -10,4 +11,4 @@ const TimeQuestion = () => {
   );
 };
 
-export default TimeQuestion;
+export default Alphabet;

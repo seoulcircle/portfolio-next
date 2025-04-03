@@ -2,23 +2,41 @@
 
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
-// import { CSS } from "@dnd-kit/utilities";
 import { DraggableProps } from "../types/alphabet.types";
 
-const DraggableChar = ({ char, x, y }: DraggableProps) => {
+const DraggableChar = ({
+  id,
+  char,
+  x,
+  y,
+  bgColor,
+  textColor,
+  isActive,
+}: DraggableProps) => {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
-    id: char, // 드래그 아이템 고유 식별자
+    id, // 드래그 아이템 고유 식별자
   });
+
   const style: React.CSSProperties = {
     position: "absolute",
     left: `${x}px`,
     top: `${y}px`,
-    fontSize: "100px",
-    fontWeight: "bold",
+    width: "90px",
+    height: "90px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: bgColor,
+    color: textColor,
+    fontSize: "45px",
+    boxShadow: `0 0 10px ${bgColor}`,
     cursor: "grab",
     pointerEvents: "auto",
-    opacity: isDragging ? 0.3 : 1,
+    opacity: isDragging ? 1 : 0.9,
     transition: "transform 200ms ease",
+    userSelect: "none",
+    zIndex: isActive ? 9999 : 1,
   };
 
   return (

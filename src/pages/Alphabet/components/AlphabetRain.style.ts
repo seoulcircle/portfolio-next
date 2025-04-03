@@ -14,13 +14,17 @@ export const S = {
 
   Char: styled.div`
     position: absolute;
-    font-size: 100px;
-    font-weight: bold;
-    color: black;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
-    cursor: pointer;
+    font-size: 36px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    cursor: grab;
+    transition: all 0.3s ease;
   `,
 };

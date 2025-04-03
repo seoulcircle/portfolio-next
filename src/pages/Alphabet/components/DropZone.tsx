@@ -1,17 +1,21 @@
 import { useDroppable } from "@dnd-kit/core";
 import { S } from "./DropZone.styles";
+import { DropZoneProps } from "../types/alphabet.types";
 
-interface Props {
-  selectedChars: string[];
-}
-
-const DropZone = ({ selectedChars }: Props) => {
+const DropZone = ({ selectedChars, bgColor }: DropZoneProps) => {
   const { setNodeRef, isOver } = useDroppable({
     id: "drop-zone",
   });
 
   return (
-    <S.DropZone ref={setNodeRef} $isOver={isOver}>
+    <S.DropZone
+      ref={setNodeRef}
+      id="drop-zone"
+      $isOver={isOver}
+      style={{
+        border: isOver ? `1px solid ${bgColor}` : "none",
+      }}
+    >
       {selectedChars.map((char, i) => (
         <S.DropChar key={`${char}-${i}`}>{char}</S.DropChar>
       ))}

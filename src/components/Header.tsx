@@ -36,6 +36,7 @@ function Header() {
     setMounted(true);
   }, []);
   // 홈에서는 헤더 숨기기
+
   if (pathname === "/") return null;
 
   if (!mounted) return null; // 또는 skeleton
