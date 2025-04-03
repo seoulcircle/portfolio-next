@@ -11,15 +11,15 @@ export interface ResizeWallsProps {
 }
 
 export interface UseAlphabetMatterProps {
+  engineRef: React.MutableRefObject<Matter.Engine>;
+  sceneRef: React.RefObject<HTMLDivElement | null>;
   width: number;
   height: number;
-  sceneRef: React.MutableRefObject<HTMLDivElement>;
-  wallsRef: React.MutableRefObject<{
+  walls: {
     floor: Matter.Body;
     leftWall: Matter.Body;
     rightWall: Matter.Body;
-  } | null>;
-  engineRef: React.MutableRefObject<Matter.Engine>;
+  };
 }
 
 export interface CharBody {
@@ -29,7 +29,7 @@ export interface CharBody {
   textColor?: string;
 }
 
-export type DraggableProps = {
+export interface DraggableProps {
   id: string;
   char: string;
   x: number;
@@ -37,15 +37,15 @@ export type DraggableProps = {
   bgColor?: string;
   textColor?: string;
   isActive?: boolean;
-};
+}
 
-export type DropZoneProps = {
+export interface DropZoneProps {
   selectedChars: string[];
   bgColor?: string;
-};
+}
 
-export type RecycleCharProps = {
+export interface RecycleCharProps {
   engineRef: React.MutableRefObject<Matter.Engine>;
   setCharBodies: React.Dispatch<React.SetStateAction<CharBody[]>>;
   width: number;
-};
+}

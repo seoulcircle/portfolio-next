@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Matter from "matter-js";
-import { DndContext, DragStartEvent, DragEndEvent } from "@dnd-kit/core";
+import { useDndMonitor } from "@dnd-kit/core";
 import { S } from "./AlphabetRain.style";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { useWalls } from "../hooks/useWalls";
@@ -11,7 +11,6 @@ import { useAlphabetMatter } from "../hooks/useAlphabetMatter";
 import DropZone from "./DropZone";
 import DraggableChar from "./DraggableChar";
 import useRecycleChar from "../hooks/useRecycleChar";
-import { useDragMonitor } from "../hooks/useDndMonitor";
 
 const AlphabetRain = () => {
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -23,13 +22,6 @@ const AlphabetRain = () => {
 
   const { floor, leftWall, rightWall } = useWalls(width, height);
   const wallsRef = useRef({ floor, leftWall, rightWall });
-
-  useDragMonitor(setActiveId);
-
-  useEffect(() => {
-    console.log("AlphabetRain mounted");
-    return () => console.log("AlphabetRain unmounted");
-  }, []);
 
   const { charBodies, setCharBodies, dropZoneBgColor, theme } =
     useAlphabetMatter({
@@ -55,58 +47,61 @@ const AlphabetRain = () => {
     theme,
   });
 
-  const handleDragStart = (event: DragStartEvent) => {
-    setActiveId(event.active.id as string);
-  };
+  useDndMonitor({
+    onDragStart: (event) => setActiveId(event.active.id as string),
+    onDragCancel: () => setActiveId(null),
+    onDragEnd: (event) => {
+      const { over, active } = event;
 
-  const handleDragCancel = () => {
-    setActiveId(null);
-  };
+      if (over?.id === "drop-zone") {
+        const droppedId = active.id as string;
+        const droppedChar = droppedId.split("-")[0];
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { over, active } = event;
+        setSelectedChars((prev) => [...prev, droppedChar]);
 
-    if (over?.id === "drop-zone") {
-      const droppedId = active.id as string;
-      const droppedChar = droppedId.split("-")[0];
+        const target = charBodies.find(
+          (c, i) => `${c.char}-${i}` === droppedId
+        );
 
-      setSelectedChars((prev) => [...prev, droppedChar]);
-
-      const target = charBodies.find((c, i) => `${c.char}-${i}` === droppedId);
-
-      if (target) {
-        recycleChar(droppedChar, target.body);
+        if (target) {
+          recycleChar(droppedChar, target.body);
+        }
       }
-    }
 
-    setActiveId(null);
-  };
+      setActiveId(null);
+    },
+  });
+
+  useEffect(() => {
+    return () => {
+      const engine = engineRef.current;
+      // 기존 엔진 클리어
+      Matter.World.clear(engine.world, false);
+      Matter.Engine.clear(engine);
+      // 엔진 자체 초기화
+      engineRef.current = Matter.Engine.create();
+    };
+  }, []);
 
   return (
-    <DndContext
-      onDragStart={handleDragStart}
-      onDragCancel={handleDragCancel}
-      onDragEnd={handleDragEnd}
-    >
-      <S.Container ref={sceneRef}>
-        {charBodies.map(({ char, body, bgColor, textColor }, i) => {
-          const id = `${char}-${i}`;
-          return (
-            <DraggableChar
-              key={id}
-              id={id}
-              char={char}
-              x={Math.round(body.position.x - 50)}
-              y={Math.round(body.position.y - 50)}
-              bgColor={bgColor}
-              textColor={textColor}
-              isActive={activeId === id}
-            />
-          );
-        })}
-        <DropZone selectedChars={selectedChars} bgColor={dropZoneBgColor} />
-      </S.Container>
-    </DndContext>
+    <S.Container ref={sceneRef}>
+      {charBodies.map(({ char, body, bgColor, textColor }, i) => {
+        const id = `${char}-${i}`;
+        return (
+          <DraggableChar
+            key={id}
+            id={id}
+            char={char}
+            x={Math.round(body.position.x - 50)}
+            y={Math.round(body.position.y - 50)}
+            bgColor={bgColor}
+            textColor={textColor}
+            isActive={activeId === id}
+          />
+        );
+      })}
+      <DropZone selectedChars={selectedChars} bgColor={dropZoneBgColor} />
+    </S.Container>
   );
 };
 
