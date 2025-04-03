@@ -34,14 +34,14 @@ export const useAlphabetMatter = ({
   const upper = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
-  const spaces = Array.from({ length: 15 }, () => " ");
-  const alphabet = [...upper, ...spaces];
+  // const spaces = Array.from({ length: 15 }, () => " ");
+  const alphabet = [...upper];
 
   useEffect(() => {
     const { Engine, World, Bodies, Runner, Mouse, MouseConstraint, Composite } =
       Matter;
     const engine = engineRef.current;
-    engine.enableSleeping = true;
+    // engine.enableSleeping = true;
     engine.gravity.y = 10;
 
     // 알파벳마다 matter.js 원형 body 생성
@@ -50,8 +50,8 @@ export const useAlphabetMatter = ({
       const bgColor = getRandomColorByHue(hue);
 
       const body = Bodies.circle(
-        100 + Math.random() * width,
-        -100 - i * 50,
+        60 + Math.random() * (width - 120), // 좌우 여백 60씩
+        -50 - i * 20, // 너무 위에서 떨어지지 않도록 조정
         52,
         {
           mass: 10,
