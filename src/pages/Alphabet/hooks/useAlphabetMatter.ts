@@ -35,7 +35,7 @@ export const useAlphabetMatter = ({
   const upper = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
-  const spaces = Array.from({ length: isMobile ? 0 : 10 }, () => " ");
+  const spaces = Array.from({ length: isMobile ? 5 : 10 }, () => " ");
   const alphabet = [...upper, ...spaces];
 
   useEffect(() => {

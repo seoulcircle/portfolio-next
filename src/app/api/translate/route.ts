@@ -1,4 +1,3 @@
-// app/api/translate/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -22,7 +21,17 @@ export async function POST(req: NextRequest) {
   );
 
   const data = await papagoRes.json();
+  const result = data?.message?.result;
+  const translated = result?.translatedText;
+  const detectedLang = result?.srcLangType;
+
+  // 예외처리
+  const isMeaningless =
+    !translated ||
+    translated.toLowerCase() === word.toLowerCase() ||
+    detectedLang === "ko"; // 이미 한국어거나, 번역이 무의미한 경우
+
   return NextResponse.json({
-    translated: data?.message?.result?.translatedText ?? "번역 실패",
+    translated: isMeaningless ? "번역할 수 없는 입력이에요." : translated,
   });
 }

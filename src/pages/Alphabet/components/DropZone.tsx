@@ -1,25 +1,48 @@
+"use client";
+
 import { useDroppable } from "@dnd-kit/core";
 import { S } from "./DropZone.styles";
 import { DropZoneProps } from "../types/alphabet.types";
 import { usePapagoTranslationMutation } from "../hooks/usePapagoTranslationMutation";
 import { X, Languages } from "lucide-react";
-
+import { useIsMobile } from "../../../hooks/useMediaQuery";
+import { useEffect, useState } from "react";
 const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
+  const [isClient, setIsClient] = useState(false);
+  const [translatedText, setTranslatedText] = useState("안녕하세요");
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const { setNodeRef, isOver } = useDroppable({
     id: "drop-zone",
   });
-  const { mutate, data, isPending, isError } = usePapagoTranslationMutation();
+  const { mutate, isPending, isError } = usePapagoTranslationMutation();
+  const isMobile = useIsMobile();
+
+  const handleDelete = () => {
+    onDelete?.(selectedChars[selectedChars.length - 1]);
+    setTranslatedText("");
+  };
 
   const handleClick = () => {
-    mutate(selectedChars.join("").toLowerCase());
+    setTranslatedText("");
+    const word = selectedChars.join("");
+    mutate(word, {
+      onSuccess: (data) => {
+        setTranslatedText(data.translated);
+      },
+    });
   };
+  if (!isClient) return null;
 
   return (
     <S.DropZoneContainer>
       <S.DefinitionWrapper>
         {isPending && <p>Loading...</p>}
         {isError && <p>번역 실패</p>}
-        {data && <p>{data.translated}</p>}
+        {translatedText}
       </S.DefinitionWrapper>
       <S.DropZoneWrapper>
         <S.DropZone
@@ -30,27 +53,32 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
             border: isOver ? `2px dashed ${bgColor}` : "none",
           }}
         >
-          {selectedChars.map((char, i) => (
-            <S.DropChar key={`${char}-${i}`}>{char}</S.DropChar>
-          ))}
-          {onDelete && selectedChars.length > 0 && (
-            <X
-              onClick={() => onDelete(selectedChars[selectedChars.length - 1])}
-              style={{
-                cursor: "pointer",
-                marginBottom: "40px",
-                marginLeft: "10px",
-              }}
-              size={16}
-            />
-          )}
-          <S.Button onClick={handleClick}>
-            <Languages
-              style={{ cursor: "pointer" }}
-              size={36}
-              strokeWidth={2}
-            />
-          </S.Button>
+          <S.DropWord>
+            {selectedChars.map((char, i) => (
+              <S.DropChar key={`${char}-${i}`}>{char}</S.DropChar>
+            ))}
+          </S.DropWord>
+          <S.RightWrapper>
+            {onDelete && selectedChars.length > 0 && (
+              <X
+                onClick={handleDelete}
+                style={{
+                  cursor: "pointer",
+                  marginBottom: isMobile ? "30px" : "50px",
+                  marginRight: isMobile ? "5px" : "10px",
+                  opacity: "0.5",
+                }}
+                size={isMobile ? 16 : 24}
+              />
+            )}
+            <S.Button onClick={handleClick}>
+              <Languages
+                style={{ cursor: "pointer" }}
+                size={isMobile ? 20 : 36}
+                strokeWidth={isMobile ? 1.5 : 2}
+              />
+            </S.Button>
+          </S.RightWrapper>
         </S.DropZone>
       </S.DropZoneWrapper>
     </S.DropZoneContainer>
