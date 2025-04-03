@@ -1,6 +1,6 @@
 "use client";
 
-import * as S from "./styles";
+import { S } from "./styles";
 import useClock from "./hooks/useClock";
 import useUserWrite from "./hooks/useUserWrite";
 import useQuestion from "./hooks/useQuestion";

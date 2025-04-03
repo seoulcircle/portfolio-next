@@ -1,17 +1,13 @@
 "use client";
 
 import styled from "@emotion/styled";
-// import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import home from "../../public/home.svg";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { useState, useEffect } from "react";
-// const StyledAnchor = styled.a`
-//   cursor: pointer;
-//   text-decoration: none;
-// `;
+
 const HeaderNav = styled.nav`
   position: fixed;
   top: 0;
@@ -40,6 +36,7 @@ function Header() {
     setMounted(true);
   }, []);
   // 홈에서는 헤더 숨기기
+
   if (pathname === "/") return null;
 
   if (!mounted) return null; // 또는 skeleton

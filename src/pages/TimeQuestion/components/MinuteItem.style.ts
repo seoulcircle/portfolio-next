@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
 
 export const S = {
-  Minute: styled.div`
+  Minute: styled.div<{ isDummy?: boolean }>`
     display: flex;
     width: 100%;
     max-width: 500px;
-
+    opacity: ${({ isDummy }) => (isDummy ? 0.4 : 1)};
     @media (max-width: ${breakpoints.mobile}) {
       flex-direction: column;
-      margin-top: 15px;
+      margin-top: 15px; // 하나일 때 40으로 수정
     }
   `,
 
@@ -48,6 +48,17 @@ export const S = {
         isFuture ? "80px" : isPastNoValueMobile ? "80px" : "130px"};
       padding: ${({ isPastNoValueMobile }) =>
         isPastNoValueMobile ? "15px" : 0};
+    }
+  `,
+  DummyBox: styled.div`
+    padding: 15px;
+    min-width: 150px;
+    height: 198px;
+    border: 1px dashed #ccc;
+    opacity: 0.3;
+    border-radius: 12px;
+    @media (max-width: ${breakpoints.mobile}) {
+      height: 130px;
     }
   `,
 

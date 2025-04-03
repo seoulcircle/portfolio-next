@@ -19,11 +19,11 @@ export const useClock = () => {
 
     const minuteNum = now.getMinutes();
     const length =
-      minuteNum === 0
-        ? 1
-        : Math.min(60, Math.max(minuteNum + 2, MIN_VISIBLE_MINUTES)); // 00분일 때는 하나만, 01분일 떄는 세 자리 확보, 최대 59분까지
-    const fullList = Array.from({ length }, (_, i) =>
-      i.toString().padStart(2, "0")
+      minuteNum === 0 ? 1 : Math.max(minuteNum + 2, MIN_VISIBLE_MINUTES);
+
+    const fullList = Array.from(
+      { length },
+      (_, i) => (i < 60 ? i.toString().padStart(2, "0") : "") // 60분은 dummy
     );
 
     setMinuteList(fullList);

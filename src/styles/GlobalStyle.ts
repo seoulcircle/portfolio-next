@@ -124,6 +124,7 @@ export const globalStyles = css`
   }
   body {
     line-height: 1;
+    overflow: hidden;
   }
   menu,
   ol,

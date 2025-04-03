@@ -1,6 +1,6 @@
 import React from "react";
 // import { motion } from "framer-motion";
-import * as S from "./MinuteItem.style";
+import { S } from "./MinuteItem.style";
 import { useIsMobile } from "../../../hooks/useMediaQuery";
 
 interface MinuteItemProps {
@@ -16,8 +16,6 @@ interface MinuteItemProps {
 }
 
 //현재 Minute 기준으로 작으면 -> placeholder 변경
-// 크면 div 추가
-
 const getTimeState = (
   minute: string,
   nowMinute: number
@@ -36,11 +34,19 @@ const MinuteItem = ({
   onChange,
   isDisabled,
 }: MinuteItemProps) => {
-  const timeState = getTimeState(minute, nowMinute);
   const isMobile = useIsMobile();
+  // dummy 분기 처리
+  if (minute === "") {
+    return (
+      <S.Minute isDummy={true}>
+        <S.DummyBox />
+      </S.Minute>
+    );
+  }
+  const timeState = getTimeState(minute, nowMinute);
   const isNow = Number(minute) === nowMinute;
   const isPastNoValueMobile = timeState === "past" && !value && isMobile;
-  // console.log("123");
+
   // past 중 value가 있으면 -> 그대로 노출. 없으면 질문에 지나간 순간이에요
   return (
     <S.Minute>

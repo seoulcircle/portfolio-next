@@ -19,14 +19,7 @@ export const S = {
       overflow: visible;
     }
   `,
-  GlassOverlay: styled(motion.div)`
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    backdrop-filter: blur(5px);
-    background: rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-  `,
+
   Container: styled(motion.div)`
     position: relative;
     width: 80vmin;
