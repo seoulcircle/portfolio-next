@@ -9,24 +9,37 @@ interface DropZoneProps extends HTMLAttributes<HTMLDivElement> {
 export const S = {
   DropZoneContainer: styled.div`
     position: absolute;
-    top: 30%;
+    top: 10%;
     left: 0;
     right: 0;
     margin: 0 auto;
-
     width: 100%;
     max-width: 800px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    padding: 1.5rem;
+    min-height: 120px;
+  `,
+  DefinitionWrapper: styled.div`
+    width: 100%;
+    border-bottom: 1px solid #000;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+  `,
+  DropZoneWrapper: styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    z-index: 1000;
-
-    padding: 1.5rem;
-    min-height: 120px;
+    height: 70%;
+    width: 100%;
   `,
   DropZone: styled.div<DropZoneProps>`
+    position: relative;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -46,19 +59,23 @@ export const S = {
     font-size: 50px;
     margin-right: 5px;
   `,
+
   Button: styled.button`
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     backdrop-filter: blur(10px);
-    border-radius: 9999px;
     background-color: rgba(255, 255, 255, 0.3);
-    color: black;
-    padding: 20px;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.4);
-    width: 20%;
+    color: black;
     cursor: pointer;
     border: none;
-  `,
-  ButtonText: styled.span`
-    font-size: 20px;
-    font-weight: 400;
   `,
 };
