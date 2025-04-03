@@ -39,7 +39,6 @@ export const S = {
     border-radius: 16px;
     width: 50%;
     height: auto;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
     @media (max-width: ${breakpoints.tablet}) {
       width: 100%;
     }
