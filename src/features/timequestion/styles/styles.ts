@@ -82,7 +82,7 @@ export const S = {
     z-index: 10;
     pointer-events: none;
     @media (max-width: ${breakpoints.mobile}) {
-      top: 65px;
+      top: 60px;
       height: 150px;
     }
   `,

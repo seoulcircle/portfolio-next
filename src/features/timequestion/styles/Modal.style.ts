@@ -35,9 +35,12 @@ export const S = {
     padding: 3px 10px;
     cursor: pointer;
     margin-bottom: 10px;
+    width: 67px;
+    text-align: center;
     @media (max-width: ${breakpoints.mobile}) {
       font-size: 14px;
       padding: 3px 7px;
+      width: 51px;
     }
   `,
 
@@ -61,6 +64,7 @@ export const S = {
       ::-webkit-scrollbar {
         display: none;
       }
+      margin-left: 3vw;
     }
   `,
 };
