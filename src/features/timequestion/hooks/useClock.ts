@@ -7,7 +7,8 @@ export const useClock = () => {
   const [timeMinutes, setTimeMinutes] = useState<string>("00");
   const [minuteList, setMinuteList] = useState<string[]>([]);
   const MIN_VISIBLE_MINUTES = 3;
-  const minuteTimerId = useRef<NodeJS.Timeout | null>(null); // 분 타이머의 id 저장소
+  const prevMinuteRef = useRef<number>(-1); // 이전 분
+  // const minuteTimerId = useRef<NodeJS.Timeout | null>(null); // 분 타이머의 id 저장소
 
   // 분 리트 셋팅
   const updateMinuteData = () => {
@@ -30,24 +31,23 @@ export const useClock = () => {
   };
 
   useEffect(() => {
-    updateMinuteData();
+    let frameId: number;
 
-    // 정확한 분 업데이트
-    const now = new Date();
-    const msUntilNextMinute =
-      (60 - now.getSeconds()) * 1000 - now.getMilliseconds(); // 다음 분이 되기까지 몇 미리초 남았는지 계산
+    const checkTime = () => {
+      const now = new Date();
+      const currentMinute = now.getMinutes();
 
-    const timeoutId = setTimeout(() => {
-      updateMinuteData(); // 정확히 다음 분 진입 시 한 번 실행
-      minuteTimerId.current = setInterval(updateMinuteData, 60000); // 이후 1분마다 실행
-    }, msUntilNextMinute);
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (minuteTimerId.current) {
-        clearInterval(minuteTimerId.current);
+      // 분이 바뀌었을 때만 실행
+      if (currentMinute !== prevMinuteRef.current) {
+        prevMinuteRef.current = currentMinute;
+        updateMinuteData();
       }
+      frameId = requestAnimationFrame(checkTime);
     };
+
+    requestAnimationFrame(checkTime); // 다음 프레임 호출 예약
+
+    return () => cancelAnimationFrame(frameId);
   }, []);
 
   return {

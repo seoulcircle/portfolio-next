@@ -16,6 +16,7 @@ export const S = {
       width: fit-content;
       margin-left: 15px;
       bottom: 19px;
+      width: 100%;
     }
   `,
 

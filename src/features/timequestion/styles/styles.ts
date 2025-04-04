@@ -70,7 +70,7 @@ export const S = {
 
   FaderTop: styled.div`
     position: absolute;
-    top: 0px;
+    top: 30px;
     left: 0;
     right: 0;
     height: 350px;
@@ -78,7 +78,8 @@ export const S = {
     z-index: 10;
     pointer-events: none;
     @media (max-width: ${breakpoints.mobile}) {
-      height: 200px;
+      top: 100px;
+      height: 150px;
     }
   `,
 };
