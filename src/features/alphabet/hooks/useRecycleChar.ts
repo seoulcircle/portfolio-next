@@ -1,4 +1,4 @@
-import { RecycleCharProps } from "../types/alphabet.types";
+import { RecycleCharProps } from "@/features/alphabet/types/alphabet.types";
 import Matter from "matter-js";
 import {
   getRandomColorByHue,

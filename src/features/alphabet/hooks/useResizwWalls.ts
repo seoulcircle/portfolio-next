@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Matter from "matter-js";
-import { ResizeWallsProps } from "../types/alphabet.types";
+import { ResizeWallsProps } from "@/features/alphabet/types/alphabet.types";
 
 export const useResizeWalls = ({
   engineRef,

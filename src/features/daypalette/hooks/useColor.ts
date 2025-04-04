@@ -1,11 +1,14 @@
 import { useState, useMemo, useEffect } from "react";
-import { getRGBA, getLinearGradient } from "../utils/get-color";
+import {
+  getRGBA,
+  getLinearGradient,
+} from "@/features/daypalette/utils/get-color";
 import {
   WeatherData,
   TodayWeather,
   DustData,
   formatWeatherDisplay,
-} from "@/pages/DayPalette/types/weather.types";
+} from "@/features/daypalette/types/weather.types";
 
 const useColor = (
   nowWeather: WeatherData | null,

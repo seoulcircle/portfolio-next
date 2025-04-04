@@ -6,7 +6,7 @@ import {
   WeatherData,
   TodayWeather,
   DustData,
-} from "@/pages/DayPalette/types/weather.types";
+} from "@/features/daypalette/types/weather.types";
 
 const useWeatherData = (
   today: string,
