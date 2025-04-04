@@ -12,7 +12,6 @@ const DraggableChar = ({
   y,
   bgColor,
   textColor,
-  isActive,
 }: DraggableProps) => {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id, // 드래그 아이템 고유 식별자
