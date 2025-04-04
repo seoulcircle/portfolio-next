@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react";
+import { UseScrollRotationProps } from "../types/main.types";
 
-export const useScrollRotation = (
-  setRotation: React.Dispatch<React.SetStateAction<number>>,
-  isZoomed: boolean
-) => {
+export const useScrollRotation = ({
+  rotation,
+  setRotation,
+  setTargetRotation,
+  isZoomed,
+}: UseScrollRotationProps) => {
   const touchStartY = useRef<number | null>(null); // 처음 터치 위치
   useEffect(() => {
     if (isZoomed) return;
@@ -19,8 +22,9 @@ export const useScrollRotation = (
 
     const handleTouchMove = (e: TouchEvent) => {
       const currentY = e.touches[0].clientY;
-      const deltaY = touchStartY.current! - currentY; // 터치 시작 위치와 현재 위치의 차이
-      setRotation((prev) => prev - deltaY * 0.2);
+      const deltaY = touchStartY.current! - currentY;
+
+      setTargetRotation((prev) => (prev ?? rotation) - deltaY * 0.5);
       touchStartY.current = currentY;
     };
 
@@ -33,7 +37,7 @@ export const useScrollRotation = (
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [setRotation, isZoomed]);
+  }, [setRotation, setTargetRotation, rotation, isZoomed]);
 };
 
 export default useScrollRotation;

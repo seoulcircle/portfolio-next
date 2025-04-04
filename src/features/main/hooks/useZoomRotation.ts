@@ -28,7 +28,7 @@ UseZoomRotationParams) => {
   // 모바일 경우 초기 회전 각도 설정
   useEffect(() => {
     if (isMobile) {
-      setRotation(30);
+      setRotation(45);
     }
   }, [isMobile, setRotation]);
 
@@ -36,7 +36,7 @@ UseZoomRotationParams) => {
   const handleClick = useCallback(
     (index: number) => {
       const anglePerTick = 360 / HOUR_COUNT; // 눈금 하나 당 회전 각도
-      const offset = isMobile ? 30 : 0; // 회전 기준 보정
+      const offset = isMobile ? 45 : 0; // 회전 기준 보정
       const targetAngle = -anglePerTick * index + offset; // 클릭한 index에 해당하는 각도로 회전
 
       setTargetRotation(targetAngle);

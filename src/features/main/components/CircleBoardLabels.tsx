@@ -9,7 +9,7 @@ const Labels = ({ rotation, labelRadius, isMobile, onClick }: LabelsProps) => {
         const actualAngle = (angle + rotation) % 360;
         const normalizedAngle =
           actualAngle < 0 ? actualAngle + 360 : actualAngle;
-        const targetAngle = isMobile ? 30 : 0;
+        const targetAngle = isMobile ? 45 : 0;
         const isCentered = Math.abs(normalizedAngle - targetAngle) < 6;
 
         return (

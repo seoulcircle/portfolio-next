@@ -53,7 +53,7 @@ const Main = () => {
   });
 
   // 마우스 휠로 회전 각도 조절
-  useScrollRotation(setRotation, isZoomed);
+  useScrollRotation({ rotation, setRotation, setTargetRotation, isZoomed });
 
   if (!hasMounted) return null;
 
