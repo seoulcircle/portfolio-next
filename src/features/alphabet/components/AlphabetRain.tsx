@@ -108,6 +108,7 @@ const AlphabetRain = () => {
               bgColor={bgColor}
               textColor={textColor}
               isActive={activeId === id}
+              isVisible={activeId !== id}
             />
           );
         })}

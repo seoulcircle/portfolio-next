@@ -37,6 +37,7 @@ export interface DraggableProps {
   bgColor?: string;
   textColor?: string;
   isActive?: boolean;
+  isVisible?: boolean;
 }
 
 export interface DropZoneProps {
