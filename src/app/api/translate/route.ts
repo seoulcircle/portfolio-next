@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "x-ncp-apigw-api-key-id": process.env.NEXT_PUBLIC_NCP_API_KEY_ID!,
-        "x-ncp-apigw-api-key": process.env.NEXT_PUBLIC_NCP_API_KEY!,
+        "x-ncp-apigw-api-key-id": process.env.NCP_API_KEY_ID!,
+        "x-ncp-apigw-api-key": process.env.NCP_API_KEY!,
       },
       body: new URLSearchParams({
         source: "en",
