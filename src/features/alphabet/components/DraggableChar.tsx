@@ -39,7 +39,7 @@ const DraggableChar = ({
     opacity: isDragging ? 1 : 0.9,
     transition: "transform 200ms ease",
     userSelect: "none",
-    zIndex: isActive ? 9999 : 1,
+    zIndex: isDragging ? 9999 : 1,
   };
 
   return (
