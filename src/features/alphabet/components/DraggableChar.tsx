@@ -35,11 +35,11 @@ const DraggableChar = ({
     fontSize: isMobile ? "30px" : "45px",
     boxShadow: `0 0 10px ${bgColor}`,
     cursor: "grab",
+    pointerEvents: "auto",
     opacity: isDragging ? 1 : 0.9,
     transition: "transform 200ms ease",
     userSelect: "none",
     zIndex: isActive ? 9999 : 1,
-    pointerEvents: isDragging ? "auto" : "none",
   };
 
   return (
