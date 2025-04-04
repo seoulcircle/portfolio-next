@@ -89,6 +89,11 @@ export const S = {
     margin-top: 5px;
     font-size: 16px;
     overflow: scroll;
+    @media (max-width: ${breakpoints.mobile}) {
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
   `,
 
   FutureOverlay: styled.div`
@@ -98,8 +103,8 @@ export const S = {
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.15);
+
+    background-color: white;
     pointer-events: none;
     border-radius: 10px;
   `,

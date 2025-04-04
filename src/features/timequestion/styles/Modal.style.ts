@@ -10,21 +10,35 @@ export const S = {
     margin-top: 50px;
     overflow: scroll;
     z-index: 999;
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+    ::-webkit-scrollbar {
+      display: none;
+    }
     @media (max-width: ${breakpoints.mobile}) {
       position: fixed;
-      height: 100px;
-      width: fit-content;
-      margin-left: 15px;
-      bottom: 19px;
-      width: 100%;
+      height: 120px;
+      left: 0;
+      width: 80px;
+      bottom: 6px;
     }
   `,
 
-  SavedMinutes: styled(motion.div)`
+  SavedMinutes: styled(motion.span)`
     position: relative;
     font-size: 18px;
     line-height: 1.6;
+    border-radius: 9999px;
+    border: 1px solid #000;
+    padding: 3px 10px;
     cursor: pointer;
+    margin-bottom: 10px;
+    @media (max-width: ${breakpoints.mobile}) {
+      font-size: 14px;
+      padding: 3px 7px;
+    }
   `,
 
   MotionWrapper: styled(motion.div)`
@@ -44,6 +58,9 @@ export const S = {
       height: 109px;
       padding: 15px;
       border-radius: 15px;
+      ::-webkit-scrollbar {
+        display: none;
+      }
     }
   `,
 };

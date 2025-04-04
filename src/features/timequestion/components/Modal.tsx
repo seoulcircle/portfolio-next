@@ -14,7 +14,7 @@ interface ModalProps {
 
 const SavedAnswerModal = ({ modalData }: ModalProps) => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const timeRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const timeRefs = useRef<Record<string, HTMLSpanElement | null>>({});
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [modalPosition, setModalPosition] = useState<{
     top?: number;

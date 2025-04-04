@@ -29,6 +29,7 @@ export const S = {
     @media (max-width: ${breakpoints.mobile}) {
       height: 500px;
       font-size: 40px;
+      margin-bottom: 50px;
     }
   `,
 
@@ -65,6 +66,9 @@ export const S = {
     scroll-behavior: smooth;
     @media (max-width: ${breakpoints.mobile}) {
       /* height: 400px; */
+      ::-webkit-scrollbar {
+        display: none;
+      }
     }
   `,
 
@@ -78,7 +82,7 @@ export const S = {
     z-index: 10;
     pointer-events: none;
     @media (max-width: ${breakpoints.mobile}) {
-      top: 100px;
+      top: 65px;
       height: 150px;
     }
   `,
