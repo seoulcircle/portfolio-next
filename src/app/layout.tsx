@@ -3,7 +3,7 @@ import ClientProviders from "@/components/ClientProviders";
 
 export const metadata = {
   title: "홍이의 포트폴리오",
-  description: "Next.js로 이관한 인터랙티브 프로젝트",
+  description: "프론트엔드 인터랙티브 포트폴리오",
 };
 
 export default function RootLayout({
