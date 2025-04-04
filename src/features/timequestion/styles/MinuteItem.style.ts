@@ -58,7 +58,7 @@ export const S = {
     opacity: 0.3;
     border-radius: 12px;
     @media (max-width: ${breakpoints.mobile}) {
-      height: 130px;
+      height: 118px;
     }
   `,
 
