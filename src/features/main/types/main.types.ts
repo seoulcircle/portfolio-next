@@ -62,3 +62,10 @@ export interface UseCloseZoomContentProps {
   closeButtonRef: React.RefObject<HTMLElement | null>;
   onClose: () => void;
 }
+
+export interface UseScrollRotationProps {
+  rotation: number;
+  setRotation: Dispatch<SetStateAction<number>>;
+  setTargetRotation: Dispatch<SetStateAction<number | null>>;
+  isZoomed: boolean;
+}
