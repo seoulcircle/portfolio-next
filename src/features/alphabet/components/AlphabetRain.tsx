@@ -113,11 +113,13 @@ const AlphabetRain = () => {
           );
         })}
       </S.Container>
-      <DropZone
-        selectedChars={selectedChars}
-        bgColor={dropZoneBgColor}
-        onDelete={handleDeleteLastChar}
-      />
+      <S.Overlay>
+        <DropZone
+          selectedChars={selectedChars}
+          bgColor={dropZoneBgColor}
+          onDelete={handleDeleteLastChar}
+        />
+      </S.Overlay>
     </>
   );
 };
