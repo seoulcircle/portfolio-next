@@ -24,13 +24,7 @@ const Labels = ({ rotation, labelRadius, isMobile, onClick }: LabelsProps) => {
               style={{
                 transform: `translateX(-50%) rotate(${-angle - rotation}deg)`,
                 fontWeight: isCentered ? 600 : 400,
-                fontSize: isMobile
-                  ? isCentered
-                    ? "21px"
-                    : "19px"
-                  : isCentered
-                  ? "23px"
-                  : "21px",
+                fontSize: isCentered ? "23px" : "21px",
               }}
             >
               {name}

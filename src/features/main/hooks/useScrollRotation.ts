@@ -24,7 +24,7 @@ export const useScrollRotation = ({
       const currentY = e.touches[0].clientY;
       const deltaY = touchStartY.current! - currentY;
 
-      setTargetRotation((prev) => (prev ?? rotation) - deltaY * 0.5);
+      setTargetRotation((prev) => (prev ?? rotation) - deltaY * 0.2);
       touchStartY.current = currentY;
     };
 
