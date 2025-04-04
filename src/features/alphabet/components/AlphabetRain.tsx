@@ -94,28 +94,30 @@ const AlphabetRain = () => {
   }, []);
 
   return (
-    <S.Container ref={sceneRef}>
-      {charBodies.map(({ char, body, bgColor, textColor }, i) => {
-        const id = `${char}-${i}`;
-        return (
-          <DraggableChar
-            key={id}
-            id={id}
-            char={char}
-            x={Math.round(body.position.x - 50)}
-            y={Math.round(body.position.y - 50)}
-            bgColor={bgColor}
-            textColor={textColor}
-            isActive={activeId === id}
-          />
-        );
-      })}
+    <>
+      <S.Container ref={sceneRef}>
+        {charBodies.map(({ char, body, bgColor, textColor }, i) => {
+          const id = `${char}-${i}`;
+          return (
+            <DraggableChar
+              key={id}
+              id={id}
+              char={char}
+              x={Math.round(body.position.x - 50)}
+              y={Math.round(body.position.y - 50)}
+              bgColor={bgColor}
+              textColor={textColor}
+              isActive={activeId === id}
+            />
+          );
+        })}
+      </S.Container>
       <DropZone
         selectedChars={selectedChars}
         bgColor={dropZoneBgColor}
         onDelete={handleDeleteLastChar}
       />
-    </S.Container>
+    </>
   );
 };
 

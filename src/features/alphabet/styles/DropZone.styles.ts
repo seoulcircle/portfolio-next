@@ -8,7 +8,7 @@ interface DropZoneProps extends HTMLAttributes<HTMLDivElement> {
 }
 export const S = {
   DropZoneContainer: styled.div`
-    position: relative;
+    position: absolute;
     top: 20%;
     left: 0;
     right: 0;
@@ -18,10 +18,9 @@ export const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 10000;
+    z-index: 1000;
     padding: 1rem;
     min-height: 120px;
-    pointer-events: auto;
   `,
   DefinitionWrapper: styled.div`
     width: 100%;
