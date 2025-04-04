@@ -12,18 +12,18 @@ import ZoomOverlay from "@/features/main/components/ZoomOverlay";
 import useHasMounted from "@/features/main/hooks/useHasMounted";
 import useScrollRotation from "@/features/main/hooks/useScrollRotation";
 import useZoomRotation from "@/features/main/hooks/useZoomRotation";
-import useClickOverlay from "@/features/main/hooks/useClickOverlay";
+import useCloseZoomContent from "@/features/main/hooks/useCloseZoomContent";
 import { ResponsiveRadiusOptions } from "@/features/main/types/main.types";
 
 const Main = () => {
   const isMobile = useIsMobile();
-  const tickRadius = useResponsiveRadius(isMobile ? 0.36 : 0.2, {
+  const tickRadius = useResponsiveRadius(isMobile ? 0.4 : 0.21, {
     min: 70,
-    max: 700,
+    max: isMobile ? 200 : 700,
   } as ResponsiveRadiusOptions);
-  const labelRadius = useResponsiveRadius(isMobile ? 0.5 : 0.27, {
+  const labelRadius = useResponsiveRadius(isMobile ? 0.55 : 0.3, {
     min: 100,
-    max: 700,
+    max: isMobile ? 250 : 700,
   } as ResponsiveRadiusOptions);
   const hasMounted = useHasMounted();
   const [rotation, setRotation] = useState(0); // 현재 회전 각도
@@ -32,6 +32,7 @@ const Main = () => {
   const [zoomId, setZoomId] = useState<string | null>(null); // 클릭된 label의 id
   const [zoomAnimationDone, setZoomAnimationDone] = useState(false); // zoom 애니메이션 완료 여부
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
   const zoomedProject = projects.find((p) => p.id === zoomId);
 
   const { handleClick } = useZoomRotation({
@@ -45,7 +46,11 @@ const Main = () => {
   });
 
   //zoomout
-  useClickOverlay(containerRef, () => setIsZoomed(false));
+  useCloseZoomContent({
+    overlayRef: containerRef,
+    closeButtonRef: closeBtnRef,
+    onClose: () => setIsZoomed(false),
+  });
 
   // 마우스 휠로 회전 각도 조절
   useScrollRotation(setRotation, isZoomed);
@@ -72,7 +77,7 @@ const Main = () => {
         <ZoomOverlay
           isZoomed={isZoomed}
           zoomAnimationDone={zoomAnimationDone}
-          onClick={() => setIsZoomed(false)}
+          onClose={() => setIsZoomed(false)}
         />
 
         <S.Container style={{ transform: `rotate(${rotation}deg)` }}>
@@ -89,7 +94,10 @@ const Main = () => {
         zoomAnimationDone &&
         zoomedProject && ( // zoomed, zoom animation completed,
           <div ref={containerRef} onClick={(e) => e.stopPropagation()}>
-            <ZoomContent project={zoomedProject} />
+            <ZoomContent
+              onClose={() => setIsZoomed(false)}
+              project={zoomedProject}
+            />
           </div>
         )}
     </>

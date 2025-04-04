@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { StaticImageData } from "next/image";
 
 export interface Project {
   index: number;
@@ -8,7 +9,7 @@ export interface Project {
   description: string;
   stack?: string[];
   api?: string[];
-  thumbnail?: string;
+  thumbnail?: StaticImageData;
 }
 
 export interface ZoomContentProps {
@@ -18,15 +19,16 @@ export interface ZoomContentProps {
     description: string;
     stack?: string[];
     api?: string[];
-    thumbnail?: string;
+    thumbnail?: StaticImageData;
     route?: string;
   };
+  onClose: () => void;
 }
 
 export interface ZoomOverlayProps {
   isZoomed: boolean;
   zoomAnimationDone: boolean;
-  onClick: () => void;
+  onClose: () => void;
 }
 
 export interface UseZoomRotationProps {
@@ -53,4 +55,10 @@ export interface ResponsiveRadiusOptions {
 
 export interface TickMarksProps {
   tickRadius: number;
+}
+
+export interface UseCloseZoomContentProps {
+  overlayRef: React.RefObject<HTMLElement | null>;
+  closeButtonRef: React.RefObject<HTMLElement | null>;
+  onClose: () => void;
 }

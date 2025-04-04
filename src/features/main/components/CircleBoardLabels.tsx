@@ -26,11 +26,11 @@ const Labels = ({ rotation, labelRadius, isMobile, onClick }: LabelsProps) => {
                 fontWeight: isCentered ? 600 : 400,
                 fontSize: isMobile
                   ? isCentered
-                    ? "18px"
-                    : "16px"
+                    ? "21px"
+                    : "19px"
                   : isCentered
-                  ? "20px"
-                  : "18px",
+                  ? "23px"
+                  : "21px",
               }}
             >
               {name}

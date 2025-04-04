@@ -1,25 +1,12 @@
 import axios from "axios";
+import {
+  IGetWeatherData,
+  INowWeather,
+  ITmrWeather,
+} from "../types/weather.types";
 
 const BASE_URL = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0";
 const SERVICE_KEY = process.env.NEXT_PUBLIC_API_URL as string; // 환경 변수에서 관리
-
-export interface INowWeather {
-  category: string;
-  value: string;
-  obsrValue: string;
-}
-export interface ITmrWeather {
-  fcstDate: string;
-  fcstTime: string;
-  fcstValue: string;
-  category: string;
-}
-
-interface IGetWeatherData {
-  endpoint: string;
-  base_date: string;
-  base_time?: string;
-}
 
 const weatherClient = axios.create({
   baseURL: BASE_URL,

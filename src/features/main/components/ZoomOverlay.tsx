@@ -1,10 +1,10 @@
-import { S } from "./Zoom.style";
+import { S } from "../styles/Zoom.style";
 import { ZoomOverlayProps } from "../types/main.types";
 
 const ZoomOverlay = ({
   isZoomed,
   zoomAnimationDone,
-  onClick,
+  onClose,
 }: ZoomOverlayProps) =>
   isZoomed && zoomAnimationDone ? (
     <S.GlassOverlay
@@ -12,7 +12,7 @@ const ZoomOverlay = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      onClick={onClick}
+      onClick={onClose}
     />
   ) : null;
 

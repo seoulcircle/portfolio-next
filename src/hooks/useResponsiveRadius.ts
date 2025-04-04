@@ -7,12 +7,14 @@ export const useResponsiveRadius = (
   const { min = 200, max = 800 } = options || {};
   const [radius, setRadius] = useState<number>(min);
 
+  //첫 실행
   useEffect(() => {
-    const base = Math.min(window.innerWidth, window.innerHeight);
+    const base = Math.min(window.innerWidth, window.innerHeight); // 브라우저 넓이, 높이 중 작은 값
     const raw = base * scale;
     setRadius(Math.max(min, Math.min(raw, max)));
   }, []);
 
+  //리사이즈 이벤트 핸들러
   useEffect(() => {
     const updateRadius = () => {
       if (typeof window === "undefined") return;

@@ -1,12 +1,15 @@
 "use client";
 /** @jsxImportSource @emotion/react */
-import { ArrowRight } from "lucide-react";
-import { S } from "./Zoom.style";
+import { ArrowRight, X } from "lucide-react";
+import { S } from "../styles/Zoom.style";
 import Link from "next/link";
 import { ZoomContentProps } from "../types/main.types";
 import Developer from "./ZoomDeveloper";
+import Image from "next/image";
+import useLockBodyZoomScroll from "../hooks/useLockBodyZoom";
 
-const ZoomContent = ({ project }: ZoomContentProps) => {
+const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
+  useLockBodyZoomScroll(true);
   return (
     <>
       {project.id === "developer" ? (
@@ -14,10 +17,16 @@ const ZoomContent = ({ project }: ZoomContentProps) => {
       ) : (
         <S.Detail>
           {project.thumbnail && (
-            <S.ThumbImg
-              src={project.thumbnail}
-              alt={`${project.name} thumbnail`}
-            />
+            <S.ThumbImgWrapper>
+              <Image
+                src={project.thumbnail}
+                alt={`${project.name} thumbnail`}
+                fill
+                style={{ objectFit: "contain" }}
+                placeholder="blur"
+                blurDataURL={project.thumbnail?.blurDataURL}
+              />
+            </S.ThumbImgWrapper>
           )}
           <S.DetailInfo>
             {project.id === "honglee" ? (
@@ -48,6 +57,9 @@ const ZoomContent = ({ project }: ZoomContentProps) => {
           </S.DetailInfo>
         </S.Detail>
       )}
+      <S.CloseButton onClick={onClose}>
+        <X size={30} strokeWidth={1.5} />
+      </S.CloseButton>
     </>
   );
 };

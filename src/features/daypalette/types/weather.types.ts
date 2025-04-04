@@ -1,3 +1,21 @@
+export interface INowWeather {
+  category: string;
+  value: string;
+  obsrValue: string;
+}
+export interface ITmrWeather {
+  fcstDate: string;
+  fcstTime: string;
+  fcstValue: string;
+  category: string;
+}
+
+export interface IGetWeatherData {
+  endpoint: string;
+  base_date: string;
+  base_time?: string;
+}
+
 export interface WeatherData {
   nowTemperature?: string;
   temperature?: string;
