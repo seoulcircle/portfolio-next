@@ -19,6 +19,13 @@ const ColorSlider = ({
   const getCurrentHour = () => new Date().getHours();
   const [hour, setHour] = useState(getCurrentHour());
 
+  // 오전 6시 이전에 슬라이더 이동 시 6시로 초기화
+  useEffect(() => {
+    if (hour < 6) {
+      setHour(0);
+    }
+  }, [hour]);
+
   // open 될때마다 초기값 재설정
   useEffect(() => {
     if (isOpen) {
@@ -126,8 +133,11 @@ const ColorSlider = ({
               />
               <S.SliderSun
                 animate={{
-                  left: `${((hour - 6) / 17) * 100 - 5}%`,
-                  bottom: `${getBottomPosition(hour)}px`,
+                  left: hour < 6 ? `-5%` : `${((hour - 6) / 17) * 100 - 5}%`,
+                  bottom:
+                    hour < 6
+                      ? `${getBottomPosition(6)}px`
+                      : `${getBottomPosition(hour)}px`,
                   backgroundColor: getColorByHourColor(hour),
                   boxShadow: getShadowByHour(hour),
                 }}
@@ -144,7 +154,13 @@ const ColorSlider = ({
             </S.TimeLabels>
           </S.SliderWrapper>
           <S.WeatherData>
-            <p>{hour}시</p>
+            <p>
+              {hour < 6 ? (
+                <span>오전 6시에 확인해주세요.</span>
+              ) : (
+                <span>{hour}시</span>
+              )}
+            </p>
             <p>온도: {temperature}°C</p>
             <p>습도: {humidity}%</p>
           </S.WeatherData>
