@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { useNowWeatherQuery } from "./queries/useNowWeatherQuery";
 import { useTmrWeatherQuery } from "./queries/useTmrWeatherQuery";
@@ -15,13 +17,19 @@ const useWeatherData = (
   tomorrow: string
 ) => {
   const MINUTE_ZERO = "00";
-  const { data: nowWeatherData } = useNowWeatherQuery(
-    today,
-    hours + MINUTE_ZERO
-  );
-  const { data: todayForecast } = useTmrWeatherQuery(today);
-  const { data: tmrForecast } = useTmrWeatherQuery(tmrToday);
-  const { data: dustList } = useDustQuery();
+  const { data: nowWeatherData, isLoading: nowWeatherLoading } =
+    useNowWeatherQuery(today, hours + MINUTE_ZERO);
+  const { data: todayForecast, isLoading: todayForecastLoading } =
+    useTmrWeatherQuery(today);
+  const { data: tmrForecast, isLoading: tmrForecastLoading } =
+    useTmrWeatherQuery(tmrToday);
+  const { data: dustList, isLoading: dustListLoading } = useDustQuery();
+
+  const loading =
+    nowWeatherLoading ||
+    todayForecastLoading ||
+    tmrForecastLoading ||
+    dustListLoading;
 
   // 현재 날씨 데이터
   const nowWeather: WeatherData = useMemo(() => {
@@ -121,6 +129,7 @@ const useWeatherData = (
     todayWeather,
     dustData,
     tmrDustData,
+    loading,
   };
 };
 

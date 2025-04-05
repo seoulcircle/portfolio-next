@@ -7,11 +7,18 @@ import useTime from "@/features/daypalette/hooks/useTime";
 import useWeatherData from "@/features/daypalette/hooks/useWeatherData";
 import useColor from "@/features/daypalette/hooks/useColor";
 import ColorSlider from "@/features/daypalette/components/ColorSlider";
+import Spinner from "@/features/daypalette/components/Spinner";
 
 const DayPalette = () => {
   const { hours, today, tmrToday, tomorrow } = useTime();
-  const { nowWeather, tmrWeather, dustData, tmrDustData, todayWeather } =
-    useWeatherData(today, hours, tmrToday, tomorrow);
+  const {
+    nowWeather,
+    tmrWeather,
+    dustData,
+    tmrDustData,
+    todayWeather,
+    loading,
+  } = useWeatherData(today, hours, tmrToday, tomorrow);
   const { gradient, startRGBA, endRGBA, handleMouseMove, dayColors } = useColor(
     nowWeather,
     dustData,
@@ -29,6 +36,14 @@ const DayPalette = () => {
       setSlider(false);
     }
   };
+
+  if (loading) {
+    return (
+      <S.Wrapper gradient={gradient}>
+        <Spinner />
+      </S.Wrapper>
+    );
+  }
 
   return (
     <S.Wrapper

@@ -18,7 +18,8 @@ const useColor = (
   todayWeather: TodayWeather[],
   hours: string
 ) => {
-  const [gradient, setGradient] = useState<string>("");
+  const DEFAULT_COLOR = "#000000";
+  const [gradient, setGradient] = useState<string>(DEFAULT_COLOR);
 
   // 현재 날씨 표시 데이터
   const nowDisplayData = useMemo(
