@@ -42,6 +42,7 @@ export const useAlphabetMatter = ({
   const spaces = Array.from({ length: isMobile ? 5 : 10 }, () => " ");
   const alphabet = [...upper, ...spaces];
 
+  // 초기 Matter.js 세팅 및 러너 실행
   useEffect(() => {
     const { Engine, World, Bodies, Runner, Mouse, MouseConstraint, Composite } =
       Matter;
