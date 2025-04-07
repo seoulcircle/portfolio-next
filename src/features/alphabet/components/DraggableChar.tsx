@@ -38,6 +38,9 @@ const DraggableChar = ({
     opacity: isDragging ? 1 : 0.9,
     userSelect: "none",
     zIndex: isDragging ? 9999 : 1,
+    touchAction: "none", // 터치 기기에서 드래그 시 브라우저 기본 동작 방지
+    WebkitTouchCallout: "none", // iOS에서 터치 시 컨텍스트 메뉴 방지
+    WebkitUserSelect: "none", // iOS에서 터치 시 선택 방지
   };
 
   return (

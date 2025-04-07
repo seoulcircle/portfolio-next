@@ -64,22 +64,59 @@ const AlphabetRain = () => {
   useEffect(() => {
     if (!activeId) return;
 
-    // 드래그 중 마우스 위치 업데이트
+    // 드래그 중 마우스/터치 위치 업데이트
     const handleMouseMove = (e: MouseEvent) => {
       setDragVisualPosition({ x: e.clientX, y: e.clientY });
     };
 
+    // 모바일 터치 이벤트 핸들러 추가
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        const touch = e.touches[0];
+        setDragVisualPosition({ x: touch.clientX, y: touch.clientY });
+
+        // 스크롤 방지
+        e.preventDefault();
+      }
+    };
+
+    // 마우스와 터치 이벤트 모두 등록
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
   }, [activeId]);
 
   useDndMonitor({
     onDragStart: (event) => {
       setActiveId(event.active.id as string);
-      // 드래그 시작 시 마우스 위치 기록 & 시각적 위치 초기화
-      if (event.activatorEvent && "clientX" in event.activatorEvent) {
-        const { clientX, clientY } = event.activatorEvent as MouseEvent;
-        setDragVisualPosition({ x: clientX, y: clientY });
+      // 드래그 시작 시 마우스의 x, y위치값으로 시각적 위치 셋팅
+      try {
+        const activatorEvent = event.activatorEvent as MouseEvent | TouchEvent;
+
+        if (activatorEvent && "clientX" in activatorEvent) {
+          // 마우스 이벤트 처리
+          setDragVisualPosition({
+            x: activatorEvent.clientX,
+            y: activatorEvent.clientY,
+          });
+        } else if (
+          activatorEvent &&
+          "touches" in activatorEvent &&
+          activatorEvent.touches.length > 0
+        ) {
+          // 터치 이벤트 처리
+          const touch = activatorEvent.touches[0];
+          setDragVisualPosition({
+            x: touch.clientX,
+            y: touch.clientY,
+          });
+        }
+      } catch (error) {
+        console.error("드래그 시작 이벤트 처리 오류:", error);
       }
     },
     onDragCancel: () => {
