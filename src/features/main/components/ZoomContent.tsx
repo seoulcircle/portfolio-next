@@ -7,6 +7,7 @@ import { ZoomContentProps } from "../types/main.types";
 import Developer from "./ZoomDeveloper";
 import Image from "next/image";
 import useLockBodyZoomScroll from "../hooks/useLockBodyZoom";
+import MapArchive from "./MapArchive";
 
 const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
   useLockBodyZoomScroll(true);
@@ -14,6 +15,8 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
     <>
       {project.id === "developer" ? (
         <Developer />
+      ) : project.id === "archive" ? (
+        <MapArchive />
       ) : (
         <S.Detail>
           {project.thumbnail && (
