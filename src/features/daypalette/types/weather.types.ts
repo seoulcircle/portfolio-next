@@ -41,6 +41,15 @@ export interface DustData {
   calcPm10Value24?: string;
 }
 
+export interface WeatherModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  weatherData: WeatherData | null;
+  dustData: DustData | null;
+  colorRGBA: ColorRGBA | null;
+  modalType: "today" | "tomorrow";
+}
+
 export interface ColorRGBA {
   startRGBA: string;
   endRGBA: string;

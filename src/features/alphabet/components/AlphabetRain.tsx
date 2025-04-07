@@ -64,12 +64,12 @@ const AlphabetRain = () => {
   useEffect(() => {
     if (!activeId) return;
 
-    // 드래그 중 마우스/터치 위치 업데이트
+    // 드래그 중 마우스 위치 업데이트
     const handleMouseMove = (e: MouseEvent) => {
       setDragVisualPosition({ x: e.clientX, y: e.clientY });
     };
 
-    // 모바일 터치 이벤트 핸들러 추가
+    // 모바일 터치 이벤트 핸들러
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches && e.touches.length > 0) {
         const touch = e.touches[0];
@@ -108,7 +108,7 @@ const AlphabetRain = () => {
           "touches" in activatorEvent &&
           activatorEvent.touches.length > 0
         ) {
-          // 터치 이벤트 처리
+          // 모바일 터치 이벤트 처리
           const touch = activatorEvent.touches[0];
           setDragVisualPosition({
             x: touch.clientX,

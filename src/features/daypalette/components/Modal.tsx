@@ -1,24 +1,11 @@
 import { AnimatePresence } from "framer-motion";
 import { S } from "@/features/daypalette/styles/Modal.style";
-import {
-  WeatherData,
-  DustData,
-  ColorRGBA,
-} from "@/features/daypalette/types/weather.types";
+import { WeatherModalProps } from "@/features/daypalette/types/weather.types";
 import {
   formatDateWithDots,
   formatTime,
   getTargetDate,
 } from "@/features/daypalette/utils/format-date";
-
-interface WeatherModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  weatherData: WeatherData | null;
-  dustData: DustData | null;
-  colorRGBA: ColorRGBA | null;
-  modalType: "today" | "tomorrow";
-}
 
 const WeatherModal = ({
   isOpen,
@@ -51,7 +38,7 @@ const WeatherModal = ({
     <AnimatePresence>
       {isOpen && (
         <S.Overlay
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}

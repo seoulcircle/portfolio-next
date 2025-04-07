@@ -22,11 +22,13 @@ export const S = {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     gap: 40px;
     height: 100%;
     width: 100px;
     margin-left: 40px;
     z-index: 999;
+
     & button {
       width: 100px;
       height: 100px;
@@ -37,6 +39,7 @@ export const S = {
       color: white;
       text-align: center;
       cursor: pointer;
+      font-size: 20px;
     }
     @media (max-width: ${breakpoints.mobile}) {
       flex-direction: row;
@@ -58,6 +61,7 @@ export const S = {
 
   Today: styled.button<{ startRGBA: string }>`
     background-color: ${(props) => `${props.startRGBA}`};
+    text-align: center;
   `,
 
   SunMovement: styled.button`
@@ -68,6 +72,9 @@ export const S = {
 
   Tomorrow: styled.button<{ endRGBA: string }>`
     background-color: ${(props) => `${props.endRGBA}`};
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
 
   ModalWrapper: styled.div`

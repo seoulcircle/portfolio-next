@@ -29,6 +29,7 @@ export const S = {
     line-height: 1.2;
     text-align: left;
     border-radius: 12px;
+    z-index: 999;
     @media (max-width: ${breakpoints.mobile}) {
       min-width: 300px;
       min-height: 350px;
