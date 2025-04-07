@@ -21,7 +21,7 @@ export const S = {
     @media (max-width: ${breakpoints.mobile}) {
       width: 100vw;
       border-radius: 0px;
-      height: 100vh;
+      height: 90vh;
     }
   `,
 
