@@ -15,7 +15,7 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
     <>
       {project.id === "developer" ? (
         <Developer />
-      ) : project.id === "archive" ? (
+      ) : project.id === "dots" ? (
         <MapArchive />
       ) : (
         <S.Detail>

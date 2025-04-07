@@ -25,8 +25,7 @@ export const projects: Project[] = [
     index: 10,
     id: "archive",
     name: "Archive",
-    route: "/archive",
-    description: "Archive1",
+    description: "Archives...🏃🏻‍♀️🕉️🧘🏻‍♀️📚",
   },
   {
     index: 20,
@@ -51,10 +50,9 @@ export const projects: Project[] = [
   },
   {
     index: 35,
-    id: "archive2",
-    name: "Archive2",
-    route: "/archive2",
-    description: "Archive2",
+    id: "dots",
+    name: "Connecting the Dots",
+    description: "",
   },
   {
     index: 45,
