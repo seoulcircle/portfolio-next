@@ -74,10 +74,10 @@ export const S = {
 
   FaderTop: styled.div`
     position: absolute;
-    top: 30px;
+    top: 0;
     left: 0;
     right: 0;
-    height: 350px;
+    height: 50vh;
     background: linear-gradient(to bottom, white, transparent);
     z-index: 10;
     pointer-events: none;

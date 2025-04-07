@@ -8,7 +8,7 @@ const ZoomOverlay = ({
 }: ZoomOverlayProps) =>
   isZoomed && zoomAnimationDone ? (
     <S.GlassOverlay
-      initial={{ opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}

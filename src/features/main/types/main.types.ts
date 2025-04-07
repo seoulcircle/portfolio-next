@@ -69,3 +69,12 @@ export interface UseScrollRotationProps {
   setTargetRotation: Dispatch<SetStateAction<number | null>>;
   isZoomed: boolean;
 }
+export interface UseZoomRotationParams {
+  targetRotation: number | null;
+  rotation: number;
+  setRotation: React.Dispatch<React.SetStateAction<number>>;
+  setTargetRotation: React.Dispatch<React.SetStateAction<number | null>>;
+  setIsZoomed: React.Dispatch<React.SetStateAction<boolean>>;
+  setZoomId: React.Dispatch<React.SetStateAction<string | null>>;
+  isZoomed: boolean;
+}

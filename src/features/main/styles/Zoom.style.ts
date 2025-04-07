@@ -10,7 +10,7 @@ export const S = {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    width: 80vw;
+    width: 90vw;
     font-size: 20px;
     line-height: normal;
     display: flex;
