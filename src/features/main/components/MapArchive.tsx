@@ -17,7 +17,7 @@ const FullscreenContainer = styled.div`
 const MapWrapper = styled.div<{ isMobile: boolean }>`
   width: 100%;
   transform: ${({ isMobile }) => (isMobile ? "rotate(90deg)" : "none")};
-  scale: ${({ isMobile }) => (isMobile ? "1.5" : "1")};
+  scale: ${({ isMobile }) => (isMobile ? "1.8" : "1")};
   svg {
     width: 90vw;
     height: auto;
@@ -106,7 +106,7 @@ const placeFootprintDotsInOrder = (svg: SVGSVGElement) => {
   points.forEach((point, index) => {
     const { cx, cy } = point;
 
-    // 👉 점과 점 사이 연결선
+    // 점과 점 사이 연결선
     if (index > 0) {
       const prev = points[index - 1];
       const line = document.createElementNS(
@@ -117,8 +117,8 @@ const placeFootprintDotsInOrder = (svg: SVGSVGElement) => {
       line.setAttribute("y1", prev.cy.toString());
       line.setAttribute("x2", cx.toString());
       line.setAttribute("y2", cy.toString());
-      line.setAttribute("stroke", "rgba(255, 43, 43, 0.4)");
-      line.setAttribute("stroke-width", "2");
+      line.setAttribute("stroke", "rgba(254, 58, 58, 0.5)");
+      line.setAttribute("stroke-width", "3");
       line.setAttribute("opacity", "0");
       line.style.transition = "opacity 0.2s ease";
       svg.appendChild(line);
@@ -128,7 +128,7 @@ const placeFootprintDotsInOrder = (svg: SVGSVGElement) => {
       }, index * 600 - 300);
     }
 
-    // 👉 텍스트 (나라 이름)
+    // 텍스트 (나라 이름)
     const label = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "text"
@@ -136,16 +136,16 @@ const placeFootprintDotsInOrder = (svg: SVGSVGElement) => {
     label.textContent = point.name;
     label.setAttribute("x", (cx + 10).toString());
     label.setAttribute("y", cy.toString());
-    label.setAttribute("font-size", "15");
+    label.setAttribute("font-size", "24");
     label.setAttribute("fill", "#000");
-    label.setAttribute("font-weight", "500");
+    label.setAttribute("font-weight", "300");
     label.setAttribute("text-anchor", "start");
     label.setAttribute("dominant-baseline", "middle");
     label.setAttribute("opacity", "0");
     label.style.transition = "opacity 0.4s ease";
     svg.appendChild(label);
 
-    // 👉 점 (circle)
+    // 점 (circle)
     const dot = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"
@@ -156,9 +156,9 @@ const placeFootprintDotsInOrder = (svg: SVGSVGElement) => {
     dot.setAttribute("fill", "#333");
     dot.setAttribute("opacity", "0");
     dot.style.transition = "opacity 0.2s ease";
-    svg.appendChild(dot); // 마지막에 append → 항상 가장 위
+    svg.appendChild(dot);
 
-    // 👉 애니메이션 타이밍
+    // 애니메이션 타이밍
     setTimeout(() => {
       dot.setAttribute("opacity", "1");
       label.setAttribute("opacity", "1");
