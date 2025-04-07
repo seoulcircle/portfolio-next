@@ -69,7 +69,7 @@ export const projects: Project[] = [
       "Emotion",
       "Framer Motion",
       "Matter.js",
-      "React-dnd",
+      "DND Kit",
     ],
     api: ["Papago API"],
     thumbnail: alphabetThumb,
