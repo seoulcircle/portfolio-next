@@ -36,7 +36,6 @@ const DraggableChar = ({
     cursor: "grab",
     pointerEvents: "auto",
     opacity: isDragging ? 1 : 0.9,
-    transition: "transform 200ms ease",
     userSelect: "none",
     zIndex: isDragging ? 9999 : 1,
   };
