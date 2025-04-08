@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { formatDateCompact } from "@/features/daypalette/utils/format-date";
-
-interface TimeState {
-  hours: string;
-  today: string;
-  tmrToday: string;
-  tomorrow: string;
-}
+import { TimeState } from "@/features/daypalette/types/weather.types";
 
 const useTime = () => {
   const [time, setTime] = useState<TimeState>({

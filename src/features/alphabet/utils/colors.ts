@@ -15,7 +15,7 @@ export const COLOR_HUES: Record<ColorTheme, number> = {
   purple: 270,
 };
 
-// 👉 하나의 테마에 따라 밝기만 다양하게 랜덤 색상 생성
+// 하나의 테마에 따라 밝기만 다양하게 랜덤 색상 생성
 export const getRandomColorByHue = (hue: number): string => {
   const saturation = 70;
   const lightness = 30 + Math.random() * 65; // 밝기 30~90%

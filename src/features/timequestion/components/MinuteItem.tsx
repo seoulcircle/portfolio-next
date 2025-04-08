@@ -1,25 +1,13 @@
 import React from "react";
-// import { motion } from "framer-motion";
 import { S } from "@/features/timequestion/styles/MinuteItem.style";
 import { useIsMobile } from "@/hooks/useMediaQuery";
-
-interface MinuteItemProps {
-  minute: string;
-  nowMinute: number;
-  hour: number;
-  randomQuestion: string;
-  value: string;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  isDisabled: boolean;
-}
+import {
+  MinuteItemProps,
+  TimeState,
+} from "@/features/timequestion/types/timequestion.types";
 
 //현재 Minute 기준으로 작으면 -> placeholder 변경
-const getTimeState = (
-  minute: string,
-  nowMinute: number
-): "past" | "present" | "future" => {
+const getTimeState = (minute: string, nowMinute: number): TimeState => {
   const current = Number(minute);
   if (current < nowMinute) return "past";
   if (current > nowMinute) return "future";

@@ -1,18 +1,7 @@
 import React from "react";
 import MinuteItem from "./MinuteItem";
 import { S } from "@/features/timequestion/styles/RenderedMinutes.style";
-
-interface Props {
-  minuteList: string[];
-  timeHour: string;
-  timeMinutes: string;
-  userTextMap: Record<string, { question: string; answer: string }>;
-  randomQuestion: Record<string, string>;
-  handleChange: (
-    key: string,
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-}
+import { RenderedMinutesProps } from "@/features/timequestion/types/timequestion.types";
 
 const RenderedMinutes = ({
   minuteList,
@@ -21,7 +10,7 @@ const RenderedMinutes = ({
   userTextMap,
   randomQuestion,
   handleChange,
-}: Props) => {
+}: RenderedMinutesProps) => {
   const renderMinuteItem = (minute: string) => {
     const timeKey = `${timeHour}:${minute}`;
     const answer = userTextMap[timeKey]?.answer || "";

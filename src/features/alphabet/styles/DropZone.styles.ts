@@ -1,11 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { HTMLAttributes } from "react";
-// import { motion } from "framer-motion";
 import { breakpoints } from "@/styles/theme";
-interface DropZoneProps extends HTMLAttributes<HTMLDivElement> {
-  $isOver: boolean;
-}
+import { DropZoneProps } from "@/features/alphabet/types/alphabet.types";
+
 export const S = {
   DropZoneContainer: styled.div`
     position: absolute;

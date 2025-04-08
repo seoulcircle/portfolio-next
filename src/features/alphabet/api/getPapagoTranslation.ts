@@ -1,9 +1,5 @@
 import axios from "axios";
-
-export interface IWordTranslation {
-  translated: string;
-}
-
+import { IWordTranslation } from "@/features/alphabet/types/alphabet.types";
 export const getPapagoTranslation = async (
   word: string
 ): Promise<IWordTranslation> => {

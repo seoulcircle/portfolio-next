@@ -1,10 +1,5 @@
 import axios from "axios";
-
-export interface IDustData {
-  stationName: string;
-  pm10Value: string;
-  pm10Value24: string;
-}
+import { IDustData } from "@/features/daypalette/types/weather.types";
 
 const SERVICE_KEY = process.env.NEXT_PUBLIC_API_URL as string;
 

@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 export interface ResizeWallsProps {
   engineRef: React.MutableRefObject<Matter.Engine>;
   wallsRef: React.MutableRefObject<{
@@ -50,4 +51,12 @@ export interface RecycleCharProps {
   engineRef: React.MutableRefObject<Matter.Engine>;
   setCharBodies: React.Dispatch<React.SetStateAction<CharBody[]>>;
   width: number;
+}
+
+export interface IWordTranslation {
+  translated: string;
+}
+
+export interface DropZoneProps extends HTMLAttributes<HTMLDivElement> {
+  $isOver: boolean;
 }

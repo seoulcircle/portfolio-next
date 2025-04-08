@@ -5,13 +5,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence } from "framer-motion";
 import { S } from "@/features/timequestion/styles/Modal.style";
 import { useIsMobile } from "@/hooks/useMediaQuery";
-
-type ModalDataType = Record<string, { question: string; answer: string }>;
-
-interface ModalProps {
-  modalData: ModalDataType;
-}
-
+import { ModalProps } from "@/features/timequestion/types/timequestion.types";
 const SavedAnswerModal = ({ modalData }: ModalProps) => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const timeRefs = useRef<Record<string, HTMLSpanElement | null>>({});

@@ -4,10 +4,6 @@
 import { useEffect, useState } from "react";
 import { S } from "@/features/timequestion/styles/Seconds.style";
 
-// interface SecondsProps {
-//   timeSeconds: string;
-// }
-
 const Seconds = () => {
   const [timeSeconds, setTimeSeconds] = useState<string>("00");
   // 초 단위만 매초 업데이트

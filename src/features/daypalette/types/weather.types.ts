@@ -33,6 +33,12 @@ export interface TodayWeather {
   calcTemperature?: string;
   calcHumidity?: string;
 }
+export interface SliderProps {
+  isOpen: boolean;
+  onClose: () => void;
+  colors: { hour: number; color: string }[];
+  todayWeather: TodayWeather[];
+}
 
 export interface DustData {
   pm10Value?: string;
@@ -84,3 +90,16 @@ export const formatWeatherDisplay = (
   humidity: humidity ?? "-",
   pm10: pm10 ?? "-",
 });
+
+export interface TimeState {
+  hours: string;
+  today: string;
+  tmrToday: string;
+  tomorrow: string;
+}
+
+export interface IDustData {
+  stationName: string;
+  pm10Value: string;
+  pm10Value24: string;
+}
