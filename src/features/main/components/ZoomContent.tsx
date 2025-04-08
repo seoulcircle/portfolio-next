@@ -8,6 +8,7 @@ import Developer from "./ZoomDeveloper";
 import Image from "next/image";
 import useLockBodyZoomScroll from "../hooks/useLockBodyZoom";
 import MapArchive from "./MapArchive";
+import GithubIcon from "../data/githubIcon";
 
 const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
   useLockBodyZoomScroll(true);
@@ -49,14 +50,23 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
                 <span key={a}>{a}</span>
               ))}
             </S.Badge>
-            {project.route ? (
-              <Link href={project.route} passHref>
-                <S.RouteButton>
-                  <ArrowRight size={30} strokeWidth={1.5} />
-                  DEMO
-                </S.RouteButton>
-              </Link>
-            ) : null}
+            <S.DemoGitWrapper>
+              {project.route ? (
+                <Link href={project.route} passHref>
+                  <S.RouteButton>
+                    <ArrowRight size={30} strokeWidth={1.5} />
+                    DEMO
+                  </S.RouteButton>
+                </Link>
+              ) : null}
+              {project.git ? (
+                <Link href={project.git} passHref>
+                  <S.GitButton>
+                    <GithubIcon width={30} height={30} />
+                  </S.GitButton>
+                </Link>
+              ) : null}
+            </S.DemoGitWrapper>
           </S.DetailInfo>
         </S.Detail>
       )}

@@ -17,7 +17,7 @@ const FullscreenContainer = styled.div`
 const MapWrapper = styled.div<{ isMobile: boolean }>`
   width: 100%;
   transform: ${({ isMobile }) => (isMobile ? "rotate(90deg)" : "none")};
-  scale: ${({ isMobile }) => (isMobile ? "1.8" : "1")};
+  scale: ${({ isMobile }) => (isMobile ? "1.7" : "1")};
   svg {
     width: 90vw;
     height: auto;

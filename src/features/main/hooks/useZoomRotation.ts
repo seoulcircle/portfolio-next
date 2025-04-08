@@ -46,7 +46,7 @@ export const useZoomRotation = ({
     let animationFrameId: number;
 
     const rotateContinuously = () => {
-      setRotation((prev) => (prev + 0.1) % 360);
+      setRotation((prev) => (prev + 0.06) % 360);
       animationFrameId = requestAnimationFrame(rotateContinuously);
     };
 

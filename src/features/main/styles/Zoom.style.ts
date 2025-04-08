@@ -51,7 +51,7 @@ export const S = {
     overflow: hidden;
 
     @media (max-width: ${breakpoints.tablet}) {
-      width: 100%;
+      width: 80%;
     }
   `,
 
@@ -65,7 +65,7 @@ export const S = {
       text-decoration: none;
     }
     @media (max-width: ${breakpoints.tablet}) {
-      width: 100%;
+      width: 80%;
     }
   `,
   Introduction: styled.div`
@@ -103,7 +103,7 @@ export const S = {
     all: unset;
     cursor: pointer;
     border-radius: 9999px;
-    margin-top: 30px;
+    margin-top: 10px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -122,5 +122,19 @@ export const S = {
     top: 20px;
     right: 20px;
     z-index: 1000;
+  `,
+  DemoGitWrapper: styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  `,
+  GitButton: styled.button`
+    all: unset;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
   `,
 };

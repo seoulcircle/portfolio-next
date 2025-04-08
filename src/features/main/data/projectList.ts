@@ -37,6 +37,7 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "Emotion", "Framer Motion"],
     api: ["OpenWeather API", "AirKorea API"],
     thumbnail: daypaletteThumb,
+    git: "https://github.com/seoulcircle/portfolio-next/tree/master/src/features/daypalette",
   },
   {
     index: 25,
@@ -47,12 +48,14 @@ export const projects: Project[] = [
       "시간 단위 상태 관리, 분별 업데이트, 랜덤 콘텐츠 처리 로직을 포함한 시간 기반 인터랙티브 UI",
     stack: ["React", "TypeScript", "Emotion", "Framer Motion"],
     thumbnail: timequestionThumb,
+    git: "https://github.com/seoulcircle/portfolio-next/tree/master/src/features/timequestion",
   },
   {
     index: 35,
     id: "dots",
     name: "Connecting the Dots",
     description: "",
+    git: "https://github.com/seoulcircle/portfolio-next/blob/master/src/features/main/components/MapArchive.tsx",
   },
   {
     index: 45,
@@ -71,5 +74,6 @@ export const projects: Project[] = [
     ],
     api: ["Papago API"],
     thumbnail: alphabetThumb,
+    git: "https://github.com/seoulcircle/portfolio-next/tree/master/src/features/alphabet",
   },
 ];

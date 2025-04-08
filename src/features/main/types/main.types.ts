@@ -10,6 +10,7 @@ export interface Project {
   stack?: string[];
   api?: string[];
   thumbnail?: StaticImageData;
+  git?: string;
 }
 
 export interface ZoomContentProps {
@@ -21,6 +22,7 @@ export interface ZoomContentProps {
     api?: string[];
     thumbnail?: StaticImageData;
     route?: string;
+    git?: string;
   };
   onClose: () => void;
 }
