@@ -57,6 +57,6 @@ export interface IWordTranslation {
   translated: string;
 }
 
-export interface DropZoneProps extends HTMLAttributes<HTMLDivElement> {
+export interface DropZoneStyledProps extends HTMLAttributes<HTMLDivElement> {
   $isOver: boolean;
 }

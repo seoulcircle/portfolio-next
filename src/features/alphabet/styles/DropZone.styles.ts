@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
-import { DropZoneProps } from "@/features/alphabet/types/alphabet.types";
+import { DropZoneStyledProps } from "@/features/alphabet/types/alphabet.types";
 
 export const S = {
   DropZoneContainer: styled.div`
@@ -39,7 +39,7 @@ export const S = {
     height: 70%;
     width: 100%;
   `,
-  DropZone: styled.div<DropZoneProps>`
+  DropZone: styled.div<DropZoneStyledProps>`
     position: relative;
     backdrop-filter: blur(10px);
     border-radius: 10px;
