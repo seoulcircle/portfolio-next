@@ -32,7 +32,7 @@ export const S = {
     line-height: 1.6;
     border-radius: 9999px;
     border: 1px solid #000;
-    padding: 3px 10px;
+    padding: 3px 7px;
     cursor: pointer;
     margin-bottom: 10px;
     width: 67px;

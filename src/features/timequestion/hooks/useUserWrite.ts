@@ -10,7 +10,7 @@ const useUserWrite = (
   const [userTextMap, setUserTextMap] = useState<UserTextMap>({});
   // const [userText, setUserText] = useState<WriteItem[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const minute = new Date().getMinutes();
   const DATE_KEY = "usertext_date";
   const STORAGE_KEY = "usertext";
 
@@ -51,8 +51,7 @@ const useUserWrite = (
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
       const newAnswer = e.target.value;
-      const minute = +targetTimeKey.split(":")[1]; // 12:14->14
-      const question = randomQuestion[minute];
+
       // 답변 수정(덮어쓰기)
       setUserTextMap((prev) => {
         const prevItem = prev[targetTimeKey];
@@ -60,11 +59,14 @@ const useUserWrite = (
 
         return {
           ...prev,
-          [targetTimeKey]: { question, answer: newAnswer },
+          [targetTimeKey]: {
+            question: randomQuestion[minute],
+            answer: newAnswer,
+          },
         };
       });
     },
-    [randomQuestion]
+    [randomQuestion, minute]
   );
 
   return {

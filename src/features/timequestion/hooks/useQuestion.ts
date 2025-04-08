@@ -40,10 +40,12 @@ const generateMinuteQuestions = (): Record<number, string> => {
     for (let i = 0; i < 60; i++) {
       result[i] = shuffled[i % shuffled.length];
     }
-
-    localStorage.setItem("shuffledQuestions", JSON.stringify(result));
-    localStorage.setItem("shuffledHour", currentHour.toString());
-
+    try {
+      localStorage.setItem("shuffledQuestions", JSON.stringify(result));
+      localStorage.setItem("shuffledHour", currentHour.toString());
+    } catch (error) {
+      console.error("로컬스토리지 저장 중 에러 발생:", error);
+    }
     return result;
   }
 };
