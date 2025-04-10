@@ -22,7 +22,7 @@ export const useWindowSize = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // ✅ 빈 배열 유지
+  }, []); // 빈 배열 유지
 
   return size;
 };
