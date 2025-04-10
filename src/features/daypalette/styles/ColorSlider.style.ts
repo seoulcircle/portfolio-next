@@ -43,15 +43,15 @@ export const S = {
       background: black;
       outline: none;
       transition: all 0.3s ease-in-out;
-    }
-    & ::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: black;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
+      & ::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: black;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
     }
   `,
 
