@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import Modal from "@/ui/components/Modal/Modal";
 import { S } from "@/features/daypalette/styles/Modal.style";
 import { WeatherModalProps } from "@/features/daypalette/types/weather.types";
 import {
@@ -35,48 +35,29 @@ const WeatherModal = ({
     modalType === "today" ? colorRGBA?.startRGBA : colorRGBA?.endRGBA;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <S.Overlay
-          initial={false}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-        >
-          <S.ModalContent
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 50, opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <S.CloseButton onClick={onClose}>×</S.CloseButton>
-            <S.DataBox>
-              <S.DateText>{today}</S.DateText>
-              <S.TimeTextWrapper>
-                <S.TimeText>
-                  {time}
-                  {modalType === "tomorrow" ? <span>기준</span> : null}
-                </S.TimeText>
-                <S.Notice>*종로구 기준</S.Notice>
-              </S.TimeTextWrapper>
-            </S.DataBox>
-            <S.DataBox>
-              <S.WeatherText>TEMPERATURE : {temperature}℃</S.WeatherText>
-              <S.WeatherText>HUMIDITY : {humidity}%</S.WeatherText>
-              <S.WeatherText>FINE DUST : {fineDust}㎍/㎥</S.WeatherText>
-            </S.DataBox>
-            <S.PaletteBox>
-              <S.PaletteTitle>
-                WEATHER PALETTE :<br /> {weatherColor}
-              </S.PaletteTitle>
-              <S.ColorCircle
-                color={weatherColor ?? "rgba(200, 200, 200, 0.5)"}
-              />
-            </S.PaletteBox>
-          </S.ModalContent>
-        </S.Overlay>
-      )}
-    </AnimatePresence>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <S.DataBox>
+        <S.DateText>{today}</S.DateText>
+        <S.TimeTextWrapper>
+          <S.TimeText>
+            {time}
+            {modalType === "tomorrow" ? <span>기준</span> : null}
+          </S.TimeText>
+          <S.Notice>*종로구 기준</S.Notice>
+        </S.TimeTextWrapper>
+      </S.DataBox>
+      <S.DataBox>
+        <S.WeatherText>TEMPERATURE : {temperature}℃</S.WeatherText>
+        <S.WeatherText>HUMIDITY : {humidity}%</S.WeatherText>
+        <S.WeatherText>FINE DUST : {fineDust}㎍/㎥</S.WeatherText>
+      </S.DataBox>
+      <S.PaletteBox>
+        <S.PaletteTitle>
+          WEATHER PALETTE :<br /> {weatherColor}
+        </S.PaletteTitle>
+        <S.ColorCircle color={weatherColor ?? "rgba(200, 200, 200, 0.5)"} />
+      </S.PaletteBox>
+    </Modal>
   );
 };
 
