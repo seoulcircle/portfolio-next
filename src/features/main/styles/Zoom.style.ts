@@ -82,22 +82,22 @@ export const S = {
       }
     }
   `,
-  Badge: styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 1px;
-    & span {
-      border: 1px solid black;
-      padding: 4px 12px;
-      margin-right: 5px;
-      border-radius: 9999px;
-      font-size: 14px;
-      text-align: center;
-      white-space: nowrap;
-      word-break: keep-all;
-      overflow-wrap: normal;
-    }
-  `,
+  // Badge: styled.div`
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   gap: 4px 1px;
+  //   & span {
+  //     border: 1px solid black;
+  //     padding: 4px 12px;
+  //     margin-right: 5px;
+  //     border-radius: 9999px;
+  //     font-size: 14px;
+  //     text-align: center;
+  //     white-space: nowrap;
+  //     word-break: keep-all;
+  //     overflow-wrap: normal;
+  //   }
+  // `,
 
   // RouteButton: styled.button`
   //   all: unset;
@@ -115,26 +115,26 @@ export const S = {
   //     margin-top: 10px;
   //   }
   // `,
-  CloseButton: styled.button`
-    all: unset;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-  `,
+  // CloseButton: styled.button`
+  //   all: unset;
+  //   cursor: pointer;
+  //   position: absolute;
+  //   top: 20px;
+  //   right: 20px;
+  //   z-index: 1000;
+  // `,
   DemoGitWrapper: styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
   `,
-  GitButton: styled.button`
-    all: unset;
-    cursor: pointer;
+  // GitButton: styled.button`
+  //   all: unset;
+  //   cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-  `,
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   margin-top: 10px;
+  // `,
 };

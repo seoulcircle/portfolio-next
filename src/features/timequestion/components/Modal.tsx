@@ -74,7 +74,7 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
           onClick={() =>
             setSelectedTime((prev) => (prev === time ? null : time))
           }
-          style={{ marginTop: "12px", display: "inline-block" }}
+          style={{ marginBottom: "10px" }}
         >
           {time}
         </Badge>

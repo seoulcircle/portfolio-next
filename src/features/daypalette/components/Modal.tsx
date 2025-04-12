@@ -38,10 +38,10 @@ const WeatherModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      width="430px"
-      height="400px"
-      mobileWidth="300px"
-      mobileHeight="370px"
+      responsiveSize={{
+        desktop: { width: "430px", height: "400px" },
+        mobile: { width: "300px", height: "370px" },
+      }}
       animationType="slideUp"
     >
       <S.DataBox>

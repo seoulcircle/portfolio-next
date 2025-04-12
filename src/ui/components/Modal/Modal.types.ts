@@ -6,8 +6,8 @@ export interface ModalProps {
   children: React.ReactNode;
   showCloseButton?: boolean;
   animationType?: ModalAnimationType;
-  width?: string;
-  height?: string;
-  mobileWidth?: string;
-  mobileHeight?: string;
+  responsiveSize?: {
+    desktop: { width: string; height: string };
+    mobile: { width: string; height: string };
+  };
 }

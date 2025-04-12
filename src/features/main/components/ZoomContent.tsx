@@ -2,7 +2,6 @@
 /** @jsxImportSource @emotion/react */
 import { ArrowRight, X } from "lucide-react";
 import { S } from "../styles/Zoom.style";
-import Link from "next/link";
 import { ZoomContentProps } from "../types/main.types";
 import Developer from "./ZoomDeveloper";
 import Image from "next/image";
@@ -11,6 +10,7 @@ import MapArchive from "./MapArchive";
 import GithubIcon from "../data/githubIcon";
 import TextButton from "@/ui/components/Button/TextButton";
 import Badge from "@/ui/components/Badge/Badge";
+import IconButton from "@/ui/components/Button/IconButton/IconButton";
 
 const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
   useLockBodyZoomScroll(true);
@@ -44,12 +44,16 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
             )}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 1px" }}>
               {project.stack?.map((item) => (
-                <Badge key={item}>{item}</Badge>
+                <Badge key={item} style={{ marginRight: "5px" }}>
+                  {item}
+                </Badge>
               ))}
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 1px" }}>
               {project.api?.map((item) => (
-                <Badge key={item}>{item}</Badge>
+                <Badge key={item} style={{ marginRight: "5px" }}>
+                  {item}
+                </Badge>
               ))}
             </div>
             <S.DemoGitWrapper>
@@ -58,25 +62,30 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
                   href={project.route}
                   icon={<ArrowRight size={20} strokeWidth={1.5} />}
                   variant="black"
-                  size="sm"
+                  size="md"
                 >
-                  DEMO
+                  <strong>DEMO</strong>
                 </TextButton>
               ) : null}
               {project.git ? (
-                <Link href={project.git} passHref>
-                  <S.GitButton>
-                    <GithubIcon width={30} height={30} />
-                  </S.GitButton>
-                </Link>
+                <IconButton
+                  href={project.git}
+                  icon={<GithubIcon width={30} height={30} />}
+                />
               ) : null}
             </S.DemoGitWrapper>
           </S.DetailInfo>
         </S.Detail>
       )}
-      <S.CloseButton onClick={onClose}>
+      {/* <S.CloseButton onClick={onClose}>
         <X size={30} strokeWidth={1.5} />
-      </S.CloseButton>
+      </S.CloseButton> */}
+      <IconButton
+        aria-label="닫기"
+        icon={<X size={30} strokeWidth={1.5} />}
+        onClick={onClose}
+        style={{ position: "absolute", top: "20px", right: "20px" }}
+      />
     </>
   );
 };
