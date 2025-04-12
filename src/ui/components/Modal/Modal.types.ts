@@ -1,6 +1,13 @@
+import { ModalAnimationType } from "@/animations/tokens/modal";
+
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
   children: React.ReactNode;
+  showCloseButton?: boolean;
+  animationType?: ModalAnimationType;
+  width?: string;
+  height?: string;
+  mobileWidth?: string;
+  mobileHeight?: string;
 }

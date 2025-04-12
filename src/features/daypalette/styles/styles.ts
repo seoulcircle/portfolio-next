@@ -17,6 +17,16 @@ export const S = {
       align-items: flex-start;
     }
   `,
+  ModalWrapper: styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-width: 750px;
+    @media (max-width: ${breakpoints.mobile}) {
+      min-width: auto;
+      min-height: 615px;
+    }
+  `,
 
   CircleWrapper: styled.div`
     display: flex;
@@ -75,15 +85,5 @@ export const S = {
     display: flex;
     align-items: center;
     justify-content: center;
-  `,
-
-  ModalWrapper: styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    min-width: 750px;
-    @media (max-width: ${breakpoints.mobile}) {
-      min-width: auto;
-    }
   `,
 };

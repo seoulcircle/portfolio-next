@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { colors, spacing, typography, shadows } from "@/styles/tokens";
+import { breakpoints } from "@/styles/theme";
 
 export const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,37 +13,47 @@ export const Overlay = styled(motion.div)`
   z-index: 1000;
 `;
 
-export const ModalContent = styled(motion.div)`
+export const ModalContent = styled(motion.div)<{
+  customWidth?: string;
+  customHeight?: string;
+  mobileWidth?: string;
+  mobileHeight?: string;
+}>`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: ${({ customWidth }) => customWidth ?? "auto"};
+  height: ${({ customHeight }) => customHeight ?? "auto"};
   background-color: ${colors.glass.light};
+  backdrop-filter: ${colors.glass.backdropFilter};
+  -webkit-backdrop-filter: ${colors.glass.webkitBackdropFilter};
   border-radius: ${spacing.md};
   padding: ${spacing.lg};
-  max-width: 500px;
-  width: 90%;
   box-shadow: ${shadows.md};
   color: ${colors.white};
+  z-index: 999;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: ${({ mobileWidth }) => mobileWidth ?? "300px"};
+    height: ${({ mobileHeight }) => mobileHeight ?? "350px"};
+    margin-top: 100px;
+  }
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
   top: ${spacing.md};
   right: ${spacing.md};
-  font-size: ${typography.fontSize.xl};
+  font-size: ${typography.fontSize.xxl};
   cursor: pointer;
-  color: ${colors.gray[600]};
+  color: ${colors.white};
   background: none;
   border: none;
   padding: 0;
-
-  &:hover {
-    color: ${colors.gray[900]};
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: ${typography.fontSize.base};
   }
-`;
-
-export const Title = styled.h2`
-  font-size: ${typography.fontSize.xl};
-  font-weight: ${typography.fontWeight.bold};
-  margin-bottom: ${spacing.md};
 `;
 
 export const Body = styled.div`

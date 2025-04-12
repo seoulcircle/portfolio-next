@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { AnimatePresence } from "framer-motion";
 import { S } from "@/features/timequestion/styles/Modal.style";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { ModalProps } from "@/features/timequestion/types/timequestion.types";
+import Tooltip from "@/ui/components/Tooltip";
+
 const SavedAnswerModal = ({ modalData }: ModalProps) => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const timeRefs = useRef<Record<string, HTMLSpanElement | null>>({});
@@ -36,15 +36,31 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
         setSelectedTime(null);
       }
     };
+    const handleResizeStart = () => {
+      setSelectedTime(null);
+    };
 
     if (selectedTime) {
       document.addEventListener("mousedown", handleClickOutside);
+      window.addEventListener("resize", handleResizeStart);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", handleResizeStart);
     };
   }, [selectedTime]);
+
+  const tooltipPosition = isMobile
+    ? {
+        bottom: 17,
+        left: 73,
+      }
+    : {
+        top: modalPosition.top,
+        bottom: modalPosition.bottom,
+        left: modalPosition.left,
+      };
 
   return (
     <S.SavedAnswer>
@@ -66,40 +82,17 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
         )
       )}
 
-      {selectedTime &&
-        // 모달은 다른 위치에 그리기
-        createPortal(
-          <AnimatePresence>
-            <S.MotionWrapper
-              ref={modalRef}
-              initial={
-                isMobile ? { opacity: 0, y: 20 } : { opacity: 0, scale: 0.95 }
-              }
-              animate={
-                isMobile ? { opacity: 1, y: 0 } : { opacity: 1, scale: 1 }
-              }
-              exit={
-                isMobile ? { opacity: 0, y: 20 } : { opacity: 0, scale: 0.95 }
-              }
-              transition={{ duration: 0.2 }}
-              style={{
-                position: "fixed",
-                zIndex: 9999,
-                ...(isMobile
-                  ? { bottom: "17px", left: "73px" }
-                  : {
-                      top: modalPosition.top,
-                      bottom: modalPosition.bottom,
-                      left: modalPosition.left,
-                    }),
-              }}
-            >
-              <h2>{modalData[selectedTime]?.question}</h2>
-              <p>{modalData[selectedTime]?.answer}</p>
-            </S.MotionWrapper>
-          </AnimatePresence>,
-          document.body
-        )}
+      {selectedTime && (
+        <Tooltip
+          isOpen={!!selectedTime}
+          onClose={() => setSelectedTime(null)}
+          isMobile={isMobile}
+          position={tooltipPosition}
+        >
+          <h2>{modalData[selectedTime]?.question}</h2>
+          <p>{modalData[selectedTime]?.answer}</p>
+        </Tooltip>
+      )}
     </S.SavedAnswer>
   );
 };
