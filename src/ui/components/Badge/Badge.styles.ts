@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 // import { breakpoints } from "@/styles/theme";
-import { colors, spacing } from "@/styles/tokens";
+import { colors, spacing, typography } from "@/styles/tokens";
 
 export const BadgeItem = styled.span<{ isActive?: boolean }>`
-  border: 1px solid black;
+  border: 1px solid ${colors.black};
   padding: 4px 12px;
   border-radius: 9999px;
-  font-size: 14px;
+  font-size: ${typography.fontSize.sm};
   text-align: center;
   white-space: nowrap;
   cursor: pointer;

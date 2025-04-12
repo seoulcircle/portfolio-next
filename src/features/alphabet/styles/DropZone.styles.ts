@@ -2,6 +2,7 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
 import { DropZoneStyledProps } from "@/features/alphabet/types/alphabet.types";
+import { colors, shadows } from "@/styles/tokens";
 
 export const S = {
   DropZoneContainer: styled.div`
@@ -21,7 +22,7 @@ export const S = {
   `,
   DefinitionWrapper: styled.div`
     width: 100%;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid ${colors.black};
     font-size: 50px;
     text-align: center;
     padding-bottom: 10px;
@@ -43,8 +44,8 @@ export const S = {
     position: relative;
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    background-color: ${colors.glass.light};
+    box-shadow: ${shadows.md};
     width: 90%;
     height: 170px;
     display: flex;
@@ -52,7 +53,7 @@ export const S = {
     justify-content: space-between;
     border-radius: 9999px;
     scrollbar-width: 10px;
-    scrollbar-color: #000 #fff;
+    scrollbar-color: ${colors.black} ${colors.white};
     overflow-x: scroll;
     padding: 0 30px 0 50px;
     @media (max-width: ${breakpoints.mobile}) {
@@ -102,9 +103,9 @@ export const S = {
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.4);
-    color: black;
+    background-color: ${colors.glass.light};
+    box-shadow: ${shadows.md};
+    color: ${colors.black};
     cursor: pointer;
     border: none;
     @media (max-width: ${breakpoints.mobile}) {

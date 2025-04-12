@@ -2,6 +2,7 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { breakpoints } from "@/styles/theme";
+import { colors, typography } from "@/styles/tokens";
 
 export const S = {
   Overlay: styled(motion.div)`
@@ -79,12 +80,12 @@ export const S = {
   TimeLabel: styled.span<{ isActive: boolean }>`
     width: 30px;
     height: 16px;
-    font-size: 14px;
-    color: ${(props) => (props.isActive ? "#fff" : "#dbdbdb")};
+    font-size: ${typography.fontSize.sm};
+    color: ${(props) => (props.isActive ? colors.white : colors.gray[300])};
     transition: all 0.3s;
     text-align: center;
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 10px;
+      font-size: ${typography.fontSize.xxs};
       & span {
         display: none;
       }
@@ -94,17 +95,17 @@ export const S = {
   WeatherData: styled.div`
     position: absolute;
     bottom: 160px;
-    color: white;
-    font-size: 20px;
+    color: ${colors.white};
+    font-size: ${typography.fontSize.xl};
     & p {
       margin-bottom: 5px;
       &:first-of-type {
-        font-weight: 600;
+        font-weight: ${typography.fontWeight.semibold};
       }
     }
     @media (max-width: ${breakpoints.mobile}) {
       bottom: 140px;
-      font-size: 16px;
+      font-size: ${typography.fontSize.base};
     }
   `,
 };

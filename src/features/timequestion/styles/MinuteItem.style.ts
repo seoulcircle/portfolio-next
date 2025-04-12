@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
+import { colors, typography } from "@/styles/tokens";
 
 export const S = {
   Minute: styled.div<{ isDummy?: boolean }>`
@@ -18,7 +19,8 @@ export const S = {
     justify-content: center;
     align-items: center;
     & span {
-      ${({ isCurrent }) => isCurrent && `border-bottom: 1px solid black;`}
+      ${({ isCurrent }) =>
+        isCurrent && `border-bottom: 1px solid ${colors.black};`}
       width: 150px;
       text-align: center;
       @media (max-width: ${breakpoints.tablet}) {
@@ -54,7 +56,7 @@ export const S = {
     padding: 15px;
     min-width: 150px;
     height: 198px;
-    border: 1px dashed #ccc;
+    border: 1px dashed ${colors.gray[300]};
     opacity: 0.3;
     border-radius: 12px;
     @media (max-width: ${breakpoints.mobile}) {
@@ -63,10 +65,11 @@ export const S = {
   `,
 
   Question: styled.div`
-    font-size: 18px;
+    font-size: ${typography.fontSize.lg};
+    font-weight: ${typography.fontWeight.normal};
     line-height: normal;
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 17px;
+      font-size: ${typography.fontSize.base};
       margin-top: 10px;
     }
   `,
@@ -74,7 +77,7 @@ export const S = {
   Input: styled.textarea`
     width: 100%;
     margin-top: 5px;
-    font-size: 16px;
+    font-size: ${typography.fontSize.base};
     height: 100px;
     resize: none;
     border: none;
@@ -87,7 +90,7 @@ export const S = {
     font-family: monospace;
     line-height: normal;
     margin-top: 5px;
-    font-size: 16px;
+    font-size: ${typography.fontSize.base};
     overflow: scroll;
     @media (max-width: ${breakpoints.mobile}) {
       ::-webkit-scrollbar {
@@ -103,15 +106,14 @@ export const S = {
     left: 0;
     width: 100%;
     height: 100%;
-
-    background-color: white;
+    background-color: ${colors.white};
     pointer-events: none;
     border-radius: 10px;
   `,
 
   FutureText: styled.span`
     padding: 15px;
-    font-size: 16px;
+    font-size: ${typography.fontSize.base};
     position: absolute;
     @media (max-width: ${breakpoints.mobile}) {
       position: unset;
@@ -128,7 +130,7 @@ export const S = {
   Line: styled.div`
     flex: 1;
     height: 1px;
-    background: black;
+    background: ${colors.black};
     opacity: 0.6;
   `,
 };

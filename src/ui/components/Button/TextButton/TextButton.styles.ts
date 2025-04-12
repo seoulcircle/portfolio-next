@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
-import { colors, shadows, typography } from "@/styles/tokens";
+import { colors, shadows, typography, spacing } from "@/styles/tokens";
 
 export const Button = styled.button<{
   variant: "black" | "white";
@@ -13,10 +13,8 @@ export const Button = styled.button<{
   text-align: center;
   display: flex;
   align-items: center;
-
-  gap: 8px;
+  gap: ${spacing.sm};
   box-shadow: ${shadows.md};
-
   background-color: ${({ variant }) =>
     variant === "black" ? colors.black : colors.white};
   color: ${({ variant }) =>

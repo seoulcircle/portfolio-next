@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
+import { colors, typography } from "@/styles/tokens";
 
 export const S = {
   Wrapper: styled.div`
@@ -18,7 +19,7 @@ export const S = {
   Time: styled.div`
     display: flex;
     font-size: 90px;
-    font-weight: 400;
+    font-weight: ${typography.fontWeight.light};
     gap: 2vw;
     height: 615px;
     padding: 10px;
@@ -39,7 +40,7 @@ export const S = {
     align-items: center;
     width: 140px;
     & span {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid ${colors.black};
       width: 150px;
       text-align: center;
       @media (max-width: ${breakpoints.tablet}) {
@@ -57,15 +58,12 @@ export const S = {
 
   Minutes: styled.div`
     display: flex;
-
-    /* width: 650px; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
     scroll-behavior: smooth;
     @media (max-width: ${breakpoints.mobile}) {
-      /* height: 400px; */
       ::-webkit-scrollbar {
         display: none;
       }

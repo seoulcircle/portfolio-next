@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
+import { colors, typography } from "@/styles/tokens";
 
 export const S = {
   Developer: styled.div`
@@ -10,13 +11,13 @@ export const S = {
     transform: translate(-50%, -50%);
     z-index: 1000;
     width: 90vw;
-    font-size: 20px;
+    font-size: ${typography.fontSize.xl};
     line-height: normal;
     display: flex;
     flex-direction: column;
     height: 90vh;
     overflow: scroll;
-    background: white;
+    background: ${colors.white};
     border-radius: 10px;
     @media (max-width: ${breakpoints.mobile}) {
       width: 100vw;
@@ -41,11 +42,11 @@ export const S = {
     width: 20%;
     position: sticky;
     padding-bottom: 100px;
-    line-height: 1.5;
+    line-height: ${typography.lineHeight.normal};
     top: 0px;
     & h2 {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: ${typography.fontSize.xxl};
+      font-weight: ${typography.fontWeight.bold};
     }
     & div {
       display: flex;
@@ -53,14 +54,13 @@ export const S = {
     }
     @media (max-width: ${breakpoints.mobile}) {
       width: 100%;
-      font-size: 18px;
-      /* background: white; */
-      backdrop-filter: blur(5px);
-      background: rgba(255, 255, 255, 0.7);
+      font-size: ${typography.fontSize.lg};
+      backdrop-filter: ${colors.glass.backdropFilter};
+      background: ${colors.glass.light};
       pointer-events: none;
       padding: 10px 0;
       & h2 {
-        font-weight: 600;
+        font-weight: ${typography.fontWeight.semibold};
       }
       & div {
         display: flex;
@@ -78,7 +78,7 @@ export const S = {
   `,
   Article: styled.article`
     margin-bottom: 3vh;
-    line-height: 1.5;
+    line-height: ${typography.lineHeight.normal};
     padding-bottom: 1vh;
     padding-left: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
@@ -87,7 +87,7 @@ export const S = {
     }
     & h4 {
       margin-top: 20px;
-      font-weight: 600;
+      font-weight: ${typography.fontWeight.semibold};
       margin-bottom: 5px;
     }
     & ul {
@@ -101,13 +101,13 @@ export const S = {
     @media (max-width: ${breakpoints.mobile}) {
       padding: 0 10px;
       & h4 {
-        font-size: 18px;
+        font-size: ${typography.fontSize.lg};
       }
       & p {
-        font-size: 17px;
+        font-size: ${typography.fontSize.base};
       }
       & li {
-        font-size: 17px;
+        font-size: ${typography.fontSize.base};
       }
     }
   `,
@@ -116,15 +116,15 @@ export const S = {
     flex-direction: column;
     margin-bottom: 10px;
     & h3 {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: ${typography.fontSize.xxl};
+      font-weight: ${typography.fontWeight.bold};
     }
     & span {
-      font-size: 16px;
+      font-size: ${typography.fontSize.base};
     }
     @media (max-width: ${breakpoints.mobile}) {
       & h3 {
-        font-size: 20px;
+        font-size: ${typography.fontSize.xl};
       }
     }
   `,

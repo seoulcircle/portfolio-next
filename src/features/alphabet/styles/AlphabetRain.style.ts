@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-// import { motion } from "framer-motion";
-// import { breakpoints } from "@/styles/theme";
+import { colors } from "@/styles/tokens";
 
 export const S = {
   Container: styled.div`
@@ -9,7 +8,7 @@ export const S = {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: white;
+    background: ${colors.white};
   `,
   Overlay: styled.div`
     position: fixed;
@@ -17,10 +16,10 @@ export const S = {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* 기본은 이벤트 없음 */
+    pointer-events: none;
     z-index: 1000;
     & > * {
-      pointer-events: auto; /* DropZone 내부 요소만 클릭 허용 */
+      pointer-events: auto;
     }
   `,
 };

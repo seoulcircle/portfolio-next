@@ -4,6 +4,7 @@ export const typography = {
     mono: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
   fontSize: {
+    xxs: "10px",
     xs: "12px",
     sm: "14px",
     base: "16px",
@@ -12,6 +13,7 @@ export const typography = {
     xxl: "24px",
   },
   fontWeight: {
+    light: 300,
     normal: 400,
     medium: 500,
     semibold: 600,

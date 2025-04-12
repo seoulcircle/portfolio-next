@@ -2,78 +2,32 @@
 import styled from "@emotion/styled";
 // import { motion } from "framer-motion";
 import { breakpoints } from "@/styles/theme";
+import { typography, colors } from "@/styles/tokens";
 
 export const S = {
-  // Overlay: styled(motion.div)`
-  //   width: 100%;
-  //   height: 100%;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   background-color: rgba(0, 0, 0, 0.1);
-  // `,
-
-  // ModalContent: styled(motion.div)`
-  //   position: relative;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: space-around;
-  //   min-width: 430px;
-  //   min-height: 400px;
-  //   padding: 20px;
-  //   background: rgba(255, 255, 255, 0.2);
-  //   backdrop-filter: blur(10px);
-  //   -webkit-backdrop-filter: blur(10px);
-  //   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  //   color: white;
-  //   line-height: 1.2;
-  //   text-align: left;
-  //   border-radius: 12px;
-  //   z-index: 999;
-  //   @media (max-width: ${breakpoints.mobile}) {
-  //     min-width: 300px;
-  //     min-height: 350px;
-  //     margin-top: 100px;
-  //   }
-  // `,
-
-  // CloseButton: styled.button`
-  //   position: absolute;
-  //   top: 10px;
-  //   right: 10px;
-  //   background: transparent;
-  //   color: white;
-  //   font-size: 24px;
-  //   border: none;
-  //   cursor: pointer;
-  //   @media (max-width: ${breakpoints.mobile}) {
-  //     font-size: 16px;
-  //   }
-  // `,
-
   DataBox: styled.div`
     display: flex;
     flex-direction: column;
   `,
 
   DateText: styled.p`
-    font-size: 24px;
-    font-weight: 300;
+    font-size: ${typography.fontSize.xxl};
+    font-weight: ${typography.fontWeight.light};
   `,
 
   TimeTextWrapper: styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid ${colors.white};
   `,
 
   TimeText: styled.p`
     font-size: 44px;
-    font-weight: 500;
+    font-weight: ${typography.fontWeight.medium};
     padding-bottom: 5px;
     & span {
-      font-size: 20px;
+      font-size: ${typography.fontSize.xl};
       margin-left: 5px;
       opacity: 0.5;
     }
@@ -86,7 +40,7 @@ export const S = {
     font-size: 30px;
     margin: 3px 0;
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 20px;
+      font-size: ${typography.fontSize.xl};
     }
   `,
 
@@ -100,17 +54,16 @@ export const S = {
   `,
 
   PaletteTitle: styled.p`
-    font-size: 24px;
+    font-size: ${typography.fontSize.xxl};
     margin-top: 10px;
-    font-size: 26px;
 
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 20px;
+      font-size: ${typography.fontSize.xl};
     }
   `,
 
   PaletteText: styled.p`
-    font-size: 24px;
+    font-size: ${typography.fontSize.xxl};
   `,
 
   ColorCircle: styled.div<{ color: string }>`
@@ -127,7 +80,7 @@ export const S = {
   `,
 
   Notice: styled.p`
-    font-size: 14px;
+    font-size: ${typography.fontSize.sm};
     margin-top: 10px;
     text-align: right;
     opacity: 0.5;

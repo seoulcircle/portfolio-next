@@ -25,46 +25,4 @@ export const S = {
       bottom: 6px;
     }
   `,
-
-  // SavedMinutes: styled(motion.span)`
-  //   position: relative;
-  //   font-size: 18px;
-  //   line-height: 1.6;
-  //   border-radius: 9999px;
-  //   border: 1px solid #000;
-  //   padding: 3px 7px;
-  //   cursor: pointer;
-  //   margin-bottom: 10px;
-  //   width: 67px;
-  //   text-align: center;
-  //   @media (max-width: ${breakpoints.mobile}) {
-  //     font-size: 14px;
-  //     padding: 3px 7px;
-  //     width: 51px;
-  //   }
-  // `,
-
-  // MotionWrapper: styled(motion.div)`
-  //   width: 350px;
-  //   z-index: 999;
-  //   max-height: 200px;
-  //   overflow: scroll;
-  //   background: rgba(255, 255, 255, 0.2);
-  //   backdrop-filter: blur(20px);
-  //   -webkit-backdrop-filter: blur(20px);
-  //   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  //   padding: 20px;
-  //   border-radius: 20px;
-  //   line-height: normal;
-  //   @media (max-width: ${breakpoints.mobile}) {
-  //     width: 75vw;
-  //     height: 109px;
-  //     padding: 15px;
-  //     border-radius: 15px;
-  //     ::-webkit-scrollbar {
-  //       display: none;
-  //     }
-  //     margin-left: 3vw;
-  //   }
-  // `,
 };

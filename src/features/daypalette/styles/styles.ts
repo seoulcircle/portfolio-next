@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@/styles/theme";
+import { colors, typography, shadows } from "@/styles/tokens";
 
 export const S = {
   Wrapper: styled.div<{ gradient: string }>`
@@ -32,7 +33,6 @@ export const S = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     gap: 40px;
     height: 100%;
     width: 100px;
@@ -45,11 +45,11 @@ export const S = {
       padding: 20px;
       border-radius: 50px;
       border: none;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      color: white;
+      box-shadow: ${shadows.md};
+      color: ${colors.white};
       text-align: center;
       cursor: pointer;
-      font-size: 20px;
+      font-size: ${typography.fontSize.xl};
     }
     @media (max-width: ${breakpoints.mobile}) {
       flex-direction: row;
@@ -64,7 +64,7 @@ export const S = {
         height: 80px;
         padding: 0;
         border-radius: 40px;
-        font-size: 16px;
+        font-size: ${typography.fontSize.base};
       }
     }
   `,
@@ -75,9 +75,9 @@ export const S = {
   `,
 
   SunMovement: styled.button`
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: ${colors.glass.light};
+    backdrop-filter: ${colors.glass.backdropFilter};
+    -webkit-backdrop-filter: ${colors.glass.webkitBackdropFilter};
   `,
 
   Tomorrow: styled.button<{ endRGBA: string }>`
