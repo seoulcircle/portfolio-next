@@ -99,22 +99,22 @@ export const S = {
     }
   `,
 
-  RouteButton: styled.button`
-    all: unset;
-    cursor: pointer;
-    border-radius: 9999px;
-    margin-top: 10px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    background-color: black;
-    color: white;
-    padding: 2px 15px 2px 5px;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
-    @media (max-width: ${breakpoints.mobile}) {
-      margin-top: 10px;
-    }
-  `,
+  // RouteButton: styled.button`
+  //   all: unset;
+  //   cursor: pointer;
+  //   border-radius: 9999px;
+  //   margin-top: 10px;
+  //   text-align: center;
+  //   display: flex;
+  //   align-items: center;
+  //   background-color: black;
+  //   color: white;
+  //   padding: 2px 15px 2px 5px;
+  //   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+  //   @media (max-width: ${breakpoints.mobile}) {
+  //     margin-top: 10px;
+  //   }
+  // `,
   CloseButton: styled.button`
     all: unset;
     cursor: pointer;

@@ -5,7 +5,7 @@ import { S } from "@/features/timequestion/styles/Modal.style";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { ModalProps } from "@/features/timequestion/types/timequestion.types";
 import Tooltip from "@/ui/components/Tooltip";
-
+import Badge from "@/ui/components/Badge/Badge";
 const SavedAnswerModal = ({ modalData }: ModalProps) => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const timeRefs = useRef<Record<string, HTMLSpanElement | null>>({});
@@ -64,24 +64,21 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
 
   return (
     <S.SavedAnswer>
-      {Object.keys(modalData).map(
-        (
-          time // 시간만 뽑음
-        ) => (
-          <S.SavedMinutes
-            ref={(el) => {
-              timeRefs.current[time] = el;
-            }}
-            key={time}
-            onClick={() =>
-              setSelectedTime((prev) => (prev === time ? null : time))
-            }
-          >
-            {time}
-          </S.SavedMinutes>
-        )
-      )}
-
+      {Object.keys(modalData).map((time) => (
+        <Badge
+          key={time}
+          ref={(el) => {
+            timeRefs.current[time] = el;
+          }}
+          isActive={selectedTime === time}
+          onClick={() =>
+            setSelectedTime((prev) => (prev === time ? null : time))
+          }
+          style={{ marginTop: "12px", display: "inline-block" }}
+        >
+          {time}
+        </Badge>
+      ))}
       {selectedTime && (
         <Tooltip
           isOpen={!!selectedTime}

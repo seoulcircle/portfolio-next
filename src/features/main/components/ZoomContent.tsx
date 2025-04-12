@@ -9,6 +9,8 @@ import Image from "next/image";
 import useLockBodyZoomScroll from "../hooks/useLockBodyZoom";
 import MapArchive from "./MapArchive";
 import GithubIcon from "../data/githubIcon";
+import TextButton from "@/ui/components/Button/TextButton";
+import Badge from "@/ui/components/Badge/Badge";
 
 const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
   useLockBodyZoomScroll(true);
@@ -40,24 +42,26 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
             ) : (
               <p>{project.description}</p>
             )}
-            <S.Badge>
-              {project.stack?.map((s) => (
-                <span key={s}>{s}</span>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 1px" }}>
+              {project.stack?.map((item) => (
+                <Badge key={item}>{item}</Badge>
               ))}
-            </S.Badge>
-            <S.Badge>
-              {project.api?.map((a) => (
-                <span key={a}>{a}</span>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 1px" }}>
+              {project.api?.map((item) => (
+                <Badge key={item}>{item}</Badge>
               ))}
-            </S.Badge>
+            </div>
             <S.DemoGitWrapper>
               {project.route ? (
-                <Link href={project.route} passHref>
-                  <S.RouteButton>
-                    <ArrowRight size={30} strokeWidth={1.5} />
-                    DEMO
-                  </S.RouteButton>
-                </Link>
+                <TextButton
+                  href={project.route}
+                  icon={<ArrowRight size={20} strokeWidth={1.5} />}
+                  variant="black"
+                  size="sm"
+                >
+                  DEMO
+                </TextButton>
               ) : null}
               {project.git ? (
                 <Link href={project.git} passHref>
