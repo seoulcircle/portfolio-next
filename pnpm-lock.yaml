@@ -166,6 +166,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@19.1.1)(react@18.3.1))(@types/react@19.1.1)(react@18.3.1)
+      lucide-react:
+        specifier: ^0.484.0
+        version: 0.484.0(react@18.3.1)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -8730,6 +8733,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-react@0.484.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   lucide-react@0.484.0(react@19.1.0):
     dependencies:
