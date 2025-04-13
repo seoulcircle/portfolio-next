@@ -152,6 +152,15 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/node@20.17.30)(@vitest/browser@3.1.1)(jiti@1.21.7)(terser@5.39.0)
 
+  packages/components:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.14.0(@types/react@19.1.1)(react@19.1.0)
+      '@emotion/styled':
+        specifier: ^11.11.0
+        version: 11.14.0(@emotion/react@11.14.0(@types/react@19.1.1)(react@19.1.0))(@types/react@19.1.1)(react@19.1.0)
+
 packages:
 
   '@adobe/css-tools@4.4.2':
