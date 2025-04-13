@@ -67,7 +67,7 @@ const SavedAnswerModal = ({ modalData }: ModalProps) => {
       {Object.keys(modalData).map((time) => (
         <Badge
           key={time}
-          ref={(el) => {
+          ref={(el: HTMLDivElement | null) => {
             timeRefs.current[time] = el;
           }}
           isActive={selectedTime === time}
