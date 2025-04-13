@@ -9,6 +9,9 @@
     "storybook": "pnpm --filter storybook dev"
   },
   "devDependencies": {
-    "next": "15.2.4"
+    "@eslint/eslintrc": "^3",
+    "@types/webpack": "^5.28.5",
+    "next": "15.2.4",
+    "webpack": "^5.99.5"
   }
 }
