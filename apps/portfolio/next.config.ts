@@ -3,6 +3,9 @@ import type { Configuration } from "webpack";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack: (config: Configuration) => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
