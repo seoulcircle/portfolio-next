@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Matter from "matter-js";
 import { useDndMonitor } from "@dnd-kit/core";
 import { S } from "../styles/AlphabetRain.style";
-import { useWindowSize } from "../../../../../../.vscode/packages/hooks/useWindowSize";
+import { useWindowSize } from "@hooks/useWindowSize";
 import { useWalls } from "../hooks/useWalls";
 import { useResizeWalls } from "../hooks/useResizwWalls";
 import { useAlphabetMatter } from "../hooks/useAlphabetMatter";
