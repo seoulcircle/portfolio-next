@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes, ReactElement } from "react";
+import { ReactElement } from "react";
 import { LucideProps } from "lucide-react";
 
 export interface IconButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactElement<LucideProps>;
   href?: string;
   size?: "sm" | "md" | "lg";

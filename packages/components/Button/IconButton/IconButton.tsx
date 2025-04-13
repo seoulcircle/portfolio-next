@@ -2,6 +2,7 @@ import React, { cloneElement, isValidElement } from "react";
 import * as S from "./IconButton.styles";
 import Link from "next/link";
 import { IconButtonProps } from "./IconButton.types";
+import { LucideProps } from "lucide-react";
 
 const IconButton: React.FC<IconButtonProps> = ({
   icon,
@@ -16,7 +17,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   } as const;
 
   const finalIconSize = sizeMap[size];
-  const sizedIcon = isValidElement(icon)
+  const sizedIcon = isValidElement<LucideProps>(icon)
     ? cloneElement(icon, { size: finalIconSize })
     : null;
 
