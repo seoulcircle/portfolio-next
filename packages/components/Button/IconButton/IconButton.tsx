@@ -3,7 +3,12 @@ import * as S from "./IconButton.styles";
 import Link from "next/link";
 import { IconButtonProps } from "./IconButton.types";
 
-const IconButton = ({ icon, size = "md", href, ...props }: IconButtonProps) => {
+const IconButton: React.FC<IconButtonProps> = ({
+  icon,
+  size = "md",
+  href,
+  ...props
+}: IconButtonProps) => {
   const sizeMap = {
     sm: 16,
     md: 20,
