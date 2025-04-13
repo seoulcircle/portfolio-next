@@ -25,6 +25,7 @@ const Main = () => {
     min: 100,
     max: isMobile ? 250 : 700,
   } as ResponsiveRadiusOptions);
+
   const hasMounted = useHasMounted();
   const [rotation, setRotation] = useState(0); // 현재 회전 각도
   const [isZoomed, setIsZoomed] = useState(false); // 확대 여부
