@@ -8,5 +8,7 @@
     "lint": "pnpm --filter portfolio lint",
     "storybook": "pnpm --filter storybook dev"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "next": "15.2.4"
+  }
 }
