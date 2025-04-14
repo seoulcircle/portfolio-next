@@ -1,3 +1,5 @@
+// apps/portfolio/next.config.ts
+import path from "path";
 import type { NextConfig } from "next";
 import type { Configuration } from "webpack";
 
@@ -10,19 +12,13 @@ const nextConfig: NextConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      "@components": require("path").resolve(
-        __dirname,
-        "../../packages/components"
-      ),
-      "@hooks": require("path").resolve(__dirname, "../../packages/hooks"),
-      "@ui": require("path").resolve(__dirname, "../../packages/ui"),
-      "@styles": require("path").resolve(__dirname, "../../packages/styles"),
-      "@theme": require("path").resolve(__dirname, "../../packages/theme"),
-      "@animations": require("path").resolve(
-        __dirname,
-        "../../packages/animations"
-      ),
-      "@": require("path").resolve(__dirname, "./src"),
+      "@components": path.resolve(process.cwd(), "packages/components"),
+      "@hooks": path.resolve(process.cwd(), "packages/hooks"),
+      "@ui": path.resolve(process.cwd(), "packages/ui"),
+      "@styles": path.resolve(process.cwd(), "packages/styles"),
+      "@theme": path.resolve(process.cwd(), "packages/theme"),
+      "@animations": path.resolve(process.cwd(), "packages/animations"),
+      "@": path.resolve(process.cwd(), "apps/portfolio/src"),
     };
     return config;
   },
