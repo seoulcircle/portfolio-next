@@ -12,5 +12,8 @@
   "devDependencies": {
     "@types/react": "^19",
     "@types/react-dom": "^19"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006"
   }
 }

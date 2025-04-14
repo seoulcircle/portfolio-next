@@ -1,4 +1,5 @@
 {
+  "packageManager": "pnpm@8.15.1",
   "name": "portfolio",
   "private": true,
   "version": "0.0.1",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^19.1.2",
     "@types/webpack": "^5.28.5",
     "next": "15.2.4",
+    "token-transformer": "^0.0.33",
     "webpack": "^5.99.5"
   },
   "dependencies": {
