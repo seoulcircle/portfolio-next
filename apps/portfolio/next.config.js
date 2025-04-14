@@ -1,15 +1,14 @@
 // apps/portfolio/next.config.ts
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import path from "path";
-import type { NextConfig } from "next";
-import type { Configuration } from "webpack";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
-  webpack: (config: Configuration) => {
+  webpack: (config) => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -31,4 +30,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
