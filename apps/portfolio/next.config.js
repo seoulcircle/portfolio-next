@@ -1,6 +1,7 @@
-// apps/portfolio/next.config.ts
-import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
-import path from "path";
+/* eslint-disable @typescript-eslint/no-require-imports */
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
+const path = require("path");
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
