@@ -1,7 +1,7 @@
 {
   "projectId": "prj_XJ6e90OX594plVC49JHbfsF70DOk",
   "orgId": "seoulcircle",
-  "rootDirectory": "",
+  "rootDirectory": "apps/portfolio",
   "build": {
     "installCommand": "corepack enable && corepack prepare pnpm@8.6.0 --activate && pnpm install --no-frozen-lockfile",
     "command": "corepack enable && corepack prepare pnpm@8.6.0 --activate && pnpm install --no-frozen-lockfile && pnpm build"
