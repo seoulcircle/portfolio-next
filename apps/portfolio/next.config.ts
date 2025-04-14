@@ -1,4 +1,5 @@
 // apps/portfolio/next.config.ts
+import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import path from "path";
 import type { NextConfig } from "next";
 import type { Configuration } from "webpack";
@@ -20,6 +21,12 @@ const nextConfig: NextConfig = {
       "@animations": path.resolve(process.cwd(), "packages/animations"),
       "@": path.resolve(process.cwd(), "apps/portfolio/src"),
     };
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin({
+        configFile: path.resolve(__dirname, "../../tsconfig.base.json"),
+      }),
+    ];
     return config;
   },
 };
