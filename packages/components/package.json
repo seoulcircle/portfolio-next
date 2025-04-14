@@ -10,6 +10,10 @@
     "next": "15.2.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/experimental-addon-test": "^8.6.12",
+    "@storybook/nextjs": "^8.6.12",
     "@types/react": "^19",
     "@types/react-dom": "^19"
   },
