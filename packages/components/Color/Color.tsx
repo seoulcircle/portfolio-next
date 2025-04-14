@@ -29,7 +29,7 @@ const Box = styled.div<{ color: string }>`
   color: var(--colors-white);
 `;
 
-export const ColorPalette = () => {
+export const Color = () => {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
       {colorList.map((color) => (
