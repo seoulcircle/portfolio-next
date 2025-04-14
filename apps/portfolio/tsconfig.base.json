@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "../../",
     "paths": {
       "@/*": ["apps/portfolio/src/*"],
       "@hooks/*": ["packages/hooks/*"],
