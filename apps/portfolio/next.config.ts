@@ -6,6 +6,7 @@ import type { Configuration } from "webpack";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   eslint: {
     ignoreDuringBuilds: true,
   },

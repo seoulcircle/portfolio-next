@@ -30,6 +30,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.0.0
+      '@storybook/react':
+        specifier: ^8.6.12
+        version: 8.6.12(@storybook/test@8.6.12)(react-dom@19.1.0)(react@19.1.0)(storybook@8.6.12)(typescript@5.8.3)
       '@types/react':
         specifier: ^19.1.1
         version: 19.1.1
@@ -4696,6 +4699,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
 
   /color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}

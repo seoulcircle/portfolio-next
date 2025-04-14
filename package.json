@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@storybook/react": "^8.6.12",
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.2",
     "@types/webpack": "^5.28.5",
