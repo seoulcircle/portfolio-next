@@ -3,10 +3,7 @@ import type { StorybookConfig } from "@storybook/nextjs";
 import path from "path";
 
 const config: StorybookConfig = {
-  stories: [
-    "../apps/portfolio/src/**/*.stories.@(ts|tsx)",
-    "../packages/components/**/*.stories.@(ts|tsx)",
-  ],
+  stories: ["../**/*.stories.@(ts|tsx)"],
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",

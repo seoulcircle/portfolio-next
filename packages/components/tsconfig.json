@@ -3,7 +3,8 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".", // 현재 패키지 기준
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
+    "module": "node16",
     "types": ["@storybook/react"]
   },
   "include": ["**/*"]

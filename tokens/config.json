@@ -1,0 +1,16 @@
+{
+  "source": ["tokens/flattened.json"],
+
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": "packages/styles/tokens/",
+      "files": [
+        {
+          "destination": "variables.css",
+          "format": "css/variables"
+        }
+      ]
+    }
+  }
+}
