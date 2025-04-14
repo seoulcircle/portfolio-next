@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
       "@styles": path.resolve(process.cwd(), "packages/styles"),
       "@theme": path.resolve(process.cwd(), "packages/theme"),
       "@animations": path.resolve(process.cwd(), "packages/animations"),
-      "@": path.resolve(process.cwd(), "apps/portfolio/src"),
+      "@": path.resolve(process.cwd(), "apps/portfolio"),
     };
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
