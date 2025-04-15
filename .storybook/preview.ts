@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/react";
-import "../../styles/theme-light.css";
-import "../../styles/theme-dark.css";
-import "../../styles/alias.css";
+import "../packages/styles/theme-light.css";
+import "../packages/styles/theme-dark.css";
+import "../packages/styles/alias.css";
 
 export const globalTypes = {
   theme: {
