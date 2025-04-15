@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { colors, spacing, typography, shadows } from "../../styles/tokens";
+import {
+  colors,
+  spacing,
+  typography,
+  shadows,
+} from "../../styles/tokens/legacy";
 import { breakpoints } from "../../styles/theme";
 import { ModalProps } from "./Modal.types";
 export const Overlay = styled(motion.div)`

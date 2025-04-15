@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { colors } from "@styles/tokens";
+import { colors } from "@styles/tokens/legacy";
 
 export const S = {
   Container: styled.div`

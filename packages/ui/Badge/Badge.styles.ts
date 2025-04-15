@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 // import { breakpoints } from "@/styles/theme";
-import { colors, spacing, typography } from "../../styles/tokens";
+import { colors, spacing, typography } from "../../styles/tokens/legacy";
 
 export const BadgeItem = styled.span<{ isActive?: boolean }>`
   border: 1px solid ${colors.black};

@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@styles/theme";
 import { motion } from "framer-motion";
-import { colors, typography } from "@styles/tokens";
+import { colors, typography } from "@styles/tokens/legacy";
 export const S = {
   Detail: styled.div`
     position: fixed;

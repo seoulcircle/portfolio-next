@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@styles/theme";
 import { DropZoneStyledProps } from "../types/alphabet.types";
-import { colors, shadows } from "@styles/tokens";
+import { colors, shadows } from "@styles/tokens/legacy";
 
 export const S = {
   DropZoneContainer: styled.div`

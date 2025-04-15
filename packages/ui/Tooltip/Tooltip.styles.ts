@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { colors, shadows } from "../../styles/tokens";
+import { colors, shadows } from "../../styles/tokens/legacy";
 
 import { breakpoints } from "../../styles/theme";
 

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "@styles/theme";
-import { colors, typography } from "@styles/tokens";
+import { colors, typography } from "@styles/tokens/legacy";
 
 export const S = {
   Wrapper: styled.div`

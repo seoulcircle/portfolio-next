@@ -1,4 +1,4 @@
-import Modal from "@components/Modal/Modal";
+import Modal from "packages/ui/Modal/Modal";
 import { S } from "../styles/Modal.style";
 import { WeatherModalProps } from "../types/weather.types";
 import {
@@ -21,15 +21,15 @@ const WeatherModal = ({
 
   const temperature =
     modalType === "today"
-      ? weatherData?.displayTemperature ?? "-"
-      : weatherData?.displayTemperature ?? "-";
+      ? (weatherData?.displayTemperature ?? "-")
+      : (weatherData?.displayTemperature ?? "-");
 
   const humidity = weatherData?.displayHumidity ?? "-";
 
   const fineDust =
     modalType === "today"
-      ? dustData?.pm10Value ?? "-"
-      : dustData?.pm10Value24 ?? "-";
+      ? (dustData?.pm10Value ?? "-")
+      : (dustData?.pm10Value24 ?? "-");
 
   const weatherColor =
     modalType === "today" ? colorRGBA?.startRGBA : colorRGBA?.endRGBA;

@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 // import { motion } from "framer-motion";
 import { breakpoints } from "@styles/theme";
-import { typography, colors } from "@styles/tokens";
+import { typography, colors } from "@styles/tokens/legacy";
 
 export const S = {
   DataBox: styled.div`

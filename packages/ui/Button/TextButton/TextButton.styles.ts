@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 import { breakpoints } from "../../../styles/theme";
-import { colors, shadows, typography, spacing } from "../../../styles/tokens";
+import {
+  colors,
+  shadows,
+  typography,
+  spacing,
+} from "../../../styles/tokens/legacy";
 
 export const Button = styled.button<{
   variant: "black" | "white";
@@ -44,7 +49,9 @@ export const Button = styled.button<{
         return "10px 16px";
     }
   }};
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
   & span {
     height: 20px;
   }
