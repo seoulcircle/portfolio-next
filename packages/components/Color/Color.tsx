@@ -1,42 +1,49 @@
-/** @jsxImportSource @emotion/react */
-import styled from "@emotion/styled";
+import S from "./Color.styles";
 
-const colorList = [
-  "gray-100",
-  "gray-200",
-  "gray-300",
-  "gray-400",
-  "gray-500",
-  "blue-100",
-  "blue-200",
-  "blue-300",
-  "blue-400",
-  "blue-500",
-  "red-500",
-  "green-500",
+const colorGroups = [
+  {
+    name: "Gray",
+    colors: [
+      "gray-10",
+      "gray-20",
+      "gray-30",
+      "gray-40",
+      "gray-50",
+      "gray-60",
+      "gray-70",
+      "gray-80",
+      "gray-90",
+    ],
+  },
+  {
+    name: "Blue",
+    colors: ["blue-10", "blue-20", "blue-30", "blue-40", "blue-50"],
+  },
+  {
+    name: "Red",
+    colors: ["red-30", "red-40", "red-50"],
+  },
+  {
+    name: "Green",
+    colors: ["green-30", "green-40"],
+  },
 ];
-
-const Box = styled.div<{ color: string }>`
-  width: 100px;
-  height: 80px;
-  background-color: var(--colors-${(props) => props.color});
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: 12px;
-  padding-bottom: 4px;
-  color: var(--colors-white);
-`;
 
 export const Color = () => {
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
-      {colorList.map((color) => (
-        <Box key={color} color={color}>
-          {color}
-        </Box>
+    <S.Wrapper>
+      {colorGroups.map((group) => (
+        <div key={group.name}>
+          <S.GroupTitle>{group.name}</S.GroupTitle>
+          <S.ColorGroup>
+            {group.colors.map((color) => (
+              <S.Box key={color} color={color}>
+                {color}
+              </S.Box>
+            ))}
+          </S.ColorGroup>
+        </div>
       ))}
-    </div>
+    </S.Wrapper>
   );
 };

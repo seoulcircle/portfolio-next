@@ -1,14 +1,26 @@
 {
-  "source": ["tokens/flattened.json"],
-
   "platforms": {
-    "css": {
+    "light": {
+      "source": ["tokens/theme-light.json"],
       "transformGroup": "css",
-      "buildPath": "packages/styles/tokens/",
+      "buildPath": "packages/styles/",
       "files": [
         {
-          "destination": "variables.css",
-          "format": "css/variables"
+          "destination": "theme-light.css",
+          "format": "css/variables",
+          "selector": ":root[data-theme='light']"
+        }
+      ]
+    },
+    "dark": {
+      "source": ["tokens/theme-dark.json"],
+      "transformGroup": "css",
+      "buildPath": "packages/styles/",
+      "files": [
+        {
+          "destination": "theme-dark.css",
+          "format": "css/variables",
+          "selector": ":root[data-theme='dark']"
         }
       ]
     }
