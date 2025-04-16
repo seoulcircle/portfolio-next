@@ -35,18 +35,27 @@ const normalizeVarName = (group: string, key: string) => {
 
 // ✅ 값 정규화: 숫자면 px 붙이기
 const normalizeValue = (group: string, value: string): string => {
-  if (
-    [
-      "fontSize",
-      "spacing",
-      "lineHeight",
-      "paragraphSpacing",
-      "paragraphIndent",
-    ].includes(group) &&
-    /^\d+$/.test(value)
-  ) {
+  const needsPx = [
+    "fontSize",
+    "spacing",
+    "lineHeight",
+    "paragraphSpacing",
+    "paragraphIndent",
+  ];
+
+  // ✅ 토큰 참조일 경우 → var()로 변환
+  if (value.startsWith("{") && value.endsWith("}")) {
+    const refKey = value.slice(1, -1); // remove {}
+    const [refGroup, ...refParts] = refKey.split(".");
+    const prefix = groupAlias[refGroup] ?? refGroup;
+    return `var(--${[prefix, ...refParts].join("-").toLowerCase()})`;
+  }
+
+  // ✅ px 붙이기
+  if (needsPx.includes(group) && /^\d+$/.test(value)) {
     return `${value}px`;
   }
+
   return value;
 };
 
@@ -67,11 +76,16 @@ const extractBaseCSS = async (
         const styleObj = token.$value as Record<string, string>;
         for (const [prop, rawVal] of Object.entries(styleObj)) {
           const cssVarName = `--typography-${styleName}-${prop.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
-          const cssVarValue = `var(--${rawVal
-            .replace(/[{}]/g, "")
-            .replace(/\./g, "-")
-            .replace(/([A-Z])/g, "-$1")
-            .toLowerCase()})`;
+
+          const refKey = rawVal.replace(/[{}]/g, "");
+          const [refGroup, ...refParts] = refKey.split(".");
+          const resolvedPrefix = groupAlias[refGroup] ?? refGroup;
+          const resolvedName = [resolvedPrefix, ...refParts]
+            .join("-")
+            .toLowerCase();
+
+          const cssVarValue = `var(--${resolvedName})`;
+
           lines.push(`  ${cssVarName}: ${cssVarValue};`);
         }
       }

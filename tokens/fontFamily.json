@@ -1,8 +1,12 @@
 {
   "fontFamily": {
+    "fontfamily.inter": {
+      "$type": "fontFamily",
+      "$value": "Inter, sans-serif"
+    },
     "fontfamily.body": {
-      "$type": "fontFamilies",
-      "$value": "Noto Sans CJK KR"
+      "$type": "fontFamily",
+      "$value": "{fontFamily.inter}"
     }
   }
 }

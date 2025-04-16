@@ -3,7 +3,7 @@
     "h1": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.bold}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.5}",
@@ -17,7 +17,7 @@
     "h2": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.medium}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.4}",
@@ -31,7 +31,7 @@
     "h3": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.medium}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.3}",
@@ -45,7 +45,7 @@
     "h4": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.2}",
@@ -59,7 +59,7 @@
     "body": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.1}",
@@ -73,7 +73,7 @@
     "button": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.1}",
@@ -87,7 +87,7 @@
     "caption-1": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.medium}",
         "lineHeight": "{lineHeights.1}",
         "fontSize": "{fontSize.0}",
@@ -101,7 +101,7 @@
     "caption-2": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{body.fontFamily}",
+        "fontFamily": "{fontFamily.inter}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeights.0}",
         "fontSize": "{fontSize.0}",
