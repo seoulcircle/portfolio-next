@@ -1,0 +1,8 @@
+{
+  "textCase": {
+    "textcase.none": {
+      "$type": "textCase",
+      "$value": "none"
+    }
+  }
+}

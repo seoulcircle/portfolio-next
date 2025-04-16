@@ -1,0 +1,8 @@
+{
+  "letterSpacing": {
+    "letterspacing.0": {
+      "$type": "letterSpacing",
+      "$value": "0%"
+    }
+  }
+}

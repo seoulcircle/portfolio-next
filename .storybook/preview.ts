@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react";
 import "../packages/styles/theme-light.css";
 import "../packages/styles/theme-dark.css";
 import "../packages/styles/alias.css";
+import "../packages/styles/base.css";
 
 export const globalTypes = {
   theme: {
@@ -24,6 +25,11 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    options: {
+      storySort: {
+        method: "alphabetical", // 기본 오름차순 보장
       },
     },
   },

@@ -1,16 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../Button";
 import { Plus, X, Check } from "lucide-react";
-import S from "../Button.styles";
-
-const iconMap = {
-  plus: <Plus size={16} />,
-  x: <X size={16} />,
-  check: <Check size={16} />,
-};
 
 const meta: Meta<typeof Button> = {
-  title: "Component/Button/4. Icon",
+  title: "Component/Button/5. Link",
   component: Button,
   argTypes: {
     icon: {
@@ -18,17 +11,27 @@ const meta: Meta<typeof Button> = {
       options: ["none", "plus", "x", "check"],
     },
   },
-} satisfies Meta<typeof Button>;
+};
 
+const iconMap = {
+  plus: <Plus size={16} />,
+  x: <X size={16} />,
+  check: <Check size={16} />,
+};
 export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const IconOnly: Story = {
+export const AnchorButton: Story = {
   args: {
-    as: "button",
-    icon: "plus", // 기본값
-    variant: "icon",
+    as: "a",
+    href: "https://example.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    children: "링크 버튼",
+    icon: "plus", // 드롭다운에서 선택 가능
+    iconPosition: "left",
+    variant: "outline",
   },
   render: (args) => {
     const resolvedIcon =
@@ -41,7 +44,7 @@ export const IconOnly: Story = {
       { label: "Hover", props: { className: "pseudo-hover" } },
       { label: "Active", props: { className: "pseudo-active" } },
       { label: "Focus", props: { className: "pseudo-focus" } },
-      { label: "Disabled", props: { disabled: true } },
+      { label: "Disabled", props: { "aria-disabled": true, tabIndex: -1 } }, // <a>는 disabled prop 안 먹히므로 대체
     ];
 
     return (
@@ -51,12 +54,14 @@ export const IconOnly: Story = {
             key={label}
             style={{ display: "flex", alignItems: "center", gap: "1rem" }}
           >
-            <S.Label>{label}</S.Label>
+            <span style={{ width: 80, color: "var(--gray-90)" }}>{label}</span>
             <Button
               {...args}
               icon={resolvedIcon}
-              aria-label={label}
               {...props}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                label === "Disabled" ? e.preventDefault() : undefined
+              }
             />
           </div>
         ))}

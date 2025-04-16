@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import { Plus, X, Check } from "lucide-react";
 
 const meta: Meta<typeof Button> = {
-  title: "Component/Button/Icon",
+  title: "Component/Button/4. Icon",
   component: Button,
   argTypes: {
     icon: {
@@ -24,6 +24,7 @@ type Story = StoryObj<typeof Button>;
 
 export const IconWithText: Story = {
   args: {
+    as: "button",
     children: "버튼",
     icon: "plus", // string으로 설정
     iconPosition: "left",

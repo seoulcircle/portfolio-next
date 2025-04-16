@@ -2,10 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".", // 현재 패키지 기준
+    "baseUrl": ".",
     "moduleResolution": "node16",
     "module": "node16",
-    "types": ["@storybook/react"]
+    "types": ["react", "@storybook/react"],
+    "jsx": "react-jsx"
   },
   "include": [
     "**/*",

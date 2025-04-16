@@ -1,0 +1,12 @@
+{
+  "lineHeight": {
+    "lineheights.0": {
+      "$type": "lineHeights",
+      "$value": "AUTO"
+    },
+    "lineheights.1": {
+      "$type": "lineHeights",
+      "$value": "22"
+    }
+  }
+}

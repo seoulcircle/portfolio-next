@@ -1,0 +1,8 @@
+{
+  "fontFamily": {
+    "fontfamily.body": {
+      "$type": "fontFamilies",
+      "$value": "Noto Sans CJK KR"
+    }
+  }
+}

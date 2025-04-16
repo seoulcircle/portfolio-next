@@ -1,0 +1,20 @@
+{
+  "fontWeight": {
+    "fontweight.medium": {
+      "$type": "fontWeights",
+      "$value": "500"
+    },
+    "fontweight.regular": {
+      "$type": "fontWeights",
+      "$value": "400"
+    },
+    "fontweight.bold": {
+      "$type": "fontWeights",
+      "$value": "600"
+    },
+    "fontweight.": {
+      "$type": "fontWeights",
+      "$value": "200"
+    }
+  }
+}

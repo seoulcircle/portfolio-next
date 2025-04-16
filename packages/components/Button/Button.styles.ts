@@ -133,7 +133,7 @@ const variantStyle = {
   `,
 } as const;
 
-const Button = styled.button<{ $variant: keyof typeof variantStyle }>`
+const Button = styled("button")<{ $variant: keyof typeof variantStyle }>`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,0 +1,8 @@
+{
+  "textDecoration": {
+    "textdecoration.none": {
+      "$type": "textDecoration",
+      "$value": "none"
+    }
+  }
+}

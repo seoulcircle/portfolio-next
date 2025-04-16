@@ -1,54 +1,145 @@
 import fs from "fs/promises";
 import path from "path";
 
-// ✅ 현재 토큰의 타입에 맞춤 (value, type)
 type Token = {
-  value: string;
-  type: string;
+  $value: string | Record<string, string>;
+  $type: string;
 };
 
+type FlatTokenGroup = Record<string, Token>;
 type Theme = {
-  color: Record<string, Token>;
+  color: FlatTokenGroup;
 };
 
-// ✅ CSS 변수 이름 규칙: 공백 → 하이픈
-
-// ✅ light/dark에 있는 모든 키 병합
-const mergeKeys = (light: Theme, dark: Theme): string[] => {
-  const lightKeys = Object.keys(light.color || {});
-  const darkKeys = Object.keys(dark.color || {});
-  return Array.from(new Set([...lightKeys, ...darkKeys]));
+// ✅ group 이름 → CSS prefix 매핑
+const groupAlias: Record<string, string> = {
+  fontSize: "font-size",
+  fontWeight: "font-weight",
+  fontFamily: "font-family",
+  lineHeight: "line-height",
+  letterSpacing: "letter-spacing",
+  paragraphSpacing: "paragraph-spacing",
+  paragraphIndent: "paragraph-indent",
+  textCase: "text-case",
+  textDecoration: "text-decoration",
 };
 
-// ✅ 실제 CSS 변수 생성
-const toCSSVars = (keys: string[], theme: Theme) => {
-  return keys
-    .map((key) => {
-      const token = theme.color[key];
-      if (!token || !token.value) {
-        console.warn(`⚠️  '${key}' not found in theme.color`);
-        return null;
+// ✅ CSS 변수명 정규화
+const normalizeVarName = (group: string, key: string) => {
+  const cleanKey = key
+    .replace(new RegExp(`^${group}\\.?`, "i"), "")
+    .replace(/\./g, "-");
+  const prefix = groupAlias[group] ?? group;
+  return `--${prefix}-${cleanKey}`;
+};
+
+// ✅ 값 정규화: 숫자면 px 붙이기
+const normalizeValue = (group: string, value: string): string => {
+  if (
+    [
+      "fontSize",
+      "spacing",
+      "lineHeight",
+      "paragraphSpacing",
+      "paragraphIndent",
+    ].includes(group) &&
+    /^\d+$/.test(value)
+  ) {
+    return `${value}px`;
+  }
+  return value;
+};
+
+// 🧩 기본 토큰 → base.css
+const extractBaseCSS = async (
+  tokenFilePaths: { path: string; group: string }[]
+) => {
+  const lines: string[] = [];
+
+  for (const { path: filePath, group } of tokenFilePaths) {
+    const raw = await fs.readFile(filePath, "utf-8");
+    const json = JSON.parse(raw);
+    const tokens: FlatTokenGroup = json[group];
+
+    if (group === "typography") {
+      for (const [styleName, token] of Object.entries(tokens)) {
+        if (typeof token.$value !== "object" || token.$value === null) continue;
+        const styleObj = token.$value as Record<string, string>;
+        for (const [prop, rawVal] of Object.entries(styleObj)) {
+          const cssVarName = `--typography-${styleName}-${prop.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
+          const cssVarValue = `var(--${rawVal
+            .replace(/[{}]/g, "")
+            .replace(/\./g, "-")
+            .replace(/([A-Z])/g, "-$1")
+            .toLowerCase()})`;
+          lines.push(`  ${cssVarName}: ${cssVarValue};`);
+        }
       }
-      return `  --${key}: ${token.value};`;
-    })
-    .filter(Boolean)
-    .join("\n");
+      continue;
+    }
+
+    for (const [key, token] of Object.entries(tokens)) {
+      if (!token?.$value) continue;
+      const varName = normalizeVarName(group, key);
+      const val = normalizeValue(group, token.$value as string);
+      lines.push(`  ${varName}: ${val};`);
+    }
+  }
+
+  return `:root {\n${lines.join("\n")}\n}\n`;
 };
 
+// 🧩 테마 토큰 → theme.css
+const extractThemeCSS = async (lightPath: string, darkPath: string) => {
+  const lightRaw = await fs.readFile(lightPath, "utf-8");
+  const darkRaw = await fs.readFile(darkPath, "utf-8");
+
+  const light = JSON.parse(lightRaw) as Theme;
+  const dark = JSON.parse(darkRaw) as Theme;
+
+  const allKeys = Array.from(
+    new Set([...Object.keys(light.color), ...Object.keys(dark.color)])
+  );
+
+  const buildVars = (theme: Theme) =>
+    allKeys
+      .map((key) => {
+        const token = theme.color[key];
+        return token?.$value ? `  --${key}: ${token.$value};` : null;
+      })
+      .filter(Boolean)
+      .join("\n");
+
+  return (
+    `:root {\n${buildVars(light)}\n}\n` +
+    `[data-theme="dark"] {\n${buildVars(dark)}\n}\n`
+  );
+};
+
+// 🛠 실행
 const outputDir = "packages/styles";
 await fs.mkdir(outputDir, { recursive: true });
 
-const lightRaw = await fs.readFile("tokens/theme-light.json", "utf-8");
-const darkRaw = await fs.readFile("tokens/theme-dark.json", "utf-8");
+const baseCSS = await extractBaseCSS([
+  { path: "tokens/fontSize.json", group: "fontSize" },
+  { path: "tokens/fontFamily.json", group: "fontFamily" },
+  { path: "tokens/fontWeight.json", group: "fontWeight" },
+  { path: "tokens/lineHeight.json", group: "lineHeight" },
+  { path: "tokens/letterSpacing.json", group: "letterSpacing" },
+  { path: "tokens/paragraphSpacing.json", group: "paragraphSpacing" },
+  { path: "tokens/paragraphIndent.json", group: "paragraphIndent" },
+  { path: "tokens/spacing.json", group: "spacing" },
+  { path: "tokens/textCase.json", group: "textCase" },
+  { path: "tokens/textDecoration.json", group: "textDecoration" },
+  { path: "tokens/typography.json", group: "typography" },
+]);
 
-const lightTheme = JSON.parse(lightRaw) as Theme;
-const darkTheme = JSON.parse(darkRaw) as Theme;
-const allKeys = mergeKeys(lightTheme, darkTheme);
+const themeCSS = await extractThemeCSS(
+  "tokens/theme-light.json",
+  "tokens/theme-dark.json"
+);
 
-const lightCSS = `:root {\n${toCSSVars(allKeys, lightTheme)}\n}\n`;
-const darkCSS = `[data-theme="dark"] {\n${toCSSVars(allKeys, darkTheme)}\n}\n`;
+await fs.writeFile(path.join(outputDir, "base.css"), baseCSS);
+await fs.writeFile(path.join(outputDir, "theme.css"), themeCSS);
 
-await fs.writeFile(path.join(outputDir, "theme-light.css"), lightCSS);
-await fs.writeFile(path.join(outputDir, "theme-dark.css"), darkCSS);
-
-console.log("✅ CSS 변수 파일 생성 완료 🎉");
+console.log("✅ base.css, theme.css 생성 완료!");

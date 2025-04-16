@@ -2,11 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../Button";
 
 const meta: Meta<typeof Button> = {
-  title: "Component/Button/Primary",
+  title: "Component/Button/1. Primary",
   component: Button,
   argTypes: {
     onClick: { action: "clicked" },
     children: { control: "text" },
+    icon: { table: { disable: true } },
+    iconPosition: { table: { disable: true } },
   },
 };
 
@@ -16,6 +18,7 @@ type Story = StoryObj<typeof Button>;
 
 export const Enabled: Story = {
   args: {
+    as: "button",
     children: "Enabled",
     variant: "primary",
   },
@@ -23,6 +26,7 @@ export const Enabled: Story = {
 
 export const Hover: Story = {
   args: {
+    as: "button",
     children: "Hover",
     variant: "primary",
     className: "pseudo-hover",
@@ -31,6 +35,7 @@ export const Hover: Story = {
 
 export const Active: Story = {
   args: {
+    as: "button",
     children: "Active",
     variant: "primary",
     className: "pseudo-active",
@@ -39,6 +44,7 @@ export const Active: Story = {
 
 export const Focus: Story = {
   args: {
+    as: "button",
     children: "Focus",
     variant: "primary",
     className: "pseudo-focus",
@@ -47,6 +53,7 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   args: {
+    as: "button",
     children: "Disabled",
     variant: "primary",
     disabled: true,
