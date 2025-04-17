@@ -11,7 +11,9 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     value: { control: "text" },
     error: { control: "boolean" },
+    label: { control: "boolean" },
     disabled: { control: "boolean" },
+    labelMessage: { control: "text" },
     errorMessage: { control: "text" },
     placeholder: { control: "text" },
   },
@@ -38,6 +40,8 @@ const Template = (args: InputProps) => {
 export const Default: Story = {
   render: Template,
   args: {
+    label: true,
+    labelMessage: "인풋 레이블",
     placeholder: "플레이스 홀더 텍스트",
   },
 };
@@ -46,6 +50,8 @@ export const Filled: Story = {
   render: Template,
   args: {
     value: "사용자 입력 텍스트",
+    label: true,
+    labelMessage: "인풋 레이블",
     placeholder: "플레이스 홀더 텍스트",
   },
 };
@@ -57,6 +63,8 @@ export const Error: Story = {
     error: true,
     errorMessage: "에러 메시지",
     placeholder: "입력하세요",
+    label: true,
+    labelMessage: "인풋 레이블",
   },
 };
 
@@ -66,5 +74,7 @@ export const Disabled: Story = {
     value: "비활성화 상태",
     disabled: true,
     placeholder: "입력 불가",
+    label: true,
+    labelMessage: "인풋 레이블",
   },
 };

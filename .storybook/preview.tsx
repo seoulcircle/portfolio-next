@@ -1,3 +1,6 @@
+import React from "react";
+import { ThemeProvider } from "@emotion/react";
+
 import type { Preview } from "@storybook/react";
 import "../packages/styles/theme-light.css";
 import "../packages/styles/theme-dark.css";
@@ -35,12 +38,15 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const theme = context.globals.theme || "light";
-      document.documentElement.setAttribute("data-theme", theme);
-      const background = theme === "dark" ? "#000000" : "#ffffff";
-      document.body.style.backgroundColor = background;
+      const mode = context.globals.theme || "light";
+      document.documentElement.setAttribute("data-theme", mode);
+      document.body.style.backgroundColor = mode === "dark" ? "#000" : "#fff";
 
-      return Story();
+      return (
+        <ThemeProvider theme={{ mode }}>
+          <Story />
+        </ThemeProvider>
+      );
     },
   ],
 };

@@ -8,6 +8,8 @@ type InputProps = {
   onChange: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
+  label?: boolean;
+  labelMessage?: string;
   error?: boolean;
   errorMessage?: string;
   onClear?: () => void;
@@ -19,7 +21,9 @@ export const Input = ({
   placeholder,
   disabled,
   error,
+  label,
   errorMessage,
+  labelMessage,
   onClear,
   ...rest
 }: InputProps) => {
@@ -33,19 +37,26 @@ export const Input = ({
 
   return (
     <S.Container disabled={disabled} error={error}>
-      <S.InputField
-        value={value}
-        onChange={handleChange}
-        placeholder={placeholder}
-        disabled={disabled}
-        error={error}
-        {...rest}
-      />
-      {value && !disabled && (
-        <S.ClearButton type="button" onClick={handleClear}>
-          <XCircle size={18} />
-        </S.ClearButton>
+      {label && labelMessage && (
+        <S.LabelMessage>
+          <span>{labelMessage}</span>
+        </S.LabelMessage>
       )}
+      <S.InputContainer>
+        <S.InputField
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          disabled={disabled}
+          error={error}
+          {...rest}
+        />
+        {value && !disabled && (
+          <S.ClearButton type="button" onClick={handleClear}>
+            <XCircle size={18} />
+          </S.ClearButton>
+        )}
+      </S.InputContainer>
       {error && errorMessage && (
         <S.ErrorMessage>
           <AlertCircle size={14} />

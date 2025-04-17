@@ -13,6 +13,8 @@
     "../ui/Badge",
     "../ui/Button",
     "../ui/Modal",
-    "../ui/Tooltip"
+    "../ui/Tooltip",
+    "**/*",
+    "emotion.d.ts"
   ]
 }
