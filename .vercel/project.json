@@ -1,9 +1,1 @@
-{
-  "projectId": "prj_XJ6e90OX594plVC49JHbfsF70DOk",
-  "orgId": "seoulcircle",
-  "build": {
-    "installCommand": "corepack enable && corepack prepare pnpm@8.6.0 --activate && pnpm install --no-frozen-lockfile",
-    "command": "pnpm build-storybook",
-    "outputDirectory": "storybook-static"
-  }
-}
+{"projectId":"prj_Qv3ZsWMh4LgbZB8bmfVCPX4c8myQ","orgId":"team_YfqGwWCAA9DYnC50PXgoPct0"}

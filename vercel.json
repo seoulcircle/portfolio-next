@@ -1,6 +1,0 @@
-{
-  "framework": "nextjs",
-  "buildCommand": "pnpm --filter portfolio build",
-  "outputDirectory": "apps/portfolio/.next",
-  "rewrites": [{ "source": "/(.*)", "destination": "/$1" }]
-}
