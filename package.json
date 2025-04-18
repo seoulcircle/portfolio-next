@@ -11,7 +11,7 @@
     "transform:tokens": "ts-node scripts/transformTokens.ts",
     "build:tokens": "tsx tokens/build.mts",
     "build:css": "tsx tokens/build-css.mts",
-    "build-storybook": "storybook build --config-dir .storybook -o storybook-static"
+    "build-storybook": "pnpm --filter components --workspace-root run build-storybook"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
