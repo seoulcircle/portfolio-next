@@ -1,0 +1,23 @@
+{
+  "name": "@portfolio/components",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "framer-motion": "^12.6.5",
+    "lucide-react": "^0.484.0",
+    "next": "15.2.4"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/experimental-addon-test": "^8.6.12",
+    "@storybook/nextjs": "^8.6.12",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006"
+  }
+}

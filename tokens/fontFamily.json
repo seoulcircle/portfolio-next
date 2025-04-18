@@ -1,0 +1,12 @@
+{
+  "fontFamily": {
+    "fontfamily.inter": {
+      "$type": "fontFamily",
+      "$value": "Inter, sans-serif"
+    },
+    "fontfamily.body": {
+      "$type": "fontFamily",
+      "$value": "{fontFamily.inter}"
+    }
+  }
+}

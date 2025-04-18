@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+*storybook.log
+
+**/.next
+
+# storybook output (iframe & build cache)
+**/*.map
+**/*.bundle.js
+**/*.html
+**/sb-addons/*
+**/sb-manager/*
+**/.cache/storybook/*

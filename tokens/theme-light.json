@@ -1,0 +1,88 @@
+{
+  "color": {
+    "black": {
+      "$type": "color",
+      "$value": "#000000"
+    },
+    "gray-90": {
+      "$type": "color",
+      "$value": "#1c1c1e"
+    },
+    "gray-80": {
+      "$type": "color",
+      "$value": "#2c2c2e"
+    },
+    "gray-70": {
+      "$type": "color",
+      "$value": "#363639"
+    },
+    "gray-60": {
+      "$type": "color",
+      "$value": "#48484a"
+    },
+    "gray-50": {
+      "$type": "color",
+      "$value": "#636366"
+    },
+    "gray-40": {
+      "$type": "color",
+      "$value": "#8e8e93"
+    },
+    "gray-30": {
+      "$type": "color",
+      "$value": "#aeaeb2"
+    },
+    "gray-20": {
+      "$type": "color",
+      "$value": "#c6c6c6"
+    },
+    "gray-10": {
+      "$type": "color",
+      "$value": "#f4f4f4"
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "blue-10": {
+      "$type": "color",
+      "$value": "#e9f1ff"
+    },
+    "blue-20": {
+      "$type": "color",
+      "$value": "#cadeff"
+    },
+    "blue-30": {
+      "$type": "color",
+      "$value": "#0f62fe"
+    },
+    "blue-40": {
+      "$type": "color",
+      "$value": "#0f56db"
+    },
+    "blue-50": {
+      "$type": "color",
+      "$value": "#0847bd"
+    },
+    "red-30": {
+      "$type": "color",
+      "$value": "#da1e28"
+    },
+    "red-40": {
+      "$type": "color",
+      "$value": "#ba1b23"
+    },
+    "red-50": {
+      "$type": "color",
+      "$value": "#750e13"
+    },
+    "green-30": {
+      "$type": "color",
+      "$value": "#34c759"
+    },
+    "green-40": {
+      "$type": "color",
+      "$value": "#22a343"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "platforms": {
+    "light": {
+      "source": ["tokens/theme-light.json"],
+      "transformGroup": "css",
+      "buildPath": "packages/styles/",
+      "files": [
+        {
+          "destination": "theme-light.css",
+          "format": "css/variables",
+          "selector": ":root[data-theme='light']"
+        }
+      ]
+    },
+    "dark": {
+      "source": ["tokens/theme-dark.json"],
+      "transformGroup": "css",
+      "buildPath": "packages/styles/",
+      "files": [
+        {
+          "destination": "theme-dark.css",
+          "format": "css/variables",
+          "selector": ":root[data-theme='dark']"
+        }
+      ]
+    }
+  }
+}

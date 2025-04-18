@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["apps/portfolio/src/*"],
+      "@hooks/*": ["packages/hooks/*"],
+      "@ui/*": ["packages/ui/src/*"],
+      "@styles/*": ["packages/styles/*"],
+      "@animations/*": ["packages/animations/*"],
+      "@components/*": ["packages/components/*"]
+    },
+    "strict": true,
+    "moduleResolution": "node16",
+    "module": "node16",
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}

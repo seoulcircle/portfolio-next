@@ -8,5 +8,6 @@
   "editor.wordBasedSuggestions": "off",
   "editor.parameterHints.enabled": false,
   "typescript.suggest.enabled": false,
-  "javascript.suggest.enabled": false
+  "javascript.suggest.enabled": false,
+  "editor.autoClosingBrackets": "always"
 }
