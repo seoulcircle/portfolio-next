@@ -3,6 +3,7 @@
   "orgId": "seoulcircle",
   "build": {
     "installCommand": "corepack enable && corepack prepare pnpm@8.6.0 --activate && pnpm install --no-frozen-lockfile",
-    "command": "corepack enable && corepack prepare pnpm@8.6.0 --activate && pnpm install --no-frozen-lockfile && pnpm build"
+    "command": "pnpm build-storybook",
+    "outputDirectory": "storybook-static"
   }
 }

@@ -8,10 +8,10 @@
     "build": "pnpm --filter portfolio build",
     "lint": "pnpm --filter portfolio lint",
     "storybook": "storybook dev -p 6006 --config-dir .storybook",
-    "build-storybook": "storybook build --config-dir .storybook",
     "transform:tokens": "ts-node scripts/transformTokens.ts",
     "build:tokens": "tsx tokens/build.mts",
-    "build:css": "tsx tokens/build-css.mts"
+    "build:css": "tsx tokens/build-css.mts",
+    "build-storybook": "storybook build --config-dir .storybook -o storybook-static"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
