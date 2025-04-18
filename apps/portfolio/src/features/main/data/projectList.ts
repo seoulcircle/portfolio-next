@@ -23,8 +23,8 @@ export const projects: Project[] = [
   },
   {
     index: 10,
-    id: "archive",
-    name: "Archive",
+    id: "design",
+    name: "Design System",
     description: "Archives...🏃🏻‍♀️🕉️🧘🏻‍♀️📚",
   },
   {

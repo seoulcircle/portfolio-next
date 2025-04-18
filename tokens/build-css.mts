@@ -11,7 +11,7 @@ type Theme = {
   color: FlatTokenGroup;
 };
 
-// ✅ group 이름 → CSS prefix 매핑
+// group 이름 → CSS prefix 매핑
 const groupAlias: Record<string, string> = {
   fontSize: "font-size",
   fontWeight: "font-weight",
@@ -24,7 +24,7 @@ const groupAlias: Record<string, string> = {
   textDecoration: "text-decoration",
 };
 
-// ✅ CSS 변수명 정규화
+// CSS 변수명 정규화
 const normalizeVarName = (group: string, key: string) => {
   const cleanKey = key
     .replace(new RegExp(`^${group}\\.?`, "i"), "")
@@ -33,7 +33,7 @@ const normalizeVarName = (group: string, key: string) => {
   return `--${prefix}-${cleanKey}`;
 };
 
-// ✅ 값 정규화: 숫자면 px 붙이기
+// 값 정규화: 숫자면 px 붙이기
 const normalizeValue = (group: string, value: string): string => {
   const needsPx = [
     "fontSize",
@@ -43,7 +43,7 @@ const normalizeValue = (group: string, value: string): string => {
     "paragraphIndent",
   ];
 
-  // ✅ 토큰 참조일 경우 → var()로 변환
+  // 토큰 참조일 경우 → var()로 변환
   if (value.startsWith("{") && value.endsWith("}")) {
     const refKey = value.slice(1, -1); // remove {}
     const [refGroup, ...refParts] = refKey.split(".");
@@ -51,7 +51,7 @@ const normalizeValue = (group: string, value: string): string => {
     return `var(--${[prefix, ...refParts].join("-").toLowerCase()})`;
   }
 
-  // ✅ px 붙이기
+  // px 붙이기
   if (needsPx.includes(group) && /^\d+$/.test(value)) {
     return `${value}px`;
   }
@@ -156,4 +156,4 @@ const themeCSS = await extractThemeCSS(
 await fs.writeFile(path.join(outputDir, "base.css"), baseCSS);
 await fs.writeFile(path.join(outputDir, "theme.css"), themeCSS);
 
-console.log("✅ base.css, theme.css 생성 완료!");
+console.log("base.css, theme.css 생성 완료!");

@@ -6,6 +6,7 @@ type CheckboxProps = {
   label: string;
   checked: boolean;
   disabled?: boolean;
+  deletable?: boolean;
   onChange?: (checked: boolean) => void;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "checked">;
 
