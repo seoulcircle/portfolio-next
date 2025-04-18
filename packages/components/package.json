@@ -18,6 +18,7 @@
     "@types/react-dom": "^19"
   },
   "scripts": {
-    "dev": "storybook dev -p 6006"
+    "dev": "storybook dev -p 6006",
+    "build-storybook": "storybook build -c ../../.storybook -o ../../storybook-static"
   }
 }
