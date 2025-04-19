@@ -4,7 +4,7 @@
     "paths": {
       "@/*": ["apps/portfolio/src/*"],
       "@hooks/*": ["packages/hooks/*"],
-      "@ui/*": ["packages/ui/src/*"],
+      "@ui/*": ["packages/ui/*"],
       "@styles/*": ["packages/styles/*"],
       "@animations/*": ["packages/animations/*"],
       "@components/*": ["packages/components/*"]

@@ -8,9 +8,9 @@ import Image from "next/image";
 import useLockBodyZoomScroll from "../hooks/useLockBodyZoom";
 import MapArchive from "./MapArchive";
 import GithubIcon from "../data/githubIcon";
-import TextButton from "packages/ui/Button/TextButton";
-import Badge from "packages/ui/Badge/Badge";
-import IconButton from "packages/ui/Button/IconButton/IconButton";
+import TextButton from "@ui/Button/TextButton";
+import Badge from "@ui/Badge/Badge";
+import IconButton from "@ui/Button/IconButton/IconButton";
 
 const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
   useLockBodyZoomScroll(true);

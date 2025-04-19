@@ -27,6 +27,7 @@ const nextConfig = {
         configFile: path.resolve(__dirname, "../../tsconfig.base.json"),
       }),
     ];
+
     return config;
   },
 };
