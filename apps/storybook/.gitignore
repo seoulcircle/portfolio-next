@@ -1,0 +1,7 @@
+# apps/storybook/.gitignore
+
+# 빌드 산출물 제외
+storybook-static/
+
+# Vercel CLI output 제외
+.vercel/output/

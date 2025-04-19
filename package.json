@@ -11,7 +11,7 @@
     "transform:tokens": "ts-node scripts/transformTokens.ts",
     "build:tokens": "tsx tokens/build.mts",
     "build:css": "tsx tokens/build-css.mts",
-    "build-storybook": "pnpm --filter components --workspace-root run build-storybook",
+    "build-storybook": "pnpm --filter components run build-storybook -- -c ./.storybook -o ./storybook-static",
     "postinstall": "cp tsconfig.base.json apps/portfolio/tsconfig.base.json"
   },
   "devDependencies": {
