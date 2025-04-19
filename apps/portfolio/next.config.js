@@ -13,18 +13,18 @@ const nextConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      "@components": path.resolve(__dirname, "packages/components"),
-      "@hooks": path.resolve(__dirname, "packages/hooks"),
-      "@ui": path.resolve(__dirname, "packages/ui"),
-      "@styles": path.resolve(__dirname, "packages/styles"),
-      "@theme": path.resolve(__dirname, "packages/theme"),
-      "@animations": path.resolve(__dirname, "packages/animations"),
-      "@": path.resolve(__dirname, "apps/portfolio"),
+      "@components": path.resolve(__dirname, "../../packages/components"),
+      "@hooks": path.resolve(__dirname, "../../packages/hooks"),
+      "@ui": path.resolve(__dirname, "../../packages/ui"),
+      "@styles": path.resolve(__dirname, "../../packages/styles"),
+      "@theme": path.resolve(__dirname, "../../packages/theme"),
+      "@animations": path.resolve(__dirname, "../../packages/animations"),
+      "@": path.resolve(__dirname), // apps/portfolio
     };
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
       new TsconfigPathsPlugin({
-        configFile: path.resolve(__dirname, "tsconfig.base.json"),
+        configFile: path.resolve(__dirname, "../../tsconfig.base.json"),
       }),
     ];
     return config;
