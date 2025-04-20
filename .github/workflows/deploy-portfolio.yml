@@ -29,6 +29,9 @@ jobs:
           CI: true
         run: pnpm --filter portfolio build
 
+      - name: Prebuild for Vercel
+        run: npx vercel build --cwd apps/portfolio
+
       - name: Deploy to Vercel
         run: |
           npx vercel deploy \
