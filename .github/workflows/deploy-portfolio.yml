@@ -24,11 +24,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Copy & patch tsconfig.base.json
-        run: |
-          cp tsconfig.base.json apps/portfolio/
-          sed -i 's|../../packages|../../../packages|g' apps/portfolio/tsconfig.base.json
-
       - name: Build Portfolio
         env:
           CI: true
