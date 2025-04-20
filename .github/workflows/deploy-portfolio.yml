@@ -28,6 +28,7 @@ jobs:
         run: |
           cp tsconfig.base.json apps/portfolio/
           sed -i 's|../../packages|../../../packages|g' apps/portfolio/tsconfig.base.json
+          cat apps/portfolio/tsconfig.base.json
 
       - name: Build Portfolio
         run: pnpm --filter portfolio build
