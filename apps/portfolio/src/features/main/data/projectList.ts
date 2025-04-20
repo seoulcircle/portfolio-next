@@ -25,8 +25,7 @@ export const projects: Project[] = [
     index: 10,
     id: "design",
     name: "Design System",
-    route:
-      "https://storybook-new.vercel.app/?path=/story/component-button-1-primary--enabled",
+    route: "https://portfolio-next-storybook.vercel.app",
     description:
       "Figma 디자인 토큰을 기반으로 컴포넌트, 애니메이션, 스타일을 정리한 디자인 시스템. Storybook을 통해 구조와 접근성을 문서화하고, 모노레포 환경에서 배포 자동화를 구현.",
     stack: [

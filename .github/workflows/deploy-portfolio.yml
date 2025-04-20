@@ -1,0 +1,35 @@
+name: Deploy Portfolio
+
+on:
+  push:
+    paths:
+      - "apps/portfolio/**"
+      - "packages/**"
+      - "public/**"
+      - "vercel.json"
+      - "scripts/env.portfolio"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node & pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Deploy to Vercel
+        run: |
+          npx vercel deploy \
+            --cwd apps/portfolio \
+            --prod \
+            --yes \
+            --token ${{ secrets.VERCEL_TOKEN }}
