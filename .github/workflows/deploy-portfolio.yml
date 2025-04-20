@@ -27,10 +27,10 @@ jobs:
       - name: Pull Vercel Project Settings
         run: |
           npx vercel pull \
-            --cwd apps/portfolio \
-            --yes \
-            --environment=production \
-            --token ${{ secrets.VERCEL_TOKEN }}
+          --cwd apps/portfolio \
+          --yes \
+          --environment=production \
+          --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Portfolio
         run: |
@@ -38,7 +38,7 @@ jobs:
 
       - name: Prebuild for Vercel
         run: |
-          npx vercel build --cwd apps/portfolio --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+          npx vercel build --cwd apps/portfolio --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel
         run: |
