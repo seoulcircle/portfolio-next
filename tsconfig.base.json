@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["apps/portfolio/src/*"],
+      "@assets/*": ["apps/portfolio/src/assets/*"],
       "@hooks/*": ["packages/hooks/*"],
       "@ui/*": ["packages/ui/*"],
       "@styles/*": ["packages/styles/*"],
