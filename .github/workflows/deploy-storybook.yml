@@ -1,0 +1,36 @@
+name: Deploy Storybook
+
+on:
+  push:
+    paths:
+      - "apps/storybook/**"
+      - ".storybook/**"
+      - "packages/components/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node & pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Storybook
+        run: pnpm exec storybook build -c .storybook -o apps/storybook/storybook-static
+
+      - name: Prepare output directory
+        run: |
+          mkdir -p apps/storybook/.vercel/output/static
+          cp -r apps/storybook/storybook-static/* apps/storybook/.vercel/output/static
+
+      - name: Deploy to Vercel
+        run: |
+          npx vercel deploy --cwd apps/storybook --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
