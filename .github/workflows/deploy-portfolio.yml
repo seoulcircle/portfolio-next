@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Copy tsconfig.base.json
+        run: cp tsconfig.base.json apps/portfolio/
+
       - name: Deploy to Vercel
         run: |
           npx vercel deploy \
