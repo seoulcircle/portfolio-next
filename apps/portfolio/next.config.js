@@ -3,7 +3,9 @@ const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
 /* eslint-enable @typescript-eslint/no-require-imports */
 
-/** @type {import('next').NextConfig} */
+const isCI = process.env.CI === "true";
+const pathDepth = isCI ? "../../../" : "../../";
+
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -11,8 +13,6 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.resolve = config.resolve || {};
-    const pathDepth = process.env.CI ? "../../../" : "../../";
-
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       "@components": path.resolve(__dirname, `${pathDepth}packages/components`),
@@ -22,16 +22,14 @@ const nextConfig = {
       "@theme": path.resolve(__dirname, `${pathDepth}packages/theme`),
       "@animations": path.resolve(__dirname, `${pathDepth}packages/animations`),
       "@assets": path.resolve(__dirname, "src/assets"),
-      "@": path.resolve(__dirname), // apps/portfolio
+      "@": path.resolve(__dirname),
     };
-
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
       new TsconfigPathsPlugin({
         configFile: path.resolve(__dirname, "./tsconfig.base.json"),
       }),
     ];
-
     return config;
   },
 };
