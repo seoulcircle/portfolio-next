@@ -34,7 +34,7 @@ jobs:
 
       - name: Prebuild for Vercel
         run: |
-          npx vercel build --cwd apps/portfolio
+          npx vercel build --cwd apps/portfolio --environment=production --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel
         run: |
