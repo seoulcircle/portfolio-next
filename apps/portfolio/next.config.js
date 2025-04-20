@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
+
 const path = require("path");
 /* eslint-enable @typescript-eslint/no-require-imports */
 
@@ -19,15 +19,11 @@ const nextConfig = {
       "@styles": path.resolve(__dirname, "../../packages/styles"),
       "@theme": path.resolve(__dirname, "../../packages/theme"),
       "@animations": path.resolve(__dirname, "../../packages/animations"),
-      "@": path.resolve(__dirname), // apps/portfolio
+      "@": path.resolve(__dirname, "src"), // src 기준 alias
     };
-    config.resolve.plugins = [
-      ...(config.resolve.plugins || []),
-      new TsconfigPathsPlugin({
-        configFile: path.resolve(__dirname, "./tsconfig.base.json"),
-      }),
-    ];
 
+    // 🔥 TsconfigPathsPlugin 제거
+    // Vercel에서 불안정하게 동작하므로 수동 alias가 더 확실함
     return config;
   },
 };
