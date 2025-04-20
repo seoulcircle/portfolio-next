@@ -53,7 +53,7 @@ export const Input = ({
         />
         {value && !disabled && (
           <S.ClearButton type="button" onClick={handleClear}>
-            <XCircle size={18} />
+            <XCircle size={20} />
           </S.ClearButton>
         )}
       </S.InputContainer>
