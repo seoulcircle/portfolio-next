@@ -154,3 +154,9 @@ export const globalStyles = css`
     box-sizing: border-box;
   }
 `;
+
+// function GlobalStyle() {
+//   return <Global styles={globalStyles} />;
+// }
+
+// export default GlobalStyle;

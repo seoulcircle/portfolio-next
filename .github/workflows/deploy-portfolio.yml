@@ -25,11 +25,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Pull Vercel project settings
-        run: npx vercel pull --yes --token ${{ secrets.VERCEL_TOKEN }}
+      - name: Pull Vercel settings
+        run: |
+          npx vercel pull --cwd apps/portfolio --yes --token ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Build with Vercel (production)
-        run: npx vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
+      - name: Build with Vercel
+        run: |
+          npx vercel build --cwd apps/portfolio --prod --token ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Deploy prebuilt (production)
-        run: npx vercel deploy --prebuilt --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy with Vercel
+        run: |
+          npx vercel deploy --cwd apps/portfolio --prebuilt --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
