@@ -24,15 +24,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # ✅ 루트 tsconfig.base.json을 포트폴리오로 복사
-      - name: Copy tsconfig.base.json
-        run: cp tsconfig.base.json apps/portfolio/
+      - name: Copy & patch tsconfig.base.json
+        run: |
+          cp tsconfig.base.json apps/portfolio/
+          sed -i 's|../../packages|../../../packages|g' apps/portfolio/tsconfig.base.json
 
-      # ✅ 빌드 (이게 핵심)
       - name: Build Portfolio
         run: pnpm --filter portfolio build
 
-      # ✅ 미리 빌드한 결과물 그대로 배포
       - name: Deploy to Vercel
         run: |
           npx vercel deploy \

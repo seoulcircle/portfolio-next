@@ -9,7 +9,7 @@ export const projects: Project[] = [
   {
     index: 0,
     id: "honglee",
-    name: "Hong  Lee",
+    name: "Hong Lee",
     description:
       "안녕하세요! 저는 <strong>이홍</strong>입니다.</br><p>변화하는 환경 속에서 <strong>본질</strong>에 집중하고, <strong>작은 차이</strong>가 큰 가치를 만든다고 믿습니다.<br/>떠오르는 아이디어는 바로 <strong>실행</strong>에 옮기고 <strong>결과</strong>로 연결합니다.</br>다양한 경험을 바탕으로 조화롭고 효율적인 해결책을 만드려고 노력합니다.</p>",
     thumbnail: hongleeThumb,
