@@ -29,6 +29,10 @@ jobs:
           CI: true
         run: pnpm --filter portfolio build
 
+      - name: Pull Vercel Project Settings
+        run: |
+          npx vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+
       - name: Prebuild for Vercel
         run: npx vercel build --cwd apps/portfolio
 
