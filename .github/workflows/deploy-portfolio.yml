@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node & pnpm
+      - name: Setup Node.js and pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Pull Vercel Project Settings
+      - name: Pull Vercel project settings
         run: |
           npx vercel pull \
             --cwd apps/portfolio \
@@ -35,10 +35,18 @@ jobs:
         run: |
           sed -i 's|"extends": "../../tsconfig.base.json"|"extends": "./../../tsconfig.base.json"|' apps/portfolio/tsconfig.json
 
-      - name: Deploy to Vercel
+      - name: Build project with Vercel (prebuild)
+        run: |
+          npx vercel build \
+            --cwd apps/portfolio \
+            --prod \
+            --token ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel (prebuilt)
         run: |
           npx vercel deploy \
             --cwd apps/portfolio \
+            --prebuilt \
             --prod \
             --yes \
             --token ${{ secrets.VERCEL_TOKEN }}
