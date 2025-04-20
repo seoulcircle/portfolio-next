@@ -32,5 +32,4 @@ jobs:
           cp -r apps/storybook/storybook-static/* apps/storybook/.vercel/output/static
 
       - name: Deploy to Vercel
-        run: |
-          npx vercel deploy --cwd apps/storybook --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel deploy --cwd apps/storybook --prebuilt --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
