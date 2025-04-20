@@ -14,7 +14,7 @@ const meta: Meta<typeof Button> = {
 } satisfies Meta<typeof Button>;
 
 const iconMap = {
-  plus: <Plus size={16} />,
+  plus: <Plus size={17} />,
   x: <X size={16} />,
   check: <Check size={16} />,
 };
