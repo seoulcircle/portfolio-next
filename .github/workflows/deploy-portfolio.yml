@@ -30,7 +30,9 @@ jobs:
           sed -i 's|../../packages|../../../packages|g' apps/portfolio/tsconfig.base.json
 
       - name: Build Portfolio
-        run: pnpm --filter portfolio build
+        run: |
+          export CI=true
+          pnpm --filter portfolio build
 
       - name: Deploy to Vercel
         run: |
