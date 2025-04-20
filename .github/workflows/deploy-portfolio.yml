@@ -26,7 +26,7 @@ jobs:
 
       - name: Pull Vercel Project Settings
         run: |
-          npx vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+          npx vercel pull --cwd apps/portfolio --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Portfolio
         run: |
