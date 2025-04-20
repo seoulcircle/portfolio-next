@@ -27,22 +27,18 @@ jobs:
       - name: Pull Vercel Project Settings
         run: |
           npx vercel pull \
-          --cwd apps/portfolio \
-          --yes \
-          --environment=production \
-          --token ${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build Portfolio
-        run: |
-          pnpm --filter portfolio build
+            --cwd apps/portfolio \
+            --yes \
+            --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Fix tsconfig path for CI
         run: |
           sed -i 's|"extends": "../../tsconfig.base.json"|"extends": "./../../tsconfig.base.json"|' apps/portfolio/tsconfig.json
 
-      - name: Prebuild for Vercel
-        run: |
-          npx vercel build --cwd apps/portfolio --prod --token ${{ secrets.VERCEL_TOKEN }}
-
       - name: Deploy to Vercel
-        run: npx vercel deploy --cwd apps/portfolio --prebuilt --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npx vercel deploy \
+            --cwd apps/portfolio \
+            --prod \
+            --yes \
+            --token ${{ secrets.VERCEL_TOKEN }}
