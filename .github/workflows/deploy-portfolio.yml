@@ -1,3 +1,4 @@
+# .github/workflows/deploy.yml
 name: Deploy Portfolio
 
 on:
@@ -25,21 +26,15 @@ jobs:
         run: pnpm install
 
       - name: Pull Vercel project settings
-        run: |
-          npx vercel pull \
-            --cwd apps/portfolio \
-            --yes \
-            --token ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel pull --yes --token ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Patch tsconfig for Vercel build
-        run: |
-          cp tsconfig.base.json apps/portfolio/tsconfig.base.json
-          sed -i 's|"extends": "../../tsconfig.base.json"|"extends": "./tsconfig.base.json"|' apps/portfolio/tsconfig.json
+      - name: Build the portfolio app
+        run: pnpm --filter portfolio build
 
-      - name: Deploy to Vercel (server-side build)
+      - name: Deploy to Vercel (using prebuilt)
         run: |
           npx vercel deploy \
-            --cwd apps/portfolio \
+            --prebuilt \
             --prod \
             --yes \
             --token ${{ secrets.VERCEL_TOKEN }}
