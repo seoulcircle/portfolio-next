@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { S } from "../styles/Modal.style";
 import { useIsMobile } from "@hooks/useMediaQuery";
 import { ModalProps } from "../types/timequestion.types";
-import Tooltip from "packages/ui/Tooltip";
-import Badge from "packages/ui/Badge/Badge";
+import Tooltip from "@ui/Tooltip";
+import Badge from "@ui/Badge/Badge";
 const SavedAnswerModal = ({ modalData }: ModalProps) => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const timeRefs = useRef<Record<string, HTMLSpanElement | null>>({});
