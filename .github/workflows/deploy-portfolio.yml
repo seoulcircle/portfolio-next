@@ -5,9 +5,7 @@ on:
     paths:
       - "apps/portfolio/**"
       - "packages/**"
-      - "public/**"
-      - "vercel.json"
-      - "scripts/env.portfolio"
+      - "tsconfig.base.json"
   workflow_dispatch:
 
 jobs:
@@ -26,13 +24,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # ✅ 루트 tsconfig.base.json을 포트폴리오로 복사
       - name: Copy tsconfig.base.json
         run: cp tsconfig.base.json apps/portfolio/
 
+      # ✅ 빌드 (이게 핵심)
+      - name: Build Portfolio
+        run: pnpm --filter portfolio build
+
+      # ✅ 미리 빌드한 결과물 그대로 배포
       - name: Deploy to Vercel
         run: |
           npx vercel deploy \
             --cwd apps/portfolio \
+            --prebuilt \
             --prod \
             --yes \
             --token ${{ secrets.VERCEL_TOKEN }}
