@@ -1,9 +1,9 @@
 // src/data/projects.ts
 import { Project } from "../types/main.types";
-import hongleeThumb from "@/assets/images/honglee.png";
-import daypaletteThumb from "@/assets/images/daypalette.png";
-import timequestionThumb from "@/assets/images/timequestion.png";
-import alphabetThumb from "@/assets/images/alphabet.png";
+import hongleeThumb from "@assets/images/honglee.png";
+import daypaletteThumb from "@assets/images/daypalette.png";
+import timequestionThumb from "@assets/images/timequestion.png";
+import alphabetThumb from "@assets/images/alphabet.png";
 
 export const projects: Project[] = [
   {

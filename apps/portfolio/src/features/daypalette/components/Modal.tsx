@@ -1,4 +1,4 @@
-import Modal from "packages/ui/Modal/Modal";
+import Modal from "@ui/Modal/Modal";
 import { S } from "../styles/Modal.style";
 import { WeatherModalProps } from "../types/weather.types";
 import {

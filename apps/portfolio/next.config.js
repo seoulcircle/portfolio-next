@@ -19,6 +19,7 @@ const nextConfig = {
       "@styles": path.resolve(__dirname, "../../packages/styles"),
       "@theme": path.resolve(__dirname, "../../packages/theme"),
       "@animations": path.resolve(__dirname, "../../packages/animations"),
+      "@assets": path.resolve(__dirname, "src/assets"),
       "@": path.resolve(__dirname), // apps/portfolio
     };
     config.resolve.plugins = [
