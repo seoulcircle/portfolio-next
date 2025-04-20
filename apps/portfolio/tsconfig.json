@@ -1,26 +1,15 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "../../",
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+    "baseUrl": ".", // 꼭 다시 명시
+    "paths": {
+      "@/*": ["./src/*"], // apps/portfolio 기준 경로로 재정의
+      "@assets/*": ["./src/assets/*"],
+      "@hooks/*": ["../../packages/hooks/*"],
+      "@ui/*": ["../../packages/ui/*"],
+      "@styles/*": ["../../packages/styles/*"],
+      "@animations/*": ["../../packages/animations/*"],
+      "@components/*": ["../../packages/components/*"]
+    }
+  }
 }
