@@ -31,18 +31,12 @@ jobs:
             --yes \
             --token ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Fix tsconfig path for CI
+      - name: Patch tsconfig for Vercel build
         run: |
-          sed -i 's|"extends": "../../tsconfig.base.json"|"extends": "./../../tsconfig.base.json"|' apps/portfolio/tsconfig.json
+          cp tsconfig.base.json apps/portfolio/tsconfig.base.json
+          sed -i 's|"extends": "../../tsconfig.base.json"|"extends": "./tsconfig.base.json"|' apps/portfolio/tsconfig.json
 
-      - name: Build project with Vercel (prebuild)
-        run: |
-          npx vercel build \
-            --cwd apps/portfolio \
-            --prod \
-            --token ${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy to Vercel (prebuilt)
+      - name: Deploy to Vercel (server-side build)
         run: |
           npx vercel deploy \
             --cwd apps/portfolio \
