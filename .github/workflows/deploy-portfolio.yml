@@ -24,17 +24,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build Portfolio
-        env:
-          CI: true
-        run: pnpm --filter portfolio build
-
       - name: Pull Vercel Project Settings
         run: |
           npx vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
 
+      - name: Build Portfolio
+        run: |
+          pnpm --filter portfolio build
+
       - name: Prebuild for Vercel
-        run: npx vercel build --cwd apps/portfolio
+        run: |
+          npx vercel build --cwd apps/portfolio
 
       - name: Deploy to Vercel
         run: |
