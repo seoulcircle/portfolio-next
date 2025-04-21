@@ -35,4 +35,4 @@ jobs:
 
       - name: Deploy with Vercel
         run: |
-          npx vercel deploy --cwd apps/portfolio --prebuilt --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+          npx vercel deploy --cwd apps/portfolio --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
