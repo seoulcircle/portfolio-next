@@ -22,8 +22,6 @@ const nextConfig = {
       "@": path.resolve(__dirname),
     };
 
-    // 🔥 TsconfigPathsPlugin 제거
-    // Vercel에서 불안정하게 동작하므로 수동 alias가 더 확실함
     return config;
   },
 };
