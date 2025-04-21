@@ -19,7 +19,7 @@ const nextConfig = {
       "@styles": path.resolve(__dirname, "../../packages/styles"),
       "@theme": path.resolve(__dirname, "../../packages/theme"),
       "@animations": path.resolve(__dirname, "../../packages/animations"),
-      "@": path.resolve(__dirname, "src"), // src 기준 alias
+      "@": path.resolve(__dirname),
     };
 
     // 🔥 TsconfigPathsPlugin 제거
