@@ -73,6 +73,11 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
                   icon={<GithubIcon width={30} height={30} />}
                 />
               ) : null}
+              {project.velog ? (
+                <S.Velog href={project.velog} target="_blank">
+                  <span>velog</span>
+                </S.Velog>
+              ) : null}
             </S.DemoGitWrapper>
           </S.DetailInfo>
         </S.Detail>

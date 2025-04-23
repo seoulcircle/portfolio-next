@@ -11,6 +11,7 @@ export interface Project {
   api?: string[];
   thumbnail?: StaticImageData;
   git?: string;
+  velog?: string;
 }
 
 export interface ZoomContentProps {
@@ -23,6 +24,7 @@ export interface ZoomContentProps {
     thumbnail?: StaticImageData;
     route?: string;
     git?: string;
+    velog?: string;
   };
   onClose: () => void;
 }

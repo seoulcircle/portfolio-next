@@ -33,6 +33,8 @@ export const S = {
     width: 100%;
     padding: 10px;
     position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
     @media (max-width: ${breakpoints.mobile}) {
       flex-direction: column;
     }
@@ -72,6 +74,7 @@ export const S = {
 
   ArticleItem: styled.div`
     width: 80%;
+
     @media (max-width: ${breakpoints.mobile}) {
       width: 100%;
     }
@@ -82,13 +85,11 @@ export const S = {
     padding-bottom: 1vh;
     padding-left: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    &:last-child {
+      border-bottom: none;
+    }
     & p {
       margin-bottom: 10px;
-    }
-    & h4 {
-      margin-top: 20px;
-      font-weight: ${typography.fontWeight.semibold};
-      margin-bottom: 5px;
     }
     & ul {
       margin-bottom: 10px;
@@ -100,9 +101,6 @@ export const S = {
     }
     @media (max-width: ${breakpoints.mobile}) {
       padding: 0 10px;
-      & h4 {
-        font-size: ${typography.fontSize.lg};
-      }
       & p {
         font-size: ${typography.fontSize.base};
       }
@@ -117,10 +115,11 @@ export const S = {
     margin-bottom: 10px;
     & h3 {
       font-size: ${typography.fontSize.xxl};
-      font-weight: ${typography.fontWeight.bold};
+      font-weight: ${typography.fontWeight.semibold};
     }
     & span {
       font-size: ${typography.fontSize.base};
+      margin-bottom: 5px;
     }
     @media (max-width: ${breakpoints.mobile}) {
       & h3 {

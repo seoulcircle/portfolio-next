@@ -81,4 +81,9 @@ export const S = {
     align-items: center;
     gap: 10px;
   `,
+
+  Velog: styled.a`
+    color: black;
+    margin-top: 10px;
+  `,
 };
