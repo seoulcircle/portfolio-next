@@ -3,8 +3,12 @@
 import S from "./Button.styles";
 
 import { ComponentPropsWithRef, ElementType, ReactNode } from "react";
-
-type ButtonVariant = "primary" | "outline" | "danger" | "icon" | "texticon";
+export type ButtonVariant =
+  | "primary"
+  | "outline"
+  | "danger"
+  | "icon"
+  | "texticon";
 
 type ButtonOwnProps = {
   variant?: ButtonVariant;
