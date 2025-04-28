@@ -35,6 +35,11 @@ export const IconWithText: Story = {
         ? undefined
         : iconMap[args.icon as keyof typeof iconMap];
 
+    const labelMap = {
+      plus: "추가",
+      x: "닫기",
+      check: "확인",
+    };
     const states = [
       { label: "Enabled", props: {} },
       { label: "Hover", props: { className: "pseudo-hover" } },
@@ -42,6 +47,10 @@ export const IconWithText: Story = {
       { label: "Focus", props: { className: "pseudo-focus" } },
       { label: "Disabled", props: { disabled: true } },
     ];
+    const accessibleLabel =
+      args.icon && args.icon !== "none"
+        ? labelMap[args.icon as keyof typeof labelMap]
+        : "아이콘 버튼";
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -51,7 +60,12 @@ export const IconWithText: Story = {
             style={{ display: "flex", alignItems: "center", gap: "1rem" }}
           >
             <span style={{ width: 80, color: "var(--gray-90)" }}>{label}</span>
-            <Button {...args} icon={resolvedIcon} {...props} />
+            <Button
+              {...args}
+              icon={resolvedIcon}
+              {...props}
+              aria-label={accessibleLabel}
+            />
           </div>
         ))}
       </div>

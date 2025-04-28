@@ -38,6 +38,11 @@ export const AnchorButton: Story = {
       args.icon === "none"
         ? undefined
         : iconMap[args.icon as keyof typeof iconMap];
+    const labelMap = {
+      plus: "추가",
+      x: "닫기",
+      check: "확인",
+    };
 
     const states = [
       { label: "Enabled", props: {} },
@@ -46,7 +51,10 @@ export const AnchorButton: Story = {
       { label: "Focus", props: { className: "pseudo-focus" } },
       { label: "Disabled", props: { "aria-disabled": true, tabIndex: -1 } }, // <a>는 disabled prop 안 먹히므로 대체
     ];
-
+    const accessibleLabel =
+      args.icon && args.icon !== "none"
+        ? labelMap[args.icon as keyof typeof labelMap]
+        : "아이콘 버튼";
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         {states.map(({ label, props }) => (
@@ -62,6 +70,7 @@ export const AnchorButton: Story = {
               onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
                 label === "Disabled" ? e.preventDefault() : undefined
               }
+              aria-label={accessibleLabel}
             />
           </div>
         ))}
