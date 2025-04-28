@@ -39,6 +39,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.0.0
+      '@storybook/addon-a11y':
+        specifier: ^8.6.12
+        version: 8.6.12(storybook@8.6.12)
       '@storybook/addon-essentials':
         specifier: ^8.6.12
         version: 8.6.12(@types/react@19.1.1)(storybook@8.6.12)
@@ -260,6 +263,10 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.1.2(@types/react@19.1.1)
+
+  packages/hooks: {}
+
+  packages/styles: {}
 
 packages:
 
@@ -2655,6 +2662,18 @@ packages:
   /@sindresorhus/merge-streams@2.3.0:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
+    dev: true
+
+  /@storybook/addon-a11y@8.6.12(storybook@8.6.12):
+    resolution: {integrity: sha512-H28zHiL8uuv29XsVNf9VjNWsCeht/l66GPYHT7aom1jh+f3fS9+sutrCGEBC/T7cnRpy8ZyuHCtihUqS+RI4pg==}
+    peerDependencies:
+      storybook: ^8.6.12
+    dependencies:
+      '@storybook/addon-highlight': 8.6.12(storybook@8.6.12)
+      '@storybook/global': 5.0.0
+      '@storybook/test': 8.6.12(storybook@8.6.12)
+      axe-core: 4.10.3
+      storybook: 8.6.12
     dev: true
 
   /@storybook/addon-actions@8.6.12(storybook@8.6.12):
