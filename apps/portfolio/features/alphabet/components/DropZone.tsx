@@ -61,6 +61,7 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
           <S.RightWrapper>
             {onDelete && selectedChars.length > 0 && (
               <X
+                aria-label="알파벳 삭제"
                 onClick={handleDelete}
                 style={{
                   cursor: "pointer",
@@ -69,13 +70,23 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
                   opacity: "0.5",
                 }}
                 size={isMobile ? 16 : 24}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleDelete();
+                  }
+                }}
               />
             )}
-            <S.Button onClick={handleClick}>
+            <S.Button onClick={handleClick} aria-label="한국어로 번역">
               <Languages
                 style={{ cursor: "pointer" }}
                 size={isMobile ? 20 : 36}
                 strokeWidth={isMobile ? 1.5 : 2}
+                role="img"
+                aria-hidden="true"
               />
             </S.Button>
           </S.RightWrapper>

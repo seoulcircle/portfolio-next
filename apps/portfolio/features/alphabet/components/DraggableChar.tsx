@@ -44,7 +44,15 @@ const DraggableChar = ({
   };
 
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners} style={style}>
+    <div
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      style={style}
+      tabIndex={0}
+      role="listitem"
+      aria-label={`알파벳 ${char}`}
+    >
       {char}
     </div>
   );
