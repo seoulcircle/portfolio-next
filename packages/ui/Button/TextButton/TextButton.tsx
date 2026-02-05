@@ -19,15 +19,13 @@ const TextButton = ({
     </>
   );
 
-  return href ? (
-    <S.Button as={Link} href={href} variant={variant} {...props}>
-      {content}
-    </S.Button>
-  ) : (
+  const button = (
     <S.Button variant={variant} {...props}>
       {content}
     </S.Button>
   );
+
+  return href ? <Link href={href}>{button}</Link> : button;
 };
 
 export default TextButton;
