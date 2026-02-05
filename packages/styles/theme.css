@@ -20,6 +20,7 @@
   --red-50: #750e13;
   --green-30: #34c759;
   --green-40: #22a343;
+  --test-color: #123455;
 }
 [data-theme="dark"] {
   --black: #000000;
@@ -42,4 +43,5 @@
   --red-50: #7d1b20;
   --green-30: #5bbd74;
   --green-40: #46955a;
+  --test-color: #123455;
 }

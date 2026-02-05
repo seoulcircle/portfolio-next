@@ -83,6 +83,11 @@
     "green-40": {
       "$type": "color",
       "$value": "#22a343"
+    },
+    "test-color": {
+      "$type": "color",
+      "$value": "#123455",
+      "$description": "복기용 테스트"
     }
   }
 }

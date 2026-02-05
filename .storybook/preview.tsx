@@ -2,6 +2,7 @@ import React from "react";
 import { ThemeProvider } from "@emotion/react";
 
 import type { Preview } from "@storybook/react";
+import "../packages/styles/theme.css";
 import "../packages/styles/theme-light.css";
 import "../packages/styles/theme-dark.css";
 import "../packages/styles/alias.css";

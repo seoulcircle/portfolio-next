@@ -27,6 +27,10 @@ const colorGroups = [
     name: "Green",
     colors: ["green-30", "green-40"],
   },
+  {
+    name: "Test",
+    colors: ["test-color"],
+  },
 ];
 
 export const Color = () => {
