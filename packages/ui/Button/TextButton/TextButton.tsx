@@ -12,19 +12,21 @@ const TextButton = ({
   ...props
 }: TextButtonProps) => {
   const content = (
-    <S.Button variant={variant} {...props}>
+    <>
       {icon && iconPosition === "left" && <span>{icon}</span>}
       {children}
       {icon && iconPosition === "right" && <span>{icon}</span>}
-    </S.Button>
+    </>
   );
 
   return href ? (
-    <Link href={href} passHref legacyBehavior>
+    <S.Button as={Link} href={href} variant={variant} {...props}>
       {content}
-    </Link>
+    </S.Button>
   ) : (
-    content
+    <S.Button variant={variant} {...props}>
+      {content}
+    </S.Button>
   );
 };
 

@@ -21,14 +21,12 @@ const IconButton: React.FC<IconButtonProps> = ({
     ? cloneElement(icon, { size: finalIconSize })
     : null;
 
-  const content = <S.Button {...props}>{sizedIcon}</S.Button>;
-
   return href ? (
-    <Link href={href} passHref legacyBehavior>
-      {content}
-    </Link>
+    <S.Button as={Link} href={href} {...props}>
+      {sizedIcon}
+    </S.Button>
   ) : (
-    content
+    <S.Button {...props}>{sizedIcon}</S.Button>
   );
 };
 
