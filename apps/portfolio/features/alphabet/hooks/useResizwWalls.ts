@@ -39,6 +39,34 @@ export const useResizeWalls = ({
     Matter.Body.setPosition(rightWall, { x: width + 50, y: height / 2 });
     Matter.Body.scale(rightWall, 1, height / rightWallHeight);
 
+    // 화면 밖으로 나간 알파벳들을 화면 안으로 이동
+    charBodies.forEach(({ body }) => {
+      const radius = body.circleRadius || 52; // 알파벳 반지름
+      const padding = 10; // 여유 공간
+
+      let newX = body.position.x;
+      let newY = body.position.y;
+
+      // 왼쪽 경계 체크
+      if (body.position.x - radius < padding) {
+        newX = radius + padding;
+      }
+      // 오른쪽 경계 체크
+      if (body.position.x + radius > width - padding) {
+        newX = width - radius - padding;
+      }
+      // 아래쪽 경계 체크 (화면 아래로 너무 내려간 경우)
+      if (body.position.y - radius > height) {
+        newY = height - radius - padding;
+      }
+
+      // 위치가 변경되었다면 업데이트
+      if (newX !== body.position.x || newY !== body.position.y) {
+        Matter.Body.setPosition(body, { x: newX, y: newY });
+        Matter.Body.setVelocity(body, { x: 0, y: 0 }); // 속도 초기화
+      }
+    });
+
     return () => clearTimeout(timeout);
-  }, [width, height]);
+  }, [width, height, charBodies]);
 };

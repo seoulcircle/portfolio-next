@@ -3,35 +3,44 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const { word } = await req.json();
 
-  const papagoRes = await fetch(
-    "https://papago.apigw.ntruss.com/nmt/v1/translation",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "x-ncp-apigw-api-key-id": process.env.NCP_API_KEY_ID!,
-        "x-ncp-apigw-api-key": process.env.NCP_API_KEY!,
-      },
-      body: new URLSearchParams({
-        source: "en",
-        target: "ko",
-        text: word,
-      }),
+  try {
+    // MyMemory Translation API (무료, 하루 5000 requests)
+    const myMemoryRes = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
+        word
+      )}&langpair=en|ko`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!myMemoryRes.ok) {
+      throw new Error("Translation API request failed");
     }
-  );
 
-  const data = await papagoRes.json();
-  const result = data?.message?.result;
-  const translated = result?.translatedText;
-  const detectedLang = result?.srcLangType;
+    const data = await myMemoryRes.json();
+    const translated = data?.responseData?.translatedText;
 
-  // 예외처리
-  const isMeaningless =
-    !translated ||
-    translated.toLowerCase() === word.toLowerCase() ||
-    detectedLang === "ko"; // 이미 한국어거나, 번역이 무의미한 경우
+    // 예외처리
+    const isMeaningless =
+      !translated ||
+      translated.toLowerCase() === word.toLowerCase() ||
+      translated === word ||
+      data.responseStatus !== 200;
 
-  return NextResponse.json({
-    translated: isMeaningless ? "번역할 수 없는 입력이에요." : translated,
-  });
+    return NextResponse.json({
+      translated: isMeaningless ? "번역할 수 없는 입력이에요." : translated,
+    });
+  } catch (error) {
+    console.error("Translation error:", error);
+    return NextResponse.json(
+      {
+        translated: "번역 서비스에 일시적인 문제가 발생했어요.",
+      },
+      { status: 500 }
+    );
+  }
 }

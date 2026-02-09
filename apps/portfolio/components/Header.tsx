@@ -30,9 +30,18 @@ const HomeBtn = styled.div`
   color: black;
 `;
 
+const HomeIcon = styled(Image)`
+  width: 40px;
+  height: 40px;
+
+  @media (max-width: 639px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
 function Header() {
   const [mounted, setMounted] = useState(false);
-  const isMobile = useIsMobile();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -47,12 +56,7 @@ function Header() {
     <HeaderNav $isVisible={isVisible} $isReady={isReady}>
       <Link href="/" passHref>
         <HomeBtn>
-          <Image
-            src={home}
-            alt="home icon"
-            width={isMobile ? 30 : 40}
-            height={isMobile ? 30 : 40}
-          />
+          <HomeIcon src={home} alt="home icon" width={40} height={40} />
           HOME
         </HomeBtn>
       </Link>

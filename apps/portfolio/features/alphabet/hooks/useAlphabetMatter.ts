@@ -45,6 +45,10 @@ export const useAlphabetMatter = ({
     const engine = engineRef.current;
     engine.enableSleeping = true;
     engine.gravity.y = 10;
+    
+    // 물리 엔진 안정성 향상
+    engine.positionIterations = 10; // 위치 계산 반복 횟수 증가
+    engine.velocityIterations = 8; // 속도 계산 반복 횟수 증가
 
     // 알파벳마다 matter.js 원형 body 생성
     const created: CharBody[] = alphabet.map((char, i) => {
@@ -63,8 +67,9 @@ export const useAlphabetMatter = ({
           restitution: 0,
           friction: 0.8,
           frictionStatic: 1.0,
-          frictionAir: 0.02,
-          sleepThreshold: 60,
+          frictionAir: 0.08, // 0.02 → 0.08 (공기 저항 증가)
+          sleepThreshold: 30, // 60 → 30 (더 빨리 sleep 상태 진입)
+          slop: 0.05, // 위치 오차 허용 (미세한 떨림 방지)
         }
       );
       return { char, body, bgColor };
@@ -110,6 +115,16 @@ export const useAlphabetMatter = ({
 
         const updated = prev.map(
           ({ char, body, bgColor, textColor }, index) => {
+            // 미세한 움직임 강제 중지
+            const velocity = body.velocity;
+            const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
+            
+            if (speed < 0.1 && !body.isSleeping) {
+              // 속도가 매우 느리면 강제로 멈춤
+              Matter.Body.setVelocity(body, { x: 0, y: 0 });
+              Matter.Body.setAngularVelocity(body, 0);
+            }
+
             const id = `${char}-${index}`;
             const newX = Math.round(body.position.x); // 소수점 반올림한 위치
             const newY = Math.round(body.position.y);
