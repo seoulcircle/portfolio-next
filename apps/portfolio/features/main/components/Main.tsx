@@ -14,6 +14,7 @@ import useScrollRotation from "../hooks/useScrollRotation";
 import useZoomRotation from "../hooks/useZoomRotation";
 import useCloseZoomContent from "../hooks/useCloseZoomContent";
 import { ResponsiveRadiusOptions } from "../types/main.types";
+import ScrollIndicator from "./ScrollIndicator";
 
 const Main = () => {
   const isMobile = useIsMobile();
@@ -103,6 +104,7 @@ const Main = () => {
             />
           </div>
         )}
+      <ScrollIndicator />
     </>
   );
 };
