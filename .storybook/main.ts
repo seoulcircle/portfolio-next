@@ -24,8 +24,8 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       resolve: {
         alias: {
-          "@components": path.resolve(__dirname, "../packages/components"),
-          "@styles": path.resolve(__dirname, "../packages/styles"),
+      "@components": path.resolve(__dirname, "../packages/components"),
+      "@styles": path.resolve(__dirname, "../packages/styles"),
         },
       },
     });

@@ -9,6 +9,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Emotion configuration for SSR
+  compiler: {
+    emotion: true,
+  },
   // Turbopack configuration for Next.js 16+
   turbopack: {
     resolveAlias: {

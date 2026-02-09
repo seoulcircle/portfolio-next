@@ -8,13 +8,16 @@ import Image from "next/image";
 import { useIsMobile } from "@hooks/useMediaQuery";
 import { useState, useEffect } from "react";
 
-const HeaderNav = styled.nav`
+const HeaderNav = styled.nav<{ $isVisible: boolean; $isReady: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   padding: 20px;
   cursor: pointer;
+  display: ${(props) => (props.$isVisible ? "block" : "none")};
+  opacity: ${(props) => (props.$isReady ? 1 : 0)};
+  pointer-events: ${(props) => (props.$isReady ? "auto" : "none")};
   & a {
     text-decoration: none;
   }
@@ -35,14 +38,13 @@ function Header() {
   useEffect(() => {
     setMounted(true);
   }, []);
-  // 홈에서는 헤더 숨기기
 
-  if (pathname === "/") return null;
-
-  if (!mounted) return null; // 또는 skeleton
+  const isHomePage = pathname === "/";
+  const isVisible = !isHomePage;
+  const isReady = mounted;
 
   return (
-    <HeaderNav>
+    <HeaderNav $isVisible={isVisible} $isReady={isReady}>
       <Link href="/" passHref>
         <HomeBtn>
           <Image
