@@ -7,9 +7,72 @@ const Developer = () => {
       <S.Wrapper>
         <S.Title>
           <header>
+            <h2>프리랜서 개발자</h2>
+            <div>
+              <span>개인사업자</span>
+              <span>2025.01-</span>
+            </div>
+          </header>
+        </S.Title>
+        <S.ArticleItem>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>광주 법무부 안내 키오스크, 웹뷰 뮤이 키오스크 웹 서비스 개발</h3>
+            </S.ArticleHeader>
+
+            <ul>
+              <li>
+                법무부 전시관 내 관내 키오스크 시스템을 기획·디자인·개발까지 단독 수행
+              </li>
+              <li>
+                React 기반 SPA 구조로 개발하여 화면 전환 및 프롬프트 탐색 경험 개선
+              </li>
+              <li>
+                건물 안내도, 시설 소개, 키워드로, 웹툰 콘텐츠 뷰어 등 멀티 기능 통합 웹 서비스 구축
+              </li>
+            </ul>
+          </S.Article>
+
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>워드프레스 기반 글로벌 요가넷 웹사이트 개발</h3>
+            </S.ArticleHeader>
+
+            <ul>
+              <li>
+                워드프레스 CMS 기반으로 다국어 지원 요가넷 웹사이트 구축 및 프론트엔드 개발 담당
+              </li>
+              <li>
+                예약 시스템, 회원 관리, 결제 모듈 등 필수 기능을 플러그인 조합 및 커스터마이징으로 구현
+              </li>
+            </ul>
+          </S.Article>
+
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>카페24 쇼핑몰 기반 쇼핑몰 개발</h3>
+            </S.ArticleHeader>
+
+            <ul>
+              <li>
+                PHP 기반 레거시 CMS 환경의 템플릿 구조 분석 후 상품 상세·장바구니·결제 화면 등 UI 개선
+              </li>
+              <li>
+                jQuery를 활용한 동적 상품 필터링, 실시간 재고 표시 등 구매 전환 효도 인터랙션 구현
+              </li>
+            </ul>
+            <p>
+              기술 스택: React · JavaScript(ES6+) · HTML/CSS · jQuery · WordPress · PHP
+            </p>
+          </S.Article>
+        </S.ArticleItem>
+      </S.Wrapper>
+      <S.Wrapper>
+        <S.Title>
+          <header>
             <h2>디케이테크인</h2>
             <div>
-              <span>검색서비스 개발팀</span>
+              <span>검색서비스개발팀</span>
               <span>2022.02 - 2024.05</span>
             </div>
           </header>
@@ -182,25 +245,6 @@ const Developer = () => {
           </header>
         </S.Title>
         <S.ArticleItem>
-          <S.Article>
-            <S.ArticleHeader>
-              <h3>광주 법무부 솔로몬파크 키오스크 웹 서비스 개발</h3>
-              <span>2025.02</span>
-            </S.ArticleHeader>
-
-            <ul>
-              <li>
-                키오스크용 웹 기반 UI를 기획부터 디자인, 개발까지 단독 수행
-              </li>
-              <li>
-                사용자 연령대와 시청 목적을 고려한 콘텐츠 구조 및 UX 흐름 설계
-              </li>
-              <li>터치 기반 인터랙션과 해상도 대응 중심의 웹툰 뷰어 구현</li>
-            </ul>
-
-            <p>기술 스택 : HTML · CSS · JavaScript · Swiper.js</p>
-          </S.Article>
-
           <S.Article>
             <S.ArticleHeader>
               <h3>
