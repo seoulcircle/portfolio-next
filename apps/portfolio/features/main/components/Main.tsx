@@ -33,11 +33,12 @@ const Main = () => {
   const [targetRotation, setTargetRotation] = useState<number | null>(null); // 특정 항목 클릭 시 목표 회전 각도
   const [zoomId, setZoomId] = useState<string | null>(null); // 클릭된 label의 id
   const [zoomAnimationDone, setZoomAnimationDone] = useState(false); // zoom 애니메이션 완료 여부
+  const [hideScrollIndicator, setHideScrollIndicator] = useState(false); // ScrollIndicator 숨김 여부
   const containerRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const zoomedProject = projects.find((p) => p.id === zoomId);
 
-  const { handleClick } = useZoomRotation({
+  const { handleClick: originalHandleClick } = useZoomRotation({
     targetRotation,
     rotation,
     setRotation,
@@ -46,6 +47,12 @@ const Main = () => {
     setZoomId,
     isZoomed,
   });
+
+  // label 클릭 시 ScrollIndicator도 숨김
+  const handleClick = (index: number) => {
+    setHideScrollIndicator(true);
+    originalHandleClick(index);
+  };
 
   //zoomout
   useCloseZoomContent({
@@ -104,7 +111,7 @@ const Main = () => {
             />
           </div>
         )}
-      <ScrollIndicator />
+      <ScrollIndicator hide={hideScrollIndicator} />
     </>
   );
 };

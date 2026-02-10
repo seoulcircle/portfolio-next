@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { S } from "../styles/ScrollIndicator.style";
 
-const ScrollIndicator = () => {
+interface ScrollIndicatorProps {
+  hide?: boolean;
+}
+
+const ScrollIndicator = ({ hide = false }: ScrollIndicatorProps) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -29,6 +33,13 @@ const ScrollIndicator = () => {
       window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
+
+  // hide prop이 true이면 숨김
+  useEffect(() => {
+    if (hide) {
+      setIsVisible(false);
+    }
+  }, [hide]);
 
   if (!isVisible) return null;
 

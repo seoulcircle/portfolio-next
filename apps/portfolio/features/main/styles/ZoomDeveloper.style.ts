@@ -16,13 +16,20 @@ export const S = {
     display: flex;
     flex-direction: column;
     height: 90vh;
-    overflow: scroll;
+    height: 90dvh; /* 동적 viewport height 사용 */
+    max-height: 90vh; /* fallback */
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     background: ${colors.white};
     border-radius: 10px;
     @media (max-width: ${breakpoints.mobile}) {
       width: 100vw;
       border-radius: 0px;
-      height: 90vh;
+      height: 100vh;
+      height: 100dvh; /* 모바일에서는 전체 화면 사용 */
+      max-height: 100vh;
     }
   `,
 
