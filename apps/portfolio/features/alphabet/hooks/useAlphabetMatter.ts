@@ -10,7 +10,6 @@ export const useAlphabetMatter = ({
   engineRef,
   sceneRef,
   width,
-  height,
   walls,
 }: UseAlphabetMatterProps) => {
   const [charBodies, setCharBodies] = useState<CharBody[]>([]);
@@ -65,12 +64,12 @@ export const useAlphabetMatter = ({
         isMobile ? 40 : 52,
         {
           mass: isMobile ? 1 : 10,
-          restitution: 0, // 튕김 없음
-          friction: 0.9, // 0.8 → 0.9 (마찰력 증가)
-          frictionStatic: 1.5, // 1.0 → 1.5 (정지 마찰력 증가)
-          frictionAir: 0.1, // 0.08 → 0.1 (공기 저항 더 증가)
-          sleepThreshold: 20, // 30 → 20 (더욱 빨리 sleep)
-          slop: 0.05, // 위치 오차 허용
+          restitution: 0,
+          friction: 0.8,
+          frictionStatic: 1.0,
+          frictionAir: 0.08, // 0.02 → 0.08 (공기 저항 증가)
+          sleepThreshold: 30, // 60 → 30 (더 빨리 sleep 상태 진입)
+          slop: 0.05, // 위치 오차 허용 (미세한 떨림 방지)
         }
       );
       return { char, body, bgColor };
@@ -91,30 +90,6 @@ export const useAlphabetMatter = ({
       ...created.map((c) => c.body),
       mouseConstraint,
     ]);
-
-    // 충돌 감지로 바닥에 닿으면 완전히 정지
-    Matter.Events.on(engine, "collisionStart", (event) => {
-      event.pairs.forEach((pair) => {
-        const { bodyA, bodyB } = pair;
-        
-        // 벽과 충돌한 body 찾기
-        const wall = bodyA.label === "wall" ? bodyA : bodyB.label === "wall" ? bodyB : null;
-        const charBody = bodyA.label === "wall" ? bodyB : bodyA;
-        
-        if (wall && charBody.label !== "wall") {
-          // 바닥(floor)과 충돌한 경우만 처리
-          if (wall === walls.floor) {
-            // 속도가 느리면 완전히 정지
-            const speed = Math.sqrt(charBody.velocity.x ** 2 + charBody.velocity.y ** 2);
-            if (speed < 1) {
-              Matter.Body.setVelocity(charBody, { x: 0, y: 0 });
-              Matter.Body.setAngularVelocity(charBody, 0);
-              Matter.Sleeping.set(charBody, true); // 강제로 sleep 상태로
-            }
-          }
-        }
-      });
-    });
 
     // matter.js 러너 시작 -> 물리 엔진 작동 시작
     const runner = Runner.create();
@@ -143,18 +118,9 @@ export const useAlphabetMatter = ({
             // 미세한 움직임 강제 중지
             const velocity = body.velocity;
             const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
-            const angularSpeed = Math.abs(body.angularVelocity);
             
-            // 바닥 근처에 있고 속도가 느리면 완전히 freeze
-            const nearFloor = body.position.y > height - 100;
-            
-            if (nearFloor && speed < 0.5 && angularSpeed < 0.01) {
-              // 완전히 정지
-              Matter.Body.setVelocity(body, { x: 0, y: 0 });
-              Matter.Body.setAngularVelocity(body, 0);
-              Matter.Sleeping.set(body, true); // sleep 상태로 전환
-            } else if (speed < 0.1 && angularSpeed < 0.01) {
-              // 일반적인 경우도 속도가 매우 느리면 멈춤
+            if (speed < 0.1 && !body.isSleeping) {
+              // 속도가 매우 느리면 강제로 멈춤
               Matter.Body.setVelocity(body, { x: 0, y: 0 });
               Matter.Body.setAngularVelocity(body, 0);
             }
