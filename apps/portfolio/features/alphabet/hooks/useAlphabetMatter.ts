@@ -64,11 +64,11 @@ export const useAlphabetMatter = ({
         -50 - i * 20,
         isMobile ? 40 : 52,
         {
-          mass: isMobile ? 1 : 10,
+          mass: isMobile ? 5 : 10, // 모바일 질량 증가 (1 → 5)
           restitution: 0,
           friction: 0.8,
           frictionStatic: 1.0,
-          frictionAir: 0.1, // 공기 저항 증가
+          frictionAir: isMobile ? 0.08 : 0.1, // 모바일 공기 저항 감소
           sleepThreshold: 15, // sleep 상태 빠르게 진입
           slop: 0.05, // 위치 오차 허용 (미세한 떨림 방지)
         }
