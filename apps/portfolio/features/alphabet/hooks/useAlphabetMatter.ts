@@ -47,8 +47,9 @@ export const useAlphabetMatter = ({
     engine.gravity.y = 10;
     
     // 물리 엔진 안정성 향상
-    engine.positionIterations = 10; // 위치 계산 반복 횟수 증가
-    engine.velocityIterations = 8; // 속도 계산 반복 횟수 증가
+    engine.positionIterations = 12; // 위치 계산 반복 횟수 증가
+    engine.velocityIterations = 10; // 속도 계산 반복 횟수 증가
+    engine.timing.timeScale = 1; // 시간 스케일 고정
 
     // 알파벳마다 matter.js 원형 body 생성
     const created: CharBody[] = alphabet.map((char, i) => {
@@ -67,8 +68,8 @@ export const useAlphabetMatter = ({
           restitution: 0,
           friction: 0.8,
           frictionStatic: 1.0,
-          frictionAir: 0.08, // 0.02 → 0.08 (공기 저항 증가)
-          sleepThreshold: 30, // 60 → 30 (더 빨리 sleep 상태 진입)
+          frictionAir: 0.1, // 공기 저항 증가
+          sleepThreshold: 15, // sleep 상태 빠르게 진입
           slop: 0.05, // 위치 오차 허용 (미세한 떨림 방지)
         }
       );
@@ -92,7 +93,10 @@ export const useAlphabetMatter = ({
     ]);
 
     // matter.js 러너 시작 -> 물리 엔진 작동 시작
-    const runner = Runner.create();
+    const runner = Runner.create({
+      delta: 1000 / 60, // 고정 타임스텝 (60fps)
+      isFixed: true, // 고정 타임스텝 활성화
+    });
     Runner.run(runner, engine);
     runnerRef.current = runner;
 
@@ -118,19 +122,24 @@ export const useAlphabetMatter = ({
             // 미세한 움직임 강제 중지
             const velocity = body.velocity;
             const speed = Math.sqrt(velocity.x ** 2 + velocity.y ** 2);
+            const angularSpeed = Math.abs(body.angularVelocity);
             
-            if (speed < 0.1 && !body.isSleeping) {
-              // 속도가 매우 느리면 강제로 멈춤
+            if (speed < 0.05 && angularSpeed < 0.01 && !body.isSleeping) {
+              // 속도가 매우 느리면 강제로 멈추고 sleep 상태로
               Matter.Body.setVelocity(body, { x: 0, y: 0 });
               Matter.Body.setAngularVelocity(body, 0);
+              Matter.Sleeping.set(body, true);
             }
 
             const id = `${char}-${index}`;
-            const newX = Math.round(body.position.x); // 소수점 반올림한 위치
+            const newX = Math.round(body.position.x);
             const newY = Math.round(body.position.y);
             const prevPos = prevPositions.get(id);
 
-            if (!prevPos || newX !== prevPos.x || newY !== prevPos.y) {
+            // 2픽셀 이상 움직였을 때만 업데이트 (미세한 떨림 무시)
+            if (!prevPos || 
+                Math.abs(newX - prevPos.x) >= 2 || 
+                Math.abs(newY - prevPos.y) >= 2) {
               hasChanged = true;
               prevPositions.set(id, { x: newX, y: newY });
             }
