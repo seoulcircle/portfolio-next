@@ -4,10 +4,13 @@ export async function POST(req: NextRequest) {
   const { word } = await req.json();
 
   try {
+    // 소문자로 변환하여 더 정확한 번역 (HI → hi)
+    const normalizedWord = word.toLowerCase();
+    
     // MyMemory Translation API (무료, 하루 5000 requests)
     const myMemoryRes = await fetch(
       `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
-        word
+        normalizedWord
       )}&langpair=en|ko`,
       {
         method: "GET",
