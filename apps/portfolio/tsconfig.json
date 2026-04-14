@@ -10,15 +10,17 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "plugins": [{ "name": "next" }],
-    "ignoreDeprecations": "6.0",
     "module": "esnext",
     "moduleResolution": "bundler"
   },
   "include": [
     "next-env.d.ts",
-    "app", // ✅ 기존 "src" 대신 app
-    "components", // ✅ 직접 경로 추가
-    "features", // ✅ 직접 경로 추가
+    "app",
+    "components",
+    "features",
+    "i18n",
+    "messages",
+    "proxy.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
