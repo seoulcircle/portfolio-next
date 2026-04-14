@@ -1,266 +1,185 @@
 "use client";
+import { useTranslations } from "next-intl";
 import { S } from "../styles/ZoomDeveloper.style";
 
 const Developer = () => {
+  const t = useTranslations("developer");
+
+  const freelancerKioskItems = t.raw("freelancer.kiosk.items") as string[];
+  const freelancerYogaItems = t.raw("freelancer.yoga.items") as string[];
+  const freelancerCafe24Items = t.raw("freelancer.cafe24.items") as string[];
+
+  const daumItems = t.raw("dktechin.daum.items") as string[];
+  const electionItems = t.raw("dktechin.election.items") as string[];
+  const storybookItems = t.raw("dktechin.storybook.items") as string[];
+  const realestateItems = t.raw("dktechin.realestate.items") as string[];
+
+  const designSystemItems = t.raw("projects.designSystem.items") as string[];
+  const portfolioItems = t.raw("projects.portfolio.items") as string[];
+
+  const paperItems = t.raw("externalActivities.paper.items") as string[];
+
   return (
     <S.Developer>
       <S.Wrapper>
         <S.Title>
           <header>
-            <h2>프리랜서 개발자</h2>
+            <h2>{t("freelancer.title")}</h2>
             <div>
-              <span>개인사업자</span>
-              <span>2025.01-</span>
+              <span>{t("freelancer.role")}</span>
+              <span>{t("freelancer.period")}</span>
             </div>
           </header>
         </S.Title>
         <S.ArticleItem>
           <S.Article>
             <S.ArticleHeader>
-              <h3>광주 법무부 안내 키오스크, 웹툰 뷰어 키오스크 웹 서비스 개발</h3>
+              <h3>{t("freelancer.kiosk.title")}</h3>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-              법무부 전시관 내 안내 키오스크 시스템을 기획·디자인·프론트엔드 개발까지 단독 수행
-              </li>
-              <li>
-              React 기반 SPA 구조로 개발하여 화면 전환 및 콘텐츠 탐색 경험 개선
-              </li>
-              <li>
-              건물 안내도, 시설 소개, 카탈로그, 웹툰 콘텐츠 뷰어 등 멀티 기능 통합 웹 서비스 구축
-              </li>
+              {freelancerKioskItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
           </S.Article>
 
           <S.Article>
             <S.ArticleHeader>
-              <h3>워드프레스 기반 글로벌 요가원 웹사이트 개발</h3>
+              <h3>{t("freelancer.yoga.title")}</h3>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-              워드프레스 CMS 기반으로 다국어 지원 요가원 웹사이트 구축 및 프론트엔드 개발 담당
-              </li>
-              <li>
-              예약 시스템, 회원 관리, 결제 모듈 등 필수 기능을 플러그인 조합 및 커스터마이징으로 구현
-              </li>
+              {freelancerYogaItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
           </S.Article>
 
           <S.Article>
             <S.ArticleHeader>
-              <h3>카페24·그누보드 기반 쇼핑몰 개발</h3>
+              <h3>{t("freelancer.cafe24.title")}</h3>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-              PHP 기반 레거시 CMS 환경의 템플릿 구조 분석 후 상품 상세·장바구니·결제 흐름 UI 개선
-              </li>
-              <li>
-              jQuery를 활용한 동적 상품 필터링, 실시간 재고 표시 등 구매 전환 유도 인터랙션 구현
-              </li>
+              {freelancerCafe24Items.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
-            <p>
-            기술 스택: React · JavaScript(ES6+) · HTML/CSS · jQuery · WordPress · PHP
-            </p>
+            <p>{t("freelancer.cafe24.stack")}</p>
           </S.Article>
         </S.ArticleItem>
       </S.Wrapper>
+
       <S.Wrapper>
         <S.Title>
           <header>
-            <h2>디케이테크인</h2>
+            <h2>{t("dktechin.title")}</h2>
             <div>
-              <span>검색서비스개발팀</span>
-              <span>2022.02 - 2024.05</span>
+              <span>{t("dktechin.team")}</span>
+              <span>{t("dktechin.period")}</span>
             </div>
           </header>
         </S.Title>
         <S.ArticleItem>
           <S.Article>
             <S.ArticleHeader>
-              <h3>다음(Daum) 검색 컬렉션 프론트엔드 개발</h3>
-              <span>2022.04 - 2024.05</span>
+              <h3>{t("dktechin.daum.title")}</h3>
+              <span>{t("dktechin.daum.period")}</span>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                장소, 주식, 세계시간, 날씨 등 다양한 컬렉션의 UI 개발 및 기능
-                개선
-              </li>
-              <li>
-                기획·디자인·백엔드와 협업해 기술 제약, 접근성, 데이터 구조를
-                고려한 UI 설계 조율
-              </li>
-              <li>
-                40여 개 디바이스/브라우저 환경 대응 테스트로 UI 일관성 확보
-              </li>
+              {daumItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
           </S.Article>
 
           <S.Article>
             <S.ArticleHeader>
-              <h3>2024 제22대 국회의원선거 컬렉션 개발</h3>
-              <span>2023.12 - 2024.04</span>
+              <h3>{t("dktechin.election.title")}</h3>
+              <span>{t("dktechin.election.period")}</span>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                총선 기간 운영되는 시즈널 컬렉션으로, 빠른 응답성과 높은
-                정확도를 우선한 투표소 검색 UI 개발
-              </li>
-              <li>
-                검색어 또는 현위치 기반 요청 시, 리스트 영역만 AJAX로 교체
-                렌더링해 경량 UI 구현
-              </li>
-              <li>
-                정규식 기반 입력값 필터링으로 파라미터 변조·XSS 등 기초적인
-                클라이언트 보안 위협 사전 차단
-              </li>
-              <li>
-                카카오맵 서비스팀과 협업해 검색 반경·정렬 기준·키워드 해석 방식
-                일치화 → 정합도 약 97% 달성
-              </li>
+              {electionItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
           </S.Article>
 
           <S.Article>
             <S.ArticleHeader>
-              <h3>검색 UI Storybook 기반 구조로 전환</h3>
-              <span>2024.01 - 2024.05</span>
+              <h3>{t("dktechin.storybook.title")}</h3>
+              <span>{t("dktechin.storybook.period")}</span>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                Freemarker → React + Storybook 컴포넌트 구조로 점진적 전환
-              </li>
-              <li>
-                기획·디자인팀과 UI 구성 원칙 수립, 공통 요소를컴포넌트화하여
-                신규 개발과 유지보수 시 재사용성을 확보
-              </li>
-              <li>
-                Storybook 시각화 도입으로 QA·디자인 커뮤니케이션 효율 약 1.5배
-                향상
-              </li>
-              <li>
-                Node 기반 프론트 중심 빌드 및 배포 환경 전환 과정 직접 경험
-              </li>
+              {storybookItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
           </S.Article>
 
           <S.Article>
             <S.ArticleHeader>
-              <h3>부동산 컬렉션 신규 기능 구현 및 개선</h3>
-              <span>2023.06 - 2023.10</span>
+              <h3>{t("dktechin.realestate.title")}</h3>
+              <span>{t("dktechin.realestate.period")}</span>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                3단계 지역 드롭다운 필터 구현 및 쿼리 기반 새로고침으로 검색
-                엔진 색인 최적화
-              </li>
-              <li>
-                실거래 유형 데이터를 항목별로 분리 시각화해 비교 탐색 흐름 개선
-              </li>
-              <li>
-                Flipsnap 슬라이드, 면적 단위 전환, 카카오 공유 등 UI 기능 jQuery
-                기반으로 구현
-              </li>
-              <li>
-                기존 백엔드 중심 개발 흐름을 목업 데이터 기반 프론트 선개발
-                구조로 전환해 개발 속도와 협업 효율 향상
-              </li>
+              {realestateItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
-            <p>
-              기술 스택 : JavaScript · TypeScript · React · jQuery · Freemarker
-              · SCSS · Storybook
-            </p>
+            <p>{t("dktechin.realestate.stack")}</p>
           </S.Article>
         </S.ArticleItem>
       </S.Wrapper>
+
       <S.Wrapper>
         <S.Title>
           <header>
-            <h2>프로젝트</h2>
+            <h2>{t("projects.title")}</h2>
           </header>
         </S.Title>
         <S.ArticleItem>
           <S.Article>
             <S.ArticleHeader>
-              <h3>디자인 시스템 기반 UI 컴포넌트 구축 및 배포 자동화</h3>
+              <h3>{t("projects.designSystem.title")}</h3>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                Figma 디자인 토큰을 기반으로 React + Storybook 컴포넌트 구현
-              </li>
-              <li>
-                GitHub Actions로 정적(Storybook)·동적(Next.js) 서비스 분리 배포
-                자동화
-              </li>
-              <li>
-                Monorepo 구조로 프로젝트 관리, 유지보수성과 배포 효율성 향상
-              </li>
+              {designSystemItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
-            <p>
-              기술 스택 : Next.js · React · TypeScript · Emotion · Storybook ·
-              Figma · GitHub Actions · Vercel · pnpm
-            </p>
+            <p>{t("projects.designSystem.stack")}</p>
           </S.Article>
 
           <S.Article>
             <S.ArticleHeader>
-              <h3>인터랙션 기반 포트폴리오 프로젝트</h3>
-              <span>2023.06 - 2023.10</span>
+              <h3>{t("projects.portfolio.title")}</h3>
+              <span>{t("projects.portfolio.period")}</span>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                Framer Motion, Matter.js, dnd-kit 등을 활용한 인터랙션 중심 토이
-                프로젝트 개발
-              </li>
-              <li>
-                Alphabet Builder : 드래그 및 물리 엔진으로 알파벳 조합 게임 구현
-              </li>
-              <li>
-                Day Palette : 날씨 데이터를 기반으로 컬러 그라데이션 UI 시각화
-              </li>
-              <li>
-                Time Question : 시간대별 질문이 분 단위로 전환되는 인터랙션 기반
-                UI
-              </li>
+              {portfolioItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
-            <p>
-              기술 스택 : React · TypeScript · Emotion · Framer Motion ·
-              Matter.js · dnd-kit
-            </p>
+            <p>{t("projects.portfolio.stack")}</p>
           </S.Article>
         </S.ArticleItem>
       </S.Wrapper>
+
       <S.Wrapper>
         <S.Title>
           <header>
-            <h2>외부 활동</h2>
+            <h2>{t("externalActivities.title")}</h2>
           </header>
         </S.Title>
         <S.ArticleItem>
           <S.Article>
             <S.ArticleHeader>
-              <h3>
-                「디지털 패션 테크 플랫폼 무신사의 반응형 웹 디자인 개발」 논문
-                기고
-              </h3>
-              <span>2022.09</span>
+              <h3>{t("externalActivities.paper.title")}</h3>
+              <span>{t("externalActivities.paper.period")}</span>
             </S.ArticleHeader>
-
             <ul>
-              <li>
-                기존 적응형 웹 구조를 반응형 웹으로 재설계하는 과정을 논문화
-              </li>
-              <li>
-                다양한 해상도 및 사용자 행동 패턴을 고려한 UI/UX 개선 방향 제안
-              </li>
+              {paperItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
             </ul>
           </S.Article>
         </S.ArticleItem>

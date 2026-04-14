@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { S } from "../styles/ColorSlider.style";
 import { SliderProps } from "../types/weather.types";
+import { useTranslations } from "next-intl";
 
 const ColorSlider = ({
   onClose,
@@ -95,6 +96,7 @@ const ColorSlider = ({
     };
   };
   const { temperature, humidity } = getWeatherData(hour);
+  const t = useTranslations("colorSlider");
 
   // 시간 value에 따라서 원형 포지션 설정
   const getBottomPosition = (hour: number) => {
@@ -141,7 +143,7 @@ const ColorSlider = ({
               {Array.from({ length: 18 }).map((_, index) => (
                 <S.TimeLabel key={index} isActive={index + 6 === hour}>
                   {index + 6}
-                  <span>시</span>
+                  <span>{t("hourUnit")}</span>
                 </S.TimeLabel>
               ))}
             </S.TimeLabels>
@@ -149,13 +151,13 @@ const ColorSlider = ({
           <S.WeatherData>
             <p>
               {hour < 6 ? (
-                <span>오전 6시에 확인해주세요.</span>
+                <span>{t("checkAt6")}</span>
               ) : (
-                <span>{hour}시</span>
+                <span>{t("currentHour", { hour })}</span>
               )}
             </p>
-            <p>온도: {temperature}°C</p>
-            <p>습도: {humidity}%</p>
+            <p>{t("temperature")}: {temperature}°C</p>
+            <p>{t("humidity")}: {humidity}%</p>
           </S.WeatherData>
         </S.Overlay>
       )}

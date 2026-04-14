@@ -54,7 +54,8 @@ export interface RecycleCharProps {
 }
 
 export interface IWordTranslation {
-  translated: string;
+  translated: string | null;
+  code?: string;
 }
 
 export interface DropZoneStyledProps extends HTMLAttributes<HTMLDivElement> {

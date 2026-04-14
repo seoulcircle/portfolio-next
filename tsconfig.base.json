@@ -13,6 +13,7 @@
     },
 
     "strict": true,
+    "ignoreDeprecations": "6.0",
     "moduleResolution": "node16",
     "module": "node16",
     "target": "esnext",

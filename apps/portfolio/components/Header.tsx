@@ -1,12 +1,12 @@
 "use client";
 
 import styled from "@emotion/styled";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import home from "../public/home.svg";
 import Image from "next/image";
-import { useIsMobile } from "@hooks/useMediaQuery";
 import { useState, useEffect } from "react";
+import { useLocale } from "next-intl";
+import { Link } from "../i18n/navigation";
 
 const HeaderNav = styled.nav<{ $isVisible: boolean; $isReady: boolean }>`
   position: fixed;
@@ -15,7 +15,9 @@ const HeaderNav = styled.nav<{ $isVisible: boolean; $isReady: boolean }>`
   z-index: 1000;
   padding: 20px;
   cursor: pointer;
-  display: ${(props) => (props.$isVisible ? "block" : "none")};
+  display: ${(props) => (props.$isVisible ? "flex" : "none")};
+  align-items: center;
+  gap: 16px;
   opacity: ${(props) => (props.$isReady ? 1 : 0)};
   pointer-events: ${(props) => (props.$isReady ? "auto" : "none")};
   & a {
@@ -40,17 +42,37 @@ const HomeIcon = styled(Image)`
   }
 `;
 
+const LangSwitch = styled(Link)`
+  font-size: 13px;
+  font-weight: 600;
+  color: black;
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 function Header() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const isHomePage = pathname === "/";
+  // pathname from next/navigation includes locale prefix e.g. /ko/alphabet
+  const pathSegments = pathname.split("/").filter(Boolean);
+  const pathWithoutLocale =
+    pathSegments.length <= 1 ? "/" : "/" + pathSegments.slice(1).join("/");
+
+  const isHomePage = pathWithoutLocale === "/";
   const isVisible = !isHomePage;
   const isReady = mounted;
+  const otherLocale = locale === "ko" ? "en" : "ko";
 
   return (
     <HeaderNav $isVisible={isVisible} $isReady={isReady}>
@@ -60,6 +82,9 @@ function Header() {
           HOME
         </HomeBtn>
       </Link>
+      <LangSwitch href={pathWithoutLocale} locale={otherLocale}>
+        {otherLocale.toUpperCase()}
+      </LangSwitch>
     </HeaderNav>
   );
 }

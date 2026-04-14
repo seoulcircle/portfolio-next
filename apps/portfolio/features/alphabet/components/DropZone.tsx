@@ -7,9 +7,12 @@ import { usePapagoTranslationMutation } from "../hooks/usePapagoTranslationMutat
 import { X, Languages } from "lucide-react";
 import { useIsMobile } from "@hooks/useMediaQuery";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
 const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
   const [isClient, setIsClient] = useState(false);
   const [translatedText, setTranslatedText] = useState("안녕하세요");
+  const t = useTranslations("alphabet");
 
   useEffect(() => {
     setIsClient(true);
@@ -31,7 +34,9 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
     const word = selectedChars.join("");
     mutate(word, {
       onSuccess: (data) => {
-        setTranslatedText(data.translated);
+        setTranslatedText(
+          data.code === "invalid_input" ? t("invalidInput") : data.translated ?? ""
+        );
       },
     });
   };
@@ -41,7 +46,7 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
     <S.DropZoneContainer>
       <S.DefinitionWrapper>
         {isPending && <p>Loading...</p>}
-        {isError && <p>번역 실패</p>}
+        {isError && <p>{t("translateError")}</p>}
         {translatedText}
       </S.DefinitionWrapper>
       <S.DropZoneWrapper>
@@ -61,7 +66,7 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
           <S.RightWrapper>
             {onDelete && selectedChars.length > 0 && (
               <X
-                aria-label="알파벳 삭제"
+                aria-label={t("deleteLabel")}
                 onClick={handleDelete}
                 style={{
                   cursor: "pointer",
@@ -80,7 +85,7 @@ const DropZone = ({ selectedChars, bgColor, onDelete }: DropZoneProps) => {
                 }}
               />
             )}
-            <S.Button onClick={handleClick} aria-label="한국어로 번역">
+            <S.Button onClick={handleClick} aria-label={t("translateLabel")}>
               <Languages
                 style={{ cursor: "pointer" }}
                 size={isMobile ? 20 : 36}

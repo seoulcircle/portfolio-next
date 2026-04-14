@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     // 소문자로 변환하여 더 정확한 번역 (HI → hi)
     const normalizedWord = word.toLowerCase();
-    
+
     // MyMemory Translation API (무료, 하루 5000 requests)
     const myMemoryRes = await fetch(
       `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
@@ -34,15 +34,15 @@ export async function POST(req: NextRequest) {
       translated === word ||
       data.responseStatus !== 200;
 
-    return NextResponse.json({
-      translated: isMeaningless ? "번역할 수 없는 입력이에요." : translated,
-    });
+    if (isMeaningless) {
+      return NextResponse.json({ translated: null, code: "invalid_input" });
+    }
+
+    return NextResponse.json({ translated });
   } catch (error) {
     console.error("Translation error:", error);
     return NextResponse.json(
-      {
-        translated: "번역 서비스에 일시적인 문제가 발생했어요.",
-      },
+      { translated: null, code: "service_error" },
       { status: 500 }
     );
   }

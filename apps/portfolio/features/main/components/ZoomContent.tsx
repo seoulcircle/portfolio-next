@@ -11,9 +11,24 @@ import GithubIcon from "../data/githubIcon";
 import TextButton from "@ui/Button/TextButton";
 import Badge from "@ui/Badge/Badge";
 import IconButton from "@ui/Button/IconButton/IconButton";
+import { useTranslations } from "next-intl";
+
+const TRANSLATED_PROJECT_IDS = [
+  "honglee",
+  "design",
+  "daypalette",
+  "timequestion",
+  "alphabet",
+];
 
 const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
   useLockBodyZoomScroll(true);
+  const t = useTranslations();
+
+  const description = TRANSLATED_PROJECT_IDS.includes(project.id)
+    ? (t.raw(`projects.${project.id}.description`) as string)
+    : project.description;
+
   return (
     <>
       {project.id === "developer" ? (
@@ -37,10 +52,10 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
           <S.DetailInfo>
             {project.id === "honglee" ? (
               <S.Introduction
-                dangerouslySetInnerHTML={{ __html: project.description }}
+                dangerouslySetInnerHTML={{ __html: description }}
               />
             ) : (
-              <p>{project.description}</p>
+              <p>{description}</p>
             )}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 1px" }}>
               {project.stack?.map((item) => (
@@ -86,7 +101,7 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
         <X size={30} strokeWidth={1.5} />
       </S.CloseButton> */}
       <IconButton
-        aria-label="닫기"
+        aria-label={t("zoomContent.closeLabel")}
         icon={<X size={30} strokeWidth={1.5} />}
         onClick={onClose}
         style={{ position: "absolute", top: "20px", right: "20px" }}

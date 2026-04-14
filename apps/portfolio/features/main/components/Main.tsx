@@ -15,9 +15,44 @@ import useZoomRotation from "../hooks/useZoomRotation";
 import useCloseZoomContent from "../hooks/useCloseZoomContent";
 import { ResponsiveRadiusOptions } from "../types/main.types";
 import ScrollIndicator from "./ScrollIndicator";
+import { useLocale } from "next-intl";
+import { Link } from "../../../i18n/navigation";
+import styled from "@emotion/styled";
+
+const LangToggle = styled.div`
+  position: fixed;
+  top: 38px;
+  right: 38px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+`;
+
+const LangBtn = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "$active",
+})<{ $active: boolean }>`
+  color: black;
+  text-decoration: none;
+  opacity: ${({ $active }) => ($active ? 1 : 0.3)};
+  pointer-events: ${({ $active }) => ($active ? "none" : "auto")};
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const Divider = styled.span`
+  opacity: 0.3;
+`;
 
 const Main = () => {
   const isMobile = useIsMobile();
+  const locale = useLocale();
   const tickRadius = useResponsiveRadius(isMobile ? 0.4 : 0.21, {
     min: 70,
     max: isMobile ? 200 : 700,
@@ -112,6 +147,11 @@ const Main = () => {
           </div>
         )}
       <ScrollIndicator hide={hideScrollIndicator} />
+      <LangToggle style={{ display: isZoomed ? "none" : "flex" }}>
+        <LangBtn href="/" locale="ko" $active={locale === "ko"}>KO</LangBtn>
+        <Divider>|</Divider>
+        <LangBtn href="/" locale="en" $active={locale === "en"}>EN</LangBtn>
+      </LangToggle>
     </>
   );
 };

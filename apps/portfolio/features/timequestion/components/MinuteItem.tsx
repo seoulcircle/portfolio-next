@@ -2,6 +2,7 @@ import React from "react";
 import { S } from "../styles/MinuteItem.style";
 import { useIsMobile } from "@hooks/useMediaQuery";
 import { MinuteItemProps, TimeState } from "../types/timequestion.types";
+import { useTranslations } from "next-intl";
 
 //현재 Minute 기준으로 작으면 -> placeholder 변경
 const getTimeState = (minute: string, nowMinute: number): TimeState => {
@@ -20,6 +21,7 @@ const MinuteItem = ({
   isDisabled,
 }: MinuteItemProps) => {
   const isMobile = useIsMobile();
+  const t = useTranslations("timequestion");
   // dummy 분기 처리
   if (minute === "") {
     return (
@@ -49,7 +51,7 @@ const MinuteItem = ({
       >
         {timeState === "future" && (
           <S.FutureOverlay>
-            <S.FutureText>곧 다가올 순간이에요.</S.FutureText>
+            <S.FutureText>{t("future")}</S.FutureText>
           </S.FutureOverlay>
         )}
 
@@ -60,7 +62,7 @@ const MinuteItem = ({
               <S.Answer>{value}</S.Answer>
             </>
           ) : (
-            <S.Answer>지나간 순간이에요.</S.Answer>
+            <S.Answer>{t("past")}</S.Answer>
           )
         ) : (
           <>
@@ -70,7 +72,7 @@ const MinuteItem = ({
                 <S.Input
                   value={value}
                   onChange={onChange}
-                  placeholder={"여기에 순간을 적어보세요."}
+                  placeholder={t("placeholder")}
                   disabled={isDisabled}
                 />
               </>

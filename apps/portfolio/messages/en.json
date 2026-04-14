@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "title": "Hong Lee's Portfolio",
+    "description": "Frontend Interactive Portfolio"
+  },
+  "header": {
+    "home": "HOME"
+  },
+  "projects": {
+    "honglee": {
+      "description": "<p>Frontend developer with 3 years of experience based in Seoul, with a passion for crafting beautiful interfaces and animations.</p><p>I believe a developer's value comes from improving lives through better technology. At Daum — one of Korea's largest search platforms under Kakao — I focused on UI consistency, search flow optimization, and accurate information delivery.</p><p>Having worked across design, product, and development, I understand the importance of collaboration.</p>"
+    },
+    "design": {
+      "description": "Built a design system that auto-converts Figma design tokens to CSS variables for theme consistency. Documented components with Storybook and automated separate static/dynamic deployments using GitHub Actions in a monorepo."
+    },
+    "daypalette": {
+      "description": "A UI dashboard that visualizes daily weather and air quality data as gradient color values"
+    },
+    "timequestion": {
+      "description": "A time-based interactive UI with hourly state management, per-minute updates, and random content logic"
+    },
+    "alphabet": {
+      "description": "A word-building web interface combining drag & drop, gravity physics, and real-time translation"
+    }
+  },
+  "developer": {
+    "freelancer": {
+      "title": "Freelance Developer",
+      "role": "Self-employed",
+      "period": "2025.01–",
+      "kiosk": {
+        "title": "Ministry of Justice Kiosk & Webtoon Viewer Web Service (Gwangju)",
+        "items": [
+          "Solely handled planning, design, and frontend development for the exhibition hall information kiosk system",
+          "Built a React SPA to improve screen transitions and content navigation experience",
+          "Integrated building maps, facility guides, catalogs, and a webtoon viewer into a single web service"
+        ]
+      },
+      "yoga": {
+        "title": "WordPress-based Global Yoga Studio Website",
+        "items": [
+          "Led frontend development of a multilingual yoga studio site using WordPress CMS",
+          "Implemented reservations, membership management, and payment modules via plugin customization"
+        ]
+      },
+      "cafe24": {
+        "title": "Cafe24 & Gnuboard-based Online Shop Development",
+        "items": [
+          "Analyzed legacy PHP CMS template structure and improved product detail, cart, and checkout UI",
+          "Implemented dynamic product filtering and real-time inventory display using jQuery"
+        ],
+        "stack": "Tech Stack: React · JavaScript (ES6+) · HTML/CSS · jQuery · WordPress · PHP"
+      }
+    },
+    "dktechin": {
+      "title": "DK Techin",
+      "team": "Search Service Development Team",
+      "period": "2022.02 – 2024.05",
+      "daum": {
+        "title": "Daum Search Collection Frontend Development",
+        "period": "2022.04 – 2024.05",
+        "items": [
+          "Developed and improved UIs for various collections: places, stocks, world clock, weather, and more",
+          "Collaborated with product, design, and backend teams to coordinate UI decisions around constraints, accessibility, and data structure",
+          "Ensured UI consistency through testing across 40+ device and browser environments"
+        ]
+      },
+      "election": {
+        "title": "2024 22nd National Assembly Election Collection",
+        "period": "2023.12 – 2024.04",
+        "items": [
+          "Developed a polling station search UI for a seasonal collection, prioritizing speed and accuracy during the election period",
+          "Implemented lightweight UI by replacing only the list area with AJAX rendering on keyword or location-based requests",
+          "Blocked client-side security threats (parameter tampering, XSS) via regex-based input filtering",
+          "Collaborated with Kakao Maps to align search radius, sorting, and keyword interpretation — achieved ~97% result accuracy"
+        ]
+      },
+      "storybook": {
+        "title": "Search UI Migration to Storybook-based Architecture",
+        "period": "2024.01 – 2024.05",
+        "items": [
+          "Gradually migrated from Freemarker to a React + Storybook component structure",
+          "Established UI composition principles with product and design teams; componentized shared elements for reuse",
+          "Improved QA and design communication efficiency by ~1.5× through Storybook visualization",
+          "Directly experienced the transition to a Node-based, frontend-driven build and deployment pipeline"
+        ]
+      },
+      "realestate": {
+        "title": "Real Estate Collection: New Features & Improvements",
+        "period": "2023.06 – 2023.10",
+        "items": [
+          "Built a 3-level regional dropdown filter with query-based refresh for search engine indexing optimization",
+          "Improved comparative browsing by visualizing transaction type data as separate categories",
+          "Implemented Flipsnap slides, area unit conversion, and Kakao sharing with jQuery",
+          "Shifted from a backend-first workflow to a frontend-first mock-data structure, improving speed and collaboration"
+        ],
+        "stack": "Tech Stack: JavaScript · TypeScript · React · jQuery · Freemarker · SCSS · Storybook"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "designSystem": {
+        "title": "Design System UI Components & Deployment Automation",
+        "items": [
+          "Implemented React + Storybook components based on Figma design tokens",
+          "Automated separate static (Storybook) and dynamic (Next.js) deployments with GitHub Actions",
+          "Managed project as a monorepo, improving maintainability and deployment efficiency"
+        ],
+        "stack": "Tech Stack: Next.js · React · TypeScript · Emotion · Storybook · Figma · GitHub Actions · Vercel · pnpm"
+      },
+      "portfolio": {
+        "title": "Interaction-based Portfolio Projects",
+        "period": "2023.06 – 2023.10",
+        "items": [
+          "Built interaction-focused side projects using Framer Motion, Matter.js, and dnd-kit",
+          "Alphabet Builder: word-building game with drag-and-drop and a physics engine",
+          "Day Palette: color gradient UI visualization based on real-time weather data",
+          "Time Question: minute-by-minute rotating question prompts based on the current time"
+        ],
+        "stack": "Tech Stack: React · TypeScript · Emotion · Framer Motion · Matter.js · dnd-kit"
+      }
+    },
+    "externalActivities": {
+      "title": "External Activities",
+      "paper": {
+        "title": "Paper: \"Responsive Web Design Development of Digital Fashion Platform Musinsa\"",
+        "period": "2022.09",
+        "items": [
+          "Documented the process of redesigning an adaptive web structure into a fully responsive one",
+          "Proposed UI/UX improvements considering diverse screen sizes and user behavior patterns"
+        ]
+      }
+    }
+  },
+  "timequestion": {
+    "future": "A moment yet to come.",
+    "past": "A moment that has passed.",
+    "placeholder": "Write your moment here."
+  },
+  "colorSlider": {
+    "hourUnit": "h",
+    "currentHour": "{hour}:00",
+    "checkAt6": "Please check after 6 AM.",
+    "temperature": "Temp",
+    "humidity": "Humidity"
+  },
+  "alphabet": {
+    "deleteLabel": "Delete letter",
+    "translateLabel": "Translate to Korean",
+    "translateError": "Translation failed",
+    "invalidInput": "Cannot translate this input."
+  },
+  "zoomContent": {
+    "closeLabel": "Close"
+  }
+}
