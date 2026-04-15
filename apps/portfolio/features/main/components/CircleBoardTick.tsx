@@ -5,7 +5,7 @@ const TickMarks = ({ tickRadius }: TickMarksProps) => {
     <>
       {Array.from({ length: 60 }).map((_, i) => {
         const angle = (360 / 60) * i;
-        const isMajorTick = [0, 5, 10, 20, 25, 35, 45].includes(i);
+        const isMajorTick = [0, 5, 10, 15, 20, 25, 35, 45].includes(i);
         const tickHeight = isMajorTick ? 24 : 10;
         return (
           <S.Tick

@@ -132,6 +132,97 @@
       }
     }
   },
+  "accessibility": {
+    "insight": {
+      "title": "Insight",
+      "story": {
+        "title": "Accessibility as Default",
+        "body": "During university, I worked part-time at an exhibition run by visually impaired curators. For the first time, I learned that visual impairment spans a wide spectrum — total blindness, low vision, color vision deficiency, tunnel vision — and that each person experiences the world differently. Yet one thing they all had in common: reliance on sound to access digital devices. Now as a frontend developer, that experience reminds me that accessibility isn't a special feature for a few — it's a fundamental design principle for everyone."
+      },
+      "why": {
+        "title": "Why Should Frontend Developers Care About Accessibility?",
+        "items": [
+          "Equal access for all users — As of 2024, registered persons with disabilities in Korea number approximately 2.63 million (5.1% of the population). Accessibility is a baseline requirement, not an optional add-on",
+          "Business value — Inclusive products reach wider markets and build long-term brand trust and competitive advantage",
+          "Quality and efficiency — Building with semantic structure, keyboard navigation, and screen reader support from the start reduces long-term maintenance costs significantly",
+          "Shared team culture — When accessibility is baked in as a default, designers, developers, QA, and PMs all naturally uphold those standards together"
+        ]
+      }
+    },
+    "sensory": {
+      "title": "Sensory Design",
+      "voice": {
+        "title": "Voice Feedback Design",
+        "api": "Web Speech API (SpeechSynthesis)",
+        "items": [
+          "The SpeechSynthesis API enables context-aware audio guidance beyond what a screen reader provides by default",
+          "Rather than simply announcing 'Transfer complete,' contextual voice feedback can communicate remaining balance and the next available action — helping users navigate financial flows naturally",
+          "By controlling what gets read and in what order, developers can shape a coherent, service-specific audio experience"
+        ]
+      },
+      "haptic": {
+        "title": "Haptic Interaction Design",
+        "api": "Vibration API",
+        "items": [
+          "The Vibration API allows haptic feedback on key events like button taps or swipe completions",
+          "It communicates successful interactions through touch — crucial when visual feedback may not be perceived",
+          "A short vibration on swipe-to-delete, or a subtle pulse on payment completion, helps users feel that something happened"
+        ]
+      }
+    },
+    "dx": {
+      "title": "DX-Driven\nA11y Testing",
+      "ide": {
+        "title": "IDE Level — Accessibility Linting",
+        "tool": "eslint-plugin-jsx-a11y",
+        "items": [
+          "Catch accessibility errors at the point of writing code with an ESLint-based a11y plugin",
+          "Get immediate warnings for issues like missing aria-label on buttons or incorrect semantic structures",
+          "The fastest feedback loop — surface issues developers might not notice before they become habits"
+        ]
+      },
+      "ci": {
+        "title": "PR/Build Stage — Automated Checks",
+        "tool": "axe-core + CI/CD integration",
+        "items": [
+          "Integrate axe-core automated scripts into the CI/CD pipeline to catch accessibility violations before merging",
+          "Fail PRs when violations are detected, enforcing quality at the development stage",
+          "Creates a team-wide culture where accessibility compliance is structurally enforced, not individually remembered"
+        ]
+      },
+      "storybook": {
+        "title": "Design System — Storybook a11y",
+        "tool": "@storybook/addon-a11y",
+        "items": [
+          "Use the Storybook a11y addon to visually verify color contrast, semantic errors, and missing aria attributes during component development",
+          "Catching issues at component level prevents compound problems from surfacing at the page level",
+          "Serves as a shared visual reference for accessibility standards between designers and developers"
+        ]
+      },
+      "manual": {
+        "title": "Manual Testing — VoiceOver & Keyboard",
+        "items": [
+          "Verify that every interactive element is reachable via Tab key alone, and that focus-visible styles are clearly visible",
+          "Use VoiceOver (macOS/iOS) or TalkBack (Android) to experience the screen reader perspective firsthand",
+          "Automated tools catch roughly 30–40% of accessibility issues — manual testing is essential to cover the rest"
+        ]
+      }
+    },
+    "casestudy": {
+      "title": "Case Study",
+      "toss": {
+        "title": "Testing Toss App with VoiceOver",
+        "items": [
+          "Discovered duplicate narration — some content was read twice consecutively",
+          "The < > buttons (prev/next month) were announced only as 'button' with no context — missing aria-label",
+          "Important safety notices provided as images without alt text — content completely inaccessible to screen reader users",
+          "Canvas-based interactions like scratch cards and signature fields were entirely unrecognized by VoiceOver — Canvas accessibility requires explicit ARIA handling",
+          "Percentage values were read out to 8 decimal places, making the information harder to process rather than easier",
+          "This hands-on test reinforced that using a screen reader yourself is the fastest way to develop real accessibility intuition as a developer"
+        ]
+      }
+    }
+  },
   "timequestion": {
     "future": "A moment yet to come.",
     "past": "A moment that has passed.",

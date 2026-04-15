@@ -47,6 +47,14 @@ export const projects: Project[] = [
       "https://velog.io/@solarine064/프론트엔드의-디자인-시스템-자동화1-Figma-GitHub-Storybook",
   },
   {
+    index: 15,
+    id: "accessibility",
+    name: "A11y",
+    description: "",
+    velog:
+      "https://velog.io/@solarine064/%EC%A0%91%EA%B7%BC%EC%84%B1%EC%9D%84-%EA%B8%B0%EB%B3%B8%EA%B0%92Default%EC%9C%BC%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C",
+  },
+  {
     index: 20,
     id: "daypalette",
     name: "Day Palette",

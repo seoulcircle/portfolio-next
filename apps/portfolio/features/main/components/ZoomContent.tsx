@@ -4,6 +4,7 @@ import { ArrowRight, X } from "lucide-react";
 import { S } from "../styles/Zoom.style";
 import { ZoomContentProps } from "../types/main.types";
 import Developer from "./ZoomDeveloper";
+import Accessibility from "./ZoomAccessibility";
 import Image from "next/image";
 import useLockBodyZoomScroll from "../hooks/useLockBodyZoom";
 import MapArchive from "./MapArchive";
@@ -33,6 +34,8 @@ const ZoomContent = ({ project, onClose }: ZoomContentProps) => {
     <>
       {project.id === "developer" ? (
         <Developer />
+      ) : project.id === "accessibility" ? (
+        <Accessibility />
       ) : project.id === "dots" ? (
         <MapArchive />
       ) : (

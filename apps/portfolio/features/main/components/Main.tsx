@@ -99,7 +99,7 @@ const Main = () => {
   // 마우스 휠로 회전 각도 조절
   useScrollRotation({ rotation, setRotation, setTargetRotation, isZoomed });
 
-  if (!hasMounted) {
+if (!hasMounted) {
     return <div style={{ minHeight: '100vh', width: '100%' }} />;
   }
 
