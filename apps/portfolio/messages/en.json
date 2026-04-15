@@ -240,6 +240,17 @@
     },
     "casestudy": {
       "title": "Case Study",
+      "audit": {
+        "title": "Open Source — a11y-audit",
+        "tool": "github.com/seoulcircle/a11y-audit",
+        "toolUrl": "https://github.com/seoulcircle/a11y-audit",
+        "items": [
+          "Built a Node.js CLI tool that opens a URL with Playwright and runs axe-core accessibility checks",
+          "Returns exit code 1 on critical/serious violations — automatically fails PRs in CI/CD pipelines",
+          "Integrated into this portfolio via GitHub Actions — every PR triggers an accessibility audit with results posted as a comment",
+          "Supports --format markdown for outputting reports ready to paste directly into GitHub PR comments"
+        ]
+      },
       "toss": {
         "title": "Testing Toss App with VoiceOver",
         "items": [
