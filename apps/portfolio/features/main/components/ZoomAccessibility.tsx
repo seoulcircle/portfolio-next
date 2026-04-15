@@ -47,6 +47,7 @@ const Accessibility = () => {
   const primerItems = t.raw("designsystems.primer.items") as string[];
   const ideItems = t.raw("dx.ide.items") as string[];
   const ciItems = t.raw("dx.ci.items") as string[];
+  const auditItems = t.raw("casestudy.audit.items") as string[];
   const storybookItems = t.raw("dx.storybook.items") as string[];
   const manualItems = t.raw("dx.manual.items") as string[];
   const tossItems = t.raw("casestudy.toss.items") as string[];
@@ -227,6 +228,24 @@ const Accessibility = () => {
           </header>
         </S.Title>
         <S.ArticleItem>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>{t("casestudy.audit.title")}</h3>
+              <a
+                href={t("casestudy.audit.toolUrl")}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: "inherit", color: "inherit", textDecoration: "underline", opacity: 0.6 }}
+              >
+                {t("casestudy.audit.tool")}
+              </a>
+            </S.ArticleHeader>
+            <ul>
+              {auditItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
           <S.Article>
             <S.ArticleHeader>
               <h3>{t("casestudy.toss.title")}</h3>
