@@ -239,27 +239,35 @@
       }
     },
     "casestudy": {
-      "title": "Case Study",
+      "title": "A11y Contributions",
       "audit": {
         "title": "Open Source — a11y-audit",
         "tool": "github.com/seoulcircle/a11y-audit",
         "toolUrl": "https://github.com/seoulcircle/a11y-audit",
         "items": [
-          "Built a Node.js CLI tool that opens a URL with Playwright and runs axe-core accessibility checks",
-          "Returns exit code 1 on critical/serious violations — automatically fails PRs in CI/CD pipelines",
-          "Integrated into this portfolio via GitHub Actions — every PR triggers an accessibility audit with results posted as a comment",
-          "Supports --format markdown for outputting reports ready to paste directly into GitHub PR comments"
+          "One-line URL input runs a full accessibility audit — supports WCAG 2.0/2.1 Level A / AA / AAA, with terminal, JSON, and markdown output",
+          "Tracks score changes across runs — displays improvement vs. previous result (e.g. ▲ +5% vs 2026-04-14)",
+          "GitHub Actions integration — auto-posts accessibility report as a PR comment, blocks merge on critical/serious violations"
         ]
       },
       "toss": {
         "title": "Testing Toss App with VoiceOver",
         "items": [
-          "Discovered duplicate narration — some content was read twice consecutively",
-          "The < > buttons (prev/next month) were announced only as 'button' with no context — missing aria-label",
-          "Important safety notices provided as images without alt text — content completely inaccessible to screen reader users",
-          "Canvas-based interactions like scratch cards and signature fields were entirely unrecognized by VoiceOver — Canvas accessibility requires explicit ARIA handling",
-          "Percentage values were read out to 8 decimal places, making the information harder to process rather than easier",
-          "This hands-on test reinforced that using a screen reader yourself is the fastest way to develop real accessibility intuition as a developer"
+          "Missing aria-label — the < > (prev/next month) buttons were announced only as 'button' with no meaningful context",
+          "Canvas accessibility gap — scratch cards and signature fields built on Canvas were entirely invisible to VoiceOver",
+          "Percentage values read to 8 decimal places — making the output harder to process rather than helpful",
+          "This test reinforced that using a screen reader yourself is the fastest way to build real accessibility intuition as a developer"
+        ]
+      },
+      "joinuskorea": {
+        "title": "Volunteer — Multilingual Knowledge Sharing Web (JoinUs Korea)",
+        "tool": "joinuskorea.org",
+        "toolUrl": "https://joinuskorea.org",
+        "items": [
+          "Contributing as a volunteer to improve UI/UX and web accessibility of JoinUs Korea, a multilingual knowledge-sharing platform",
+          "Auditing user flows — sign-up forms, settings pages, and more — to identify accessibility gaps and propose improvements through code review and PRs",
+          "Contributing to frontend feature development with JavaScript, TypeScript, and React — collaborating remotely via Notion and GitHub",
+          "Identifying UX issues around form state feedback, button activation conditions, and input validation from an accessibility-first perspective"
         ]
       }
     }

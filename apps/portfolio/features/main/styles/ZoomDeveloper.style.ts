@@ -68,6 +68,7 @@ export const S = {
       background: ${colors.glass.light};
       pointer-events: none;
       padding: 10px 0;
+      z-index: 1;
       & h2 {
         font-weight: ${typography.fontWeight.semibold};
       }

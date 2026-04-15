@@ -1,6 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { S } from "../styles/ZoomDeveloper.style";
 import styled from "@emotion/styled";
 import { breakpoints } from "@styles/theme";
@@ -36,6 +37,33 @@ const Caption = styled.p`
   }
 `;
 
+const TocList = styled.ul`
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+`;
+
+const TocItem = styled.li<{ $active: boolean }>`
+  list-style: none;
+  font-size: 11px;
+  opacity: ${({ $active }) => ($active ? 1 : 0.22)};
+  font-weight: ${({ $active }) => ($active ? "700" : "400")};
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 10px;
+  }
+`;
+
+const SECTION_KEYS = ["insight", "designsystems", "dx", "sensory", "casestudy"] as const;
+
 const Accessibility = () => {
   const t = useTranslations("accessibility");
 
@@ -51,14 +79,64 @@ const Accessibility = () => {
   const storybookItems = t.raw("dx.storybook.items") as string[];
   const manualItems = t.raw("dx.manual.items") as string[];
   const tossItems = t.raw("casestudy.toss.items") as string[];
+  const joinuskoreaItems = t.raw("casestudy.joinuskorea.items") as string[];
+
+  const tocLabels: Record<(typeof SECTION_KEYS)[number], string> = {
+    insight: t("insight.title"),
+    designsystems: "디자인 시스템",
+    dx: "DX",
+    sensory: t("sensory.title"),
+    casestudy: t("casestudy.title"),
+  };
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let rafId: number;
+    const handleScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const scrollTop = container.scrollTop;
+        const threshold = container.clientHeight * 0.3;
+        let current = 0;
+        sectionRefs.current.forEach((ref, i) => {
+          if (!ref) return;
+          if (ref.offsetTop - threshold <= scrollTop) current = i;
+        });
+        setActiveIndex(current);
+      });
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  const renderToc = () => (
+    <TocList>
+      {SECTION_KEYS.map((key, i) => (
+        <TocItem key={key} $active={i === activeIndex}>
+          {tocLabels[key]}
+        </TocItem>
+      ))}
+    </TocList>
+  );
 
   return (
-    <S.Developer>
-      <S.Wrapper>
+    <S.Developer ref={containerRef}>
+      <S.Wrapper ref={(el) => { sectionRefs.current[0] = el; }}>
         <S.Title>
           <header>
             <h2>{t("insight.title")}</h2>
           </header>
+          {renderToc()}
         </S.Title>
         <S.ArticleItem>
           <S.Article>
@@ -80,11 +158,12 @@ const Accessibility = () => {
         </S.ArticleItem>
       </S.Wrapper>
 
-      <S.Wrapper>
+      <S.Wrapper ref={(el) => { sectionRefs.current[1] = el; }}>
         <S.Title>
           <header>
             <h2>{t("designsystems.title")}</h2>
           </header>
+          {renderToc()}
         </S.Title>
         <S.ArticleItem>
           <S.Article>
@@ -136,43 +215,12 @@ const Accessibility = () => {
         </S.ArticleItem>
       </S.Wrapper>
 
-      <S.Wrapper>
-        <S.Title>
-          <header>
-            <h2>{t("sensory.title")}</h2>
-          </header>
-        </S.Title>
-        <S.ArticleItem>
-          <S.Article>
-            <S.ArticleHeader>
-              <h3>{t("sensory.voice.title")}</h3>
-              <span>{t("sensory.voice.api")}</span>
-            </S.ArticleHeader>
-            <ul>
-              {voiceItems.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </S.Article>
-          <S.Article>
-            <S.ArticleHeader>
-              <h3>{t("sensory.haptic.title")}</h3>
-              <span>{t("sensory.haptic.api")}</span>
-            </S.ArticleHeader>
-            <ul>
-              {hapticItems.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </S.Article>
-        </S.ArticleItem>
-      </S.Wrapper>
-
-      <S.Wrapper>
+      <S.Wrapper ref={(el) => { sectionRefs.current[2] = el; }}>
         <S.Title>
           <header>
             <h2>{t("dx.title")}</h2>
           </header>
+          {renderToc()}
         </S.Title>
         <S.ArticleItem>
           <S.Article>
@@ -221,11 +269,45 @@ const Accessibility = () => {
         </S.ArticleItem>
       </S.Wrapper>
 
-      <S.Wrapper>
+      <S.Wrapper ref={(el) => { sectionRefs.current[3] = el; }}>
+        <S.Title>
+          <header>
+            <h2>{t("sensory.title")}</h2>
+          </header>
+          {renderToc()}
+        </S.Title>
+        <S.ArticleItem>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>{t("sensory.voice.title")}</h3>
+              <span>{t("sensory.voice.api")}</span>
+            </S.ArticleHeader>
+            <ul>
+              {voiceItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>{t("sensory.haptic.title")}</h3>
+              <span>{t("sensory.haptic.api")}</span>
+            </S.ArticleHeader>
+            <ul>
+              {hapticItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
+        </S.ArticleItem>
+      </S.Wrapper>
+
+      <S.Wrapper ref={(el) => { sectionRefs.current[4] = el; }}>
         <S.Title>
           <header>
             <h2>{t("casestudy.title")}</h2>
           </header>
+          {renderToc()}
         </S.Title>
         <S.ArticleItem>
           <S.Article>
@@ -248,6 +330,24 @@ const Accessibility = () => {
           </S.Article>
           <S.Article>
             <S.ArticleHeader>
+              <h3>{t("casestudy.joinuskorea.title")}</h3>
+              <a
+                href={t("casestudy.joinuskorea.toolUrl")}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: "inherit", color: "inherit", textDecoration: "underline", opacity: 0.6 }}
+              >
+                {t("casestudy.joinuskorea.tool")}
+              </a>
+            </S.ArticleHeader>
+            <ul>
+              {joinuskoreaItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
+          <S.Article>
+            <S.ArticleHeader>
               <h3>{t("casestudy.toss.title")}</h3>
             </S.ArticleHeader>
             <ul>
@@ -258,6 +358,7 @@ const Accessibility = () => {
           </S.Article>
         </S.ArticleItem>
       </S.Wrapper>
+
     </S.Developer>
   );
 };
