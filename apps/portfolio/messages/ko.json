@@ -239,27 +239,34 @@
       }
     },
     "casestudy": {
-      "title": "Case Study",
+      "title": "A11y Contributions",
       "audit": {
         "title": "오픈소스 — a11y-audit",
         "tool": "github.com/seoulcircle/a11y-audit",
         "toolUrl": "https://github.com/seoulcircle/a11y-audit",
         "items": [
-          "URL을 입력하면 Playwright로 페이지를 열고 axe-core로 접근성을 검사하는 Node.js CLI 툴을 직접 제작",
-          "critical/serious 위반 발생 시 exit code 1을 반환해 CI/CD에서 자동으로 PR fail 처리",
-          "이 포트폴리오에 GitHub Actions로 연동 — PR마다 자동 접근성 검사 후 결과를 코멘트로 리포트",
-          "--format markdown 옵션으로 GitHub PR 코멘트에 바로 붙여넣을 수 있는 리포트 출력 지원"
+          "URL 한 줄 입력으로 접근성 검사 — WCAG 2.0/2.1 Level A / AA / AAA 지원, 터미널·JSON·마크다운 출력",
+          "실행할 때마다 점수 변화 트래킹 — ▲ +5% vs 2026-04-14 형태로 이전 결과 대비 개선량 표시",
+          "GitHub Actions 연동 — PR 시 접근성 현황 자동 코멘트, critical/serious 위반 시 머지 블락"
         ]
       },
       "toss": {
         "title": "토스 앱 VoiceOver 직접 테스트",
         "items": [
-          "중복 낭독 — 하나의 콘텐츠가 두 번 연속 읽히는 현상 발견",
-          "aria-label 누락 — < > 버튼(이전 달·다음 달)이 단순히 '버튼'으로만 읽혀 실제 의미를 전달하지 못함",
-          "alt 텍스트 없음 — 안전 수칙 등 중요한 안내문이 이미지로만 제공되어 내용 파악 불가",
+          "aria-label 누락 — < > 버튼(이전 달·다음 달)이 단순히 '버튼'으로만 읽혀 실제 의미 전달 불가",
           "Canvas 접근성 미대응 — 복권 긁기·서명하기 등 Canvas 기반 터치 이벤트는 스크린 리더가 아예 인식하지 못함",
-          "소수점 과다 낭독 — 퍼센트 수치를 소수점 이하 8자리까지 모두 읽어 정보 전달이 오히려 복잡해짐",
-          "이 경험을 통해 접근성은 여전히 많은 개선 여지가 있으며, 개발자가 직접 스크린 리더를 써보는 것이 가장 빠른 감각 훈련임을 실감했다"
+          "소수점 과다 낭독 — 퍼센트 수치를 소수점 이하 8자리까지 읽어 정보 전달이 오히려 복잡해짐",
+          "이 경험을 통해 개발자가 직접 스크린 리더를 써보는 것이 가장 빠른 접근성 감각 훈련임을 실감"
+        ]
+      },
+      "joinuskorea": {
+        "title": "다국어 지식나눔 웹 — UI/UX·접근성 개선 봉사",
+        "tool": "joinuskorea.org",
+        "toolUrl": "https://joinuskorea.org",
+        "items": [
+          "다국어 지식나눔 플랫폼(JoinUs Korea)의 UI/UX 개선 및 접근성 강화를 위한 재능기부 봉사 참여 중",
+          "회원 폼·설정 페이지 등 사용자 흐름 전반에서 접근성 이슈를 직접 진단하고 개선 방향 제안 및 코드 수정 기여",
+          "JavaScript · TypeScript · React 기반으로 프론트엔드 기능 개발에 참여 — Notion·GitHub 기반 비대면 협업"
         ]
       }
     }
