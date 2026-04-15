@@ -35,14 +35,13 @@ const LangToggle = styled.div`
 const LangBtn = styled(Link, {
   shouldForwardProp: (prop) => prop !== "$active",
 })<{ $active: boolean }>`
-  color: black;
+  color: ${({ $active }) => ($active ? "#000000" : "#767676")};
   text-decoration: none;
-  opacity: ${({ $active }) => ($active ? 1 : 0.3)};
   pointer-events: ${({ $active }) => ($active ? "none" : "auto")};
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 
   &:hover {
-    opacity: 1;
+    color: #000000;
   }
 `;
 
