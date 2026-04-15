@@ -1,6 +1,40 @@
 "use client";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { S } from "../styles/ZoomDeveloper.style";
+import styled from "@emotion/styled";
+import { breakpoints } from "@styles/theme";
+import { typography } from "@styles/tokens/legacy";
+
+import carbon1 from "@assets/images/a11y/carbon-1.png";
+import carbon2 from "@assets/images/a11y/carbon-2.png";
+import gestalt from "@assets/images/a11y/gestalt.png";
+import primer from "@assets/images/a11y/primer.png";
+
+const ImgWrapper = styled.div`
+  position: relative;
+  width: 60%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+  }
+`;
+
+const Caption = styled.p`
+  font-size: ${typography.fontSize.base};
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 16px !important;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 11px;
+  }
+`;
 
 const Accessibility = () => {
   const t = useTranslations("accessibility");
@@ -8,6 +42,9 @@ const Accessibility = () => {
   const whyItems = t.raw("insight.why.items") as string[];
   const voiceItems = t.raw("sensory.voice.items") as string[];
   const hapticItems = t.raw("sensory.haptic.items") as string[];
+  const carbonItems = t.raw("designsystems.carbon.items") as string[];
+  const gestaltItems = t.raw("designsystems.gestalt.items") as string[];
+  const primerItems = t.raw("designsystems.primer.items") as string[];
   const ideItems = t.raw("dx.ide.items") as string[];
   const ciItems = t.raw("dx.ci.items") as string[];
   const storybookItems = t.raw("dx.storybook.items") as string[];
@@ -35,6 +72,62 @@ const Accessibility = () => {
             </S.ArticleHeader>
             <ul>
               {whyItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
+        </S.ArticleItem>
+      </S.Wrapper>
+
+      <S.Wrapper>
+        <S.Title>
+          <header>
+            <h2>{t("designsystems.title")}</h2>
+          </header>
+        </S.Title>
+        <S.ArticleItem>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>{t("designsystems.carbon.title")}</h3>
+            </S.ArticleHeader>
+            <ImgWrapper>
+              <Image src={carbon1} alt="IBM Carbon accessibility documentation" placeholder="blur" />
+            </ImgWrapper>
+            <Caption>{t("designsystems.carbon.caption1")}</Caption>
+            <ImgWrapper>
+              <Image src={carbon2} alt="IBM Carbon keyboard interaction docs" placeholder="blur" />
+            </ImgWrapper>
+            <Caption>{t("designsystems.carbon.caption2")}</Caption>
+            <ul>
+              {carbonItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>{t("designsystems.gestalt.title")}</h3>
+            </S.ArticleHeader>
+            <ImgWrapper>
+              <Image src={gestalt} alt="Pinterest Gestalt accessibility props" placeholder="blur" />
+            </ImgWrapper>
+            <Caption>{t("designsystems.gestalt.caption")}</Caption>
+            <ul>
+              {gestaltItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </S.Article>
+          <S.Article>
+            <S.ArticleHeader>
+              <h3>{t("designsystems.primer.title")}</h3>
+            </S.ArticleHeader>
+            <ImgWrapper>
+              <Image src={primer} alt="GitHub Primer accessibility tab" placeholder="blur" />
+            </ImgWrapper>
+            <Caption>{t("designsystems.primer.caption")}</Caption>
+            <ul>
+              {primerItems.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>

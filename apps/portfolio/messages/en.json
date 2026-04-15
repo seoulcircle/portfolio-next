@@ -149,6 +149,36 @@
         ]
       }
     },
+    "designsystems": {
+      "title": "A11y in\nDesign Systems",
+      "carbon": {
+        "title": "IBM Carbon Design System",
+        "caption1": "Focus Management and Keyboard Interaction documented per component",
+        "caption2": "Screen Reader Behavior systematically documented",
+        "items": [
+          "Every component explicitly documents Focus Management, Keyboard Interaction, and Screen Reader Behavior",
+          "Combines automated checks (DAP, axe-core) with manual QA (keyboard and screen reader testing) across the full component lifecycle",
+          "One of the most thorough accessibility implementations among major design systems"
+        ]
+      },
+      "gestalt": {
+        "title": "Pinterest Gestalt",
+        "caption": "Accessibility props like accessibilityLabel built into the component interface",
+        "items": [
+          "Props like accessibilityLabel and accessibilityControls are part of the default component API",
+          "useFocusVisible — shows focus ring only on keyboard navigation, hides it on mouse click",
+          "useReducedMotion — detects the user's 'reduce motion' system setting and adjusts animations automatically"
+        ]
+      },
+      "primer": {
+        "title": "GitHub Primer",
+        "caption": "Dedicated Accessibility tab on every component page",
+        "items": [
+          "Every component has a dedicated Accessibility tab with explicit requirements",
+          "Includes implementation notes, best practices, and screen reader guidance directly in the component docs"
+        ]
+      }
+    },
     "sensory": {
       "title": "Sensory Design",
       "voice": {
