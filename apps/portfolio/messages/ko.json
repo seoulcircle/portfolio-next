@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "홍이의 포트폴리오",
-    "description": "프론트엔드 인터랙티브 포트폴리오"
+    "title": "Seoul Circle — 디지털 프로덕트 스튜디오",
+    "description": "Designing and building digital experiences. Strategy · UX/UI · Development."
   },
   "header": {
     "home": "HOME"
@@ -284,5 +284,108 @@
   },
   "zoomContent": {
     "closeLabel": "닫기"
+  },
+  "studio": {
+    "nav": {
+      "label": "주요 메뉴",
+      "home": "home",
+      "work": "work",
+      "about": "about",
+      "contact": "contact",
+      "lang": "언어 선택"
+    },
+    "hero": {
+      "pillars": "Strategy · UX/UI · Development",
+      "clock": "서울 기준 현재 시각",
+      "city": "Seoul"
+    },
+    "work": {
+      "title": "work",
+      "lead": "Web · App · Kiosk",
+      "items": {
+        "myodoc": {
+          "title": "myodoc",
+          "type": "",
+          "year": "",
+          "summary": "",
+          "details": []
+        },
+        "myopia": {
+          "title": "myopia",
+          "type": "",
+          "year": "",
+          "summary": "",
+          "details": []
+        },
+        "guide-kiosk": {
+          "title": "법무부 안내 키오스크",
+          "type": "기관 · 키오스크",
+          "year": "2025",
+          "summary": "광주 법무부 전시관의 안내 키오스크. 기획부터 디자인, 프론트엔드 개발까지 맡았습니다.",
+          "details": [
+            "건물 안내도, 시설 소개, 카탈로그를 하나의 웹 서비스로 통합",
+            "React 기반 SPA 구조로 화면 전환과 콘텐츠 탐색 경험 개선"
+          ]
+        },
+        "webtoon-kiosk": {
+          "title": "웹툰 뷰어 키오스크",
+          "type": "기관 · 키오스크",
+          "year": "2025",
+          "summary": "법무부 전시관의 웹툰 콘텐츠 뷰어 키오스크. 기획부터 디자인, 프론트엔드 개발까지 맡았습니다.",
+          "details": [
+            "웹툰 콘텐츠 뷰어 웹 서비스 개발",
+            "React 기반 SPA 구조"
+          ]
+        },
+        "daum": {
+          "title": "다음 검색 서비스",
+          "type": "검색 · 프론트엔드",
+          "year": "2022–2024",
+          "summary": "다음(Daum) 검색의 장소, 주식, 세계시간, 날씨 등 컬렉션 UI를 개발하고 개선했습니다. 디케이테크인 검색서비스개발팀 재직 중 작업입니다.",
+          "details": [
+            "제22대 국회의원선거 투표소 검색 컬렉션 개발, 카카오맵과 검색 정합도 약 97% 달성",
+            "검색 UI를 Freemarker에서 React · Storybook 컴포넌트 구조로 전환",
+            "부동산 컬렉션 지역 필터, 실거래 비교 등 신규 기능 구현",
+            "40여 개 디바이스·브라우저 대응 테스트로 UI 일관성 확보"
+          ]
+        }
+      },
+      "back": "work",
+      "next": "다음 프로젝트",
+      "imagePending": "이미지 준비 중"
+    },
+    "about": {
+      "title": "about",
+      "lead": "Seoul Circle Studio는 서울을 기반으로 하는 디지털 스튜디오입니다. 기획부터 UX/UI 디자인, 개발까지 하나의 과정으로 연결해 브랜드와 비즈니스를 위한 웹사이트, 앱, 디지털 제품을 만듭니다.",
+      "pillars": [
+        {
+          "name": "Strategy",
+          "desc": "무엇을, 누구를 위해, 어떤 순서로 만들지 정합니다. 요구사항 정리, 정보 구조, 범위와 일정."
+        },
+        {
+          "name": "UX/UI",
+          "desc": "사용 흐름과 화면을 설계합니다. 와이어프레임, 인터페이스 디자인, 디자인 시스템."
+        },
+        {
+          "name": "Development",
+          "desc": "설계한 그대로 만들어 배포합니다. 웹사이트, 웹 서비스, 키오스크, 쇼핑몰. 접근성은 기본값입니다."
+        }
+      ],
+      "founderLabel": "Founder",
+      "founder": "이홍 Hong Lee",
+      "background": [
+        "다음(Daum) 검색 프론트엔드 개발, 디케이테크인 2022–2024",
+        "제22대 국회의원선거 투표소 검색 컬렉션 개발",
+        "검색 UI를 React · Storybook 컴포넌트 구조로 전환",
+        "「무신사 반응형 웹 디자인 개발」 논문 기고, 2022"
+      ],
+      "statement": "Ideas into products.",
+      "close": "작은 아이디어가 실제로 운영되는 서비스가 되기까지, 복잡한 것은 단순하게, 필요한 것은 세심하게 설계합니다."
+    },
+    "contact": {
+      "title": "contact",
+      "lead": "만들고 싶은 것이 있다면 알려주세요. 간단한 개요와 희망 일정을 함께 보내주시면 좋습니다.",
+      "footer": "Seoul, Korea"
+    }
   }
 }

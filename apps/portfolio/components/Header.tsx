@@ -70,7 +70,8 @@ function Header() {
     pathSegments.length <= 1 ? "/" : "/" + pathSegments.slice(1).join("/");
 
   const isHomePage = pathWithoutLocale === "/";
-  const isVisible = !isHomePage;
+  // Studio pages (home, /work/*) carry their own navigation.
+  const isVisible = !isHomePage && !pathWithoutLocale.startsWith("/work");
   const isReady = mounted;
   const otherLocale = locale === "ko" ? "en" : "ko";
 

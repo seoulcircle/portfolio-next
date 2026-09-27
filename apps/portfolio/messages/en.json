@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Hong Lee's Portfolio",
-    "description": "Frontend Interactive Portfolio"
+    "title": "Seoul Circle — Digital product studio",
+    "description": "Designing and building digital experiences. Strategy · UX/UI · Development."
   },
   "header": {
     "home": "HOME"
@@ -284,5 +284,108 @@
   },
   "zoomContent": {
     "closeLabel": "Close"
+  },
+  "studio": {
+    "nav": {
+      "label": "Main",
+      "home": "home",
+      "work": "work",
+      "about": "about",
+      "contact": "contact",
+      "lang": "Language"
+    },
+    "hero": {
+      "pillars": "Strategy · UX/UI · Development",
+      "clock": "Current time in Seoul",
+      "city": "Seoul"
+    },
+    "work": {
+      "title": "work",
+      "lead": "Web · App · Kiosk",
+      "items": {
+        "myodoc": {
+          "title": "myodoc",
+          "type": "",
+          "year": "",
+          "summary": "",
+          "details": []
+        },
+        "myopia": {
+          "title": "myopia",
+          "type": "",
+          "year": "",
+          "summary": "",
+          "details": []
+        },
+        "guide-kiosk": {
+          "title": "Ministry of Justice guide kiosk",
+          "type": "Institution · Kiosk",
+          "year": "2025",
+          "summary": "Guide kiosk for the Ministry of Justice exhibition hall in Gwangju. Planning, design and front-end development.",
+          "details": [
+            "Floor maps, facility guides and catalogue combined into one web service",
+            "React single-page architecture for smooth transitions and browsing"
+          ]
+        },
+        "webtoon-kiosk": {
+          "title": "Webtoon viewer kiosk",
+          "type": "Institution · Kiosk",
+          "year": "2025",
+          "summary": "Webtoon viewer kiosk for the Ministry of Justice exhibition hall. Planning, design and front-end development.",
+          "details": [
+            "Webtoon content viewer as a web service",
+            "React single-page architecture"
+          ]
+        },
+        "daum": {
+          "title": "Daum Search",
+          "type": "Search · Front-end",
+          "year": "2022–2024",
+          "summary": "Built and improved Daum Search collections such as places, stocks, world time and weather. Work done at DK Techin's search service team.",
+          "details": [
+            "Polling-place search for the 22nd National Assembly election, ~97% result alignment with Kakao Map",
+            "Migrated search UI from Freemarker to React and Storybook components",
+            "Real estate collection: region filters and transaction comparison",
+            "UI consistency verified across 40+ devices and browsers"
+          ]
+        }
+      },
+      "back": "work",
+      "next": "Next project",
+      "imagePending": "Images coming soon"
+    },
+    "about": {
+      "title": "about",
+      "lead": "Seoul Circle Studio is a digital studio based in Seoul. We connect strategy, UX/UI design, and development to create websites, apps, and digital products for brands and businesses.",
+      "pillars": [
+        {
+          "name": "Strategy",
+          "desc": "What to build, for whom, in what order. Requirements, information architecture, scope and schedule."
+        },
+        {
+          "name": "UX/UI",
+          "desc": "Flows and screens. Wireframes, interface design, design systems."
+        },
+        {
+          "name": "Development",
+          "desc": "Built as designed, then shipped. Websites, web services, kiosks, commerce. Accessible by default."
+        }
+      ],
+      "founderLabel": "Founder",
+      "founder": "Hong Lee",
+      "background": [
+        "Front-end engineering for Daum Search, DK Techin 2022–2024",
+        "Polling-place search for the 22nd National Assembly election",
+        "Migrated search UI to React and Storybook components",
+        "Paper on Musinsa's responsive web redesign, 2022"
+      ],
+      "statement": "Ideas into products.",
+      "close": "From a small idea to a working service, we keep things simple, thoughtful, and purposeful."
+    },
+    "contact": {
+      "title": "contact",
+      "lead": "Tell us what you want to build. A short outline and your preferred timeline help.",
+      "footer": "Seoul, Korea"
+    }
   }
 }

@@ -1,5 +1,5 @@
-import Main from "../../features/main/components/Main";
+import Studio from "../../features/studio/components/Studio";
 
 export default function HomePage() {
-  return <Main />;
+  return <Studio />;
 }

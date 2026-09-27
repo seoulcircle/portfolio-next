@@ -41,6 +41,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>
